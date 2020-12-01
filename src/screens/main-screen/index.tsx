@@ -1,7 +1,7 @@
 import React from 'react'
-import TodoList from '../../components/TodoList'
+import TodoList from './components/TodoList'
 import { StyleSheet, Text, View } from 'react-native';
-import Navbar from '../../components/Navbar';
+import Navbar from './components/Navbar';
 import { StatusBar } from 'expo-status-bar';
 
 

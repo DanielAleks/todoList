@@ -1,26 +1,28 @@
 import React from 'react'
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { S } from '../../App';
+import { gloStyles } from '../../../../App';
 
 function Navbar() {
+  
+  
   const onP = () => {
     
   }
 
-  
+
   return (
 
     
 
     <View style={styles.container}>
 
-        <TouchableOpacity style={S.button} onPress={onP}>
-          <Text style={S.text}>Join Room/Leave</Text>
+        <TouchableOpacity style={gloStyles.button} onPress={onP}>
+          <Text style={gloStyles.text}>Join Room/Leave</Text>
         </TouchableOpacity>
 
 
-        <TouchableOpacity style={S.button}>
-          <Text style={S.text}>Create Room</Text>
+        <TouchableOpacity style={gloStyles.button}>
+          <Text style={gloStyles.text}>Create Room</Text>
         </TouchableOpacity>
         
 
