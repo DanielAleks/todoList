@@ -1,15 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React from 'react'
+import TodoList from '../../components/TodoList'
 import { StyleSheet, Text, View } from 'react-native';
-import Navbar from './src/components/Navbar';
-import TodoList from './src/components/TodoList';
-import Navigation from './src/Navigation';
+import Navbar from '../../components/Navbar';
+import { StatusBar } from 'expo-status-bar';
 
-export default function App() {
+
+const MainScreen = () => {
   return (
-      <Navigation />
-  );
+    <View style={styles.container}>
+      <TodoList />
+      <Navbar />
+      <StatusBar style="auto" />
+    </View>
+  )
 }
+
+export default MainScreen
 
 export const S = StyleSheet.create({
   text: {
@@ -29,7 +35,8 @@ export const S = StyleSheet.create({
     borderRadius: 40,
   },
 
-});
+  });
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
