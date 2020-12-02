@@ -2,7 +2,8 @@ import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import { gloStyles } from '../../../App'
-import SignUp from './SignUp'
+import SignIn from './components/SignIn'
+import SignUp from './components/SignUp'
 
 const WelcomeScreen = () => {
   const navigation = useNavigation()
@@ -10,10 +11,11 @@ const WelcomeScreen = () => {
   return (
     <View>
 
-      <TouchableOpacity style={gloStyles.button} onPress={() => navigation.navigate("main")}>
+      {/* <TouchableOpacity style={gloStyles.button} onPress={() => navigation.navigate("main")}>
         <Text></Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <SignUp />
+      <SignIn />
     </View>
   )
 }

@@ -25,5 +25,4 @@ const RemoveTodos = () => {
   )
 }
 
-//nnfe
 export default RemoveTodos

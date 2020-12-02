@@ -7,7 +7,7 @@ import Navigation from './src/Navigation';
 
 export default function App() {
   return (
-      <Navigation />
+    <Navigation />
   );
 }
 
@@ -27,6 +27,11 @@ export const gloStyles = StyleSheet.create({
     width: 100,
     backgroundColor: '#f6ffc3',
     borderRadius: 40,
+  },
+  inputStyle: {
+    width: 100,
+    backgroundColor: 'white',
+    borderRadius: 4
   },
 
 });

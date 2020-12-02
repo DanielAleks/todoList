@@ -31,7 +31,7 @@ function TodoList() {
     <View style={styles.container}>
 
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', }}>
-        <TextInput onSubmitEditing={(e) => (e.nativeEvent.text)} ref={ref => textInputRef.current = ref} style={styles.inputStyle} value={input} onChangeText={(text) => setInput(text)} />
+        <TextInput onSubmitEditing={(e) => (e.nativeEvent.text)} ref={ref => textInputRef.current = ref} style={gloStyles.inputStyle} value={input} onChangeText={(text) => setInput(text)} />
       </View>
 
       <ListOfTodos />
@@ -49,10 +49,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#dadada',
     flex: 1,
     width: '100%',
-  },
-  inputStyle: {
-    width: 100,
-    backgroundColor: 'white',
   },
   bottomButton: {
     backgroundColor: '#016064',

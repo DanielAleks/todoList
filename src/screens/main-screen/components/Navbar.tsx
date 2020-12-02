@@ -28,7 +28,7 @@ function Navbar() {
      
       
       <TouchableOpacity style={{ ...gloStyles.button, position: 'absolute', left: 100}} onPress={() => navigation.navigate("welcome")}>
-        <Text style={gloStyles.text}>Go Back</Text>
+        <Text style={gloStyles.text}>Welcome Page</Text>
       </TouchableOpacity>
 
 
