@@ -1,20 +1,20 @@
 import React, { useState } from 'react'
 import { Button, FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { useDispatch, useSelector } from 'react-redux'
 import { gloStyles } from '../../../../App'
+import { rootStoreT } from '../../../../store'
+import { ADD_TODO } from '../../../reducers/types'
 import ListOfTodos from './ListOfTodos'
 
-export interface todoObjT {
-  input: string
-  id: number
-}
+
 function TodoList() {
   const [input, setInput] = useState<any>('')
+  const dispatch = useDispatch()
 
-  const [todos, setTodos] = useState<todoObjT[]>([])
-
-  const onPressHandler = () => {
-    setTodos(prev => [...prev, { id: Math.floor(Math.random() * 10000), input: input }])
+  const addTodo = () => {
+    dispatch({type: ADD_TODO, payload: input })
   }
+  
 
   return (
     <View style={styles.container}>
@@ -23,10 +23,10 @@ function TodoList() {
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', }}>
         <TextInput style={styles.inputStyle} value={input} onChangeText={(text) => setInput(text)} />
       </View>
-      <ListOfTodos todos={todos} setTodos={setTodos} />
+      <ListOfTodos/>
       <View>
-        <TouchableOpacity style={styles.bottomButton} onPress={onPressHandler}>
-          <Text>click meeee</Text>
+        <TouchableOpacity style={styles.bottomButton} onPress={addTodo}>
+          <Text>add</Text>
         </TouchableOpacity>
       </View>
     </View>

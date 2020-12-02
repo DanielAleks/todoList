@@ -1,10 +1,15 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
-import todoReducer from './src/reducers/todoReducer'
+import todosReducer, { todoObjT } from './src/reducers/todosReducer'
+
+export interface rootStoreT {
+  todos: todoObjT[]
+}
 
 const rootReducer = combineReducers({
- todo: todoReducer
+  todos: todosReducer
 })
+
 
 const initialState = {}
 

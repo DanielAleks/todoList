@@ -1,20 +1,24 @@
 import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
-import {todoObjT} from './TodoList'
+import { useDispatch, useSelector } from 'react-redux'
+import { rootStoreT } from '../../../../store'
+import { ADD_TODO, REMOVE_TODO } from '../../../reducers/types'
+const ListOfTodos = () => {
 
-interface ite {
-  todos: todoObjT[]
-  setTodos
-}
+  const todos = useSelector((state: rootStoreT) => state.todos)
+  const dispatch = useDispatch()
 
-const ListOfTodos = ({todos, setTodos}: ite) => {
+  const deleteTodo = (payload) => {
+    dispatch({type: REMOVE_TODO, payload })
+  }
   
+
   return (
     <View>
         {todos.map((item) =>
-            <TouchableOpacity key={item.id} onPress={() =>
-              setTodos(prev => prev.filter(newItem => newItem !== item))
-            }><Text style={{ backgroundColor: 'gray' }}>{item.input}</Text></TouchableOpacity>
+            <TouchableOpacity key={item.id} onPress={() => deleteTodo(item.id)}
+            >
+            <Text style={{ backgroundColor: 'gray' }}>{item.value}</Text></TouchableOpacity>
             )}
     </View>
   )
