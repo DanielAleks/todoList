@@ -13,7 +13,7 @@ export default function App() {
 
 export const gloStyles = StyleSheet.create({
   text: {
-    color: 'white',
+    color: 'black',
     fontSize: 14,
   },
   container: {
@@ -25,7 +25,7 @@ export const gloStyles = StyleSheet.create({
     justifyContent: 'center',
     height: 50,
     width: 100,
-    backgroundColor: '#5c0f58',
+    backgroundColor: '#f6ffc3',
     borderRadius: 40,
   },
 

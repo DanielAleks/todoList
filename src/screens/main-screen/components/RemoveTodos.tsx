@@ -1,9 +1,10 @@
 import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
+import { gloStyles } from '../../../../App'
 import { rootStoreT } from '../../../../store'
-import { ADD_TODO, REMOVE_TODO } from '../../../reducers/types'
-const ListOfTodos = () => {
+import { REMOVE_TODO } from '../../../reducers/types'
+const RemoveTodos = () => {
 
   const todos = useSelector((state: rootStoreT) => state.todos)
   const dispatch = useDispatch()
@@ -18,11 +19,11 @@ const ListOfTodos = () => {
         {todos.map((item) =>
             <TouchableOpacity key={item.id} onPress={() => deleteTodo(item.id)}
             >
-            <Text style={{ backgroundColor: 'gray' }}>{item.value}</Text></TouchableOpacity>
+            <Text style={{...gloStyles.text, color: 'black'}}> -{item.value}</Text></TouchableOpacity>
             )}
     </View>
   )
 }
 
 //nnfe
-export default ListOfTodos
+export default RemoveTodos

@@ -1,10 +1,19 @@
+import { useNavigation } from '@react-navigation/native'
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
+import { gloStyles } from '../../../App'
+import SignUp from './SignUp'
 
 const WelcomeScreen = () => {
+  const navigation = useNavigation()
+  
   return (
     <View>
-      <Text></Text>
+
+      <TouchableOpacity style={gloStyles.button} onPress={() => navigation.navigate("main")}>
+        <Text></Text>
+      </TouchableOpacity>
+      <SignUp />
     </View>
   )
 }
