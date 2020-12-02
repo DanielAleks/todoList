@@ -22,13 +22,13 @@ function SignUp() {
 
   const modalState = () => {
     setModal(prev => !prev)
-    navigation.goBack()
+    // navigation.goBack()
   }
 
   return (
     <View style={styles.container}>
       {modal ?
-        <Modal>
+        <Modal style={{width: 100, height: 100}}>
           <View style={{ backgroundColor: '#f1f1f1', width: '100%', height: '100%' }}>
 
             <TouchableOpacity style={gloStyles.button} onPress={modalState}>

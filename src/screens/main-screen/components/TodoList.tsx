@@ -1,3 +1,4 @@
+import { Chip } from 'react-native-paper';
 import { useIsFocused } from '@react-navigation/native'
 import { disableExpoCliLogging } from 'expo/build/logs/Logs'
 import React, { useRef, useState } from 'react'
@@ -7,7 +8,7 @@ import { gloStyles } from '../../../../App'
 import { rootStoreT } from '../../../../store'
 import { ADD_TODO } from '../../../reducers/types'
 import ListOfTodos from './RemoveTodos'
-
+// * as
 
 function TodoList() {
   const [input, setInput] = useState<any>('')
@@ -22,13 +23,13 @@ function TodoList() {
 
   const toggleFocus = () => {
     setIsFocused(prev => !prev)
-    isFocused ? textInputRef.current.focus() :  textInputRef.current.blur()    
+    isFocused ? textInputRef.current.focus() : textInputRef.current.blur()
 
   }
   
-
   return (
     <View style={styles.container}>
+      <Chip icon="information" style={{ backgroundColor: 'red', position: 'absolute', width: 135, height: 50, top: 100 }} onPress={() => console.log('Pressed')}>Todos Here</Chip>
 
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', }}>
         <TextInput onSubmitEditing={(e) => (e.nativeEvent.text)} ref={ref => textInputRef.current = ref} style={gloStyles.inputStyle} value={input} onChangeText={(text) => setInput(text)} />
@@ -36,9 +37,9 @@ function TodoList() {
 
       <ListOfTodos />
 
-      <View style={{display: 'flex', justifyContent:'flex-end', alignItems: 'flex-end'}}>
+      <View style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
         <TouchableOpacity style={styles.bottomButton} onPress={addTodo}>
-  <Text style={styles.bigPlus}>{isFocused ? '+' : '-'}</Text>
+          <Text style={styles.bigPlus}>{isFocused ? '+' : '-'}</Text>
         </TouchableOpacity>
       </View>
     </View>

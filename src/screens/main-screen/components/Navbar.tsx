@@ -14,10 +14,6 @@ function Navbar() {
     setModalVisable(prev => !prev)
   }
 
-
-
-
-
   return (
     <View style={styles.container}>
 
@@ -25,23 +21,38 @@ function Navbar() {
         <Text style={gloStyles.text}>...</Text>
       </TouchableOpacity>
 
-     
-      
-      <TouchableOpacity style={{ ...gloStyles.button, position: 'absolute', left: 100}} onPress={() => navigation.navigate("welcome")}>
-        <Text style={gloStyles.text}>Welcome Page</Text>
-      </TouchableOpacity>
+      {modalVisable ?
+        <View style={styles.modalContainer}>
+       
 
+          <View style={{justifyContent: 'center', alignItems: 'center'}}>
+            <View style={styles.group}>
+              <Text style={styles.text}>Jamie's Group</Text>
+            </View>
+            <View style={styles.group}>
+              <Text style={styles.text}>Carl's Group</Text>
+            </View>
+            <View style={styles.group}>
+              <Text style={styles.text}>Jake's Group</Text>
+            </View>
+            <View style={styles.group}>
+              <Text style={styles.text}>Kobi's Group</Text>
+            </View>
+          </View>
 
-      <View style={{ display: modalVisable ? 'flex' : 'none' }}>
-        <TouchableOpacity style={gloStyles.button}>
-          <Text style={gloStyles.text}>Join Room/Leave</Text>
+          <TouchableOpacity style={{...styles.longButton, marginBottom: 10}}>
+            <Text style={gloStyles.text}>Join Room/Leave</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.longButton}>
+            <Text style={gloStyles.text}>Create Room</Text>
+          </TouchableOpacity>
+        </View>
+        :
+        <TouchableOpacity style={{ ...gloStyles.button, position: 'absolute', left: 100 }} onPress={() => navigation.navigate("welcome")}>
+          <Text style={gloStyles.text}>Welcome Page</Text>
         </TouchableOpacity>
-
-        <TouchableOpacity style={gloStyles.button}>
-          <Text style={gloStyles.text}>Create Room</Text>
-        </TouchableOpacity>
-      </View>
-
+      }
     </View>
   )
 }
@@ -58,11 +69,35 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  modalContainer: {
+    backgroundColor: 'black', 
+    width: '100%', 
+    height: 800, 
+    position: 'absolute', 
+    top: 0,
+    display: 'flex', 
+    marginTop: 100
+  },
   specificButton: {
     display: 'flex',
     justifyContent: 'center',
     position: 'absolute',
     right: '0',
+  },
+  text: {
+    fontSize: 14,
+    color: 'white',
+  },
+  longButton: {
+    width: '100%',
+    height: 50,
+    backgroundColor: '#70b8fc'
+  },
+  group: {
+    alignItems: 'center', 
+    marginTop: 10,
+    width: '100%',
+    backgroundColor: '#a7a7a7'
   }
 
 });
