@@ -1,13 +1,13 @@
 import React from 'react'
 import TodoList from './components/TodoList'
 import { StyleSheet, Text, View } from 'react-native';
-import Navbar from './components/Navbar';
+import Navbar from './components/navbar/Navbar';
 import { StatusBar } from 'expo-status-bar';
 
 
 const MainScreen = () => {
   return (
-    <View style={styles.container}>
+    <View style={styles.containerNotSureYIHavThis}>
       <TodoList />
       <Navbar />
       <StatusBar style="auto" />
@@ -17,7 +17,7 @@ const MainScreen = () => {
 
 export default MainScreen
 
-export const S = StyleSheet.create({
+export const styles = StyleSheet.create({
   text: {
     color: 'white',
     fontSize: 14,
@@ -34,14 +34,11 @@ export const S = StyleSheet.create({
     backgroundColor: '#5c0f58',
     borderRadius: 40,
   },
-
-  });
-
-const styles = StyleSheet.create({
-  container: {
+  containerNotSureYIHavThis: {
     flex: 1,
     backgroundColor: '#978d8d',
     alignItems: 'center',
     justifyContent: 'center',
   },
-});
+
+  });

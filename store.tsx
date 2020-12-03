@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
-import roomsReducer, { roomObjT } from './src/reducers/roomsReducer'
 import todosReducer, { todoObjT } from './src/reducers/todosReducer'
+import roomsReducer, { roomObjT } from './src/reducers/roomsReducer'
 
 export interface rootStoreT {
   todos: todoObjT[]

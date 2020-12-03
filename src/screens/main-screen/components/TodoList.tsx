@@ -8,9 +8,9 @@ import { gloStyles } from '../../../../App'
 import { rootStoreT } from '../../../../store'
 import { ADD_TODO } from '../../../reducers/types'
 import ListOfTodos from './RemoveTodos'
-// * as
+import RemoveTodos from './RemoveTodos';
 
-function TodoList() {
+function TodoList() { 
   const [input, setInput] = useState<any>('')
   const [isFocused, setIsFocused] = useState(false)
   const dispatch = useDispatch()
@@ -32,10 +32,11 @@ function TodoList() {
       <Chip icon="information" style={{ backgroundColor: 'red', position: 'absolute', width: 135, height: 50, top: 100 }} onPress={() => console.log('Pressed')}>Todos Here</Chip>
 
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', }}>
-        <TextInput onSubmitEditing={(e) => (e.nativeEvent.text)} ref={ref => textInputRef.current = ref} style={gloStyles.inputStyle} value={input} onChangeText={(text) => setInput(text)} />
+      {/* onSubmitEditing={(e) => (e.nativeEvent.text)} */}
+        <TextInput ref={ref => textInputRef.current = ref} style={gloStyles.inputStyle} value={input} onChangeText={(text) => setInput(text)} />
       </View>
 
-      <ListOfTodos />
+      <RemoveTodos />
 
       <View style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
         <TouchableOpacity style={styles.bottomButton} onPress={addTodo}>

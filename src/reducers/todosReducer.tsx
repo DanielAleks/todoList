@@ -1,4 +1,4 @@
-import { ADD_TODO, REMOVE_TODO } from "./types"
+import { ADD_TODO, REMOVE_TODO } from "./types" 
 
 export interface todoObjT {
   value: string
@@ -11,14 +11,14 @@ export default (state = initialState, { type, payload }) => {
   switch (type) {
 
     case ADD_TODO:
-    return [...state, { id: Math.floor(Math.random() * 10000), value: payload }]
-      
-      case REMOVE_TODO:
-      
-        return state.filter(todo => todo.id !== payload)
-        
+      return [...state, { id: Math.floor(Math.random() * 10000), value: payload }]
 
-  default:
-    return state
+    case REMOVE_TODO:
+
+      return state.filter(todo => todo.id !== payload)
+
+
+    default:
+      return state
   }
 }

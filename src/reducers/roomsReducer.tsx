@@ -1,4 +1,4 @@
-import { ADD_ROOM, REMOVE_ROOM } from "./types"
+import { ADD_ROOM, REMOVE_ROOM } from "./types" 
 
 export interface roomObjT {
   value: string
@@ -15,7 +15,7 @@ export default (state = initialState, { type, payload }) => {
 
     case REMOVE_ROOM:
 
-      return state.filter(room => room.id !== payload)
+      return state.filter(todo => todo.id !== payload)
 
 
     default:

@@ -5,6 +5,8 @@ import MainScreen from './screens/main-screen'
 import WelcomeScreen from './screens/welcome-screen'
 import { Provider } from 'react-redux';
 import configureStore from '../store'
+import SettingsModal from './screens/main-screen/components/navbar/SettingsModal';
+import Exa from './screens/main-screen/Exa';
 
 const Drawer = createDrawerNavigator();
 const Navigation = () => {
@@ -20,6 +22,12 @@ const Navigation = () => {
           <Drawer.Screen
             options={{ title: 'Welcome!' }}
             name="welcome" component={WelcomeScreen} />
+          <Drawer.Screen
+            options={{ title: 'Rooms!' }}
+            name="rooms" component={SettingsModal} />
+          <Drawer.Screen
+            options={{ title: 'exxx!' }}
+            name="ex" component={Exa} />
         </Drawer.Navigator>
       </NavigationContainer>
     </Provider>

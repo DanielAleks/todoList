@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
-import { gloStyles } from '../../../../App'
+import { gloStyles } from '../../../../App' 
 import { rootStoreT } from '../../../../store'
 import { REMOVE_TODO } from '../../../reducers/types'
 const RemoveTodos = () => {
