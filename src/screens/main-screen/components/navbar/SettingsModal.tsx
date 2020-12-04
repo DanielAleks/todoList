@@ -4,7 +4,8 @@ import { View, TouchableOpacity, Text, StyleSheet, Modal } from 'react-native'
 import { TextInput } from 'react-native-paper'
 import { useDispatch } from 'react-redux'
 import { gloStyles } from '../../../../../App'
-import CreateRoom from './CreateRoom'
+import CreateRoom from './createRoom/CreateRoom'
+import JoinARoom from './joinRoom/JoinARoom'
 import Navbar from './Navbar'
 
 function SettingsModal(modalVisable) {
@@ -28,11 +29,6 @@ function SettingsModal(modalVisable) {
             </TouchableOpacity>
           </View>
 
-          <TouchableOpacity style={styles.group} >
-            <Text style={styles.text}>Jamie's Group</Text>
-          </TouchableOpacity>
-
-
             <CreateRoom/>
 
           <View style={{ position: 'absolute', bottom: 100, width: '100%' }}>
@@ -42,6 +38,7 @@ function SettingsModal(modalVisable) {
             <TouchableOpacity style={{ ...gloStyles.longButton, marginBottom: 10, justifyContent: 'center', alignItems: 'center' }}>
               <Text style={gloStyles.text}>Join Room</Text>
             </TouchableOpacity>
+            <JoinARoom/>
           </View>
         </View>
       </Modal>
@@ -61,13 +58,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: 'white',
   },
-  group: {
-    alignItems: 'center',
-    marginTop: 10,
-    width: '100%',
-    backgroundColor: '#a7a7a7'
-  }
-
 });
 
 

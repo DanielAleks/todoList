@@ -3,10 +3,10 @@ import React, { useRef, useState } from 'react'
 import { View, TouchableOpacity, Text, StyleSheet, Modal } from 'react-native'
 import { TextInput } from 'react-native-paper'
 import { useDispatch } from 'react-redux'
-import { gloStyles } from '../../../../../App'
-import { ADD_ROOM, ADD_TODO } from '../../../../reducers/types'
-import RemoveTodos from '../RemoveTodos'
-import Navbar from './Navbar'
+import { gloStyles } from '../../../../../../App'
+import { ADD_ROOM, ADD_TODO } from '../../../../../reducers/types'
+import RemoveTodos from '../../RemoveTodos'
+import Navbar from '../Navbar'
 import RemoveARoom from './RemoveARoom'
 
 function CreateRoom() {
@@ -17,12 +17,13 @@ function CreateRoom() {
 
   const addTodo = () => {
     dispatch({ type: ADD_ROOM, payload: input })
-    
+    setInput('')
   }
 
   
   return (
     <View style={styles.container}>
+
       <RemoveARoom />
 
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', }}>
