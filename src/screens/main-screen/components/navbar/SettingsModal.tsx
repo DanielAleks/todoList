@@ -35,9 +35,7 @@ function SettingsModal(modalVisable) {
 
 
 
-            <TouchableOpacity style={{ ...gloStyles.longButton, marginBottom: 10, justifyContent: 'center', alignItems: 'center' }}>
-              <Text style={gloStyles.text}>Join Room</Text>
-            </TouchableOpacity>
+          
             <JoinARoom/>
           </View>
         </View>
