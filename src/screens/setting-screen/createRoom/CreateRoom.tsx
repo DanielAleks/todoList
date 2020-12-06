@@ -1,12 +1,9 @@
-import { useNavigation } from '@react-navigation/native'
 import React, { useRef, useState } from 'react'
 import { View, TouchableOpacity, Text, StyleSheet, Modal } from 'react-native'
 import { TextInput } from 'react-native-paper'
 import { useDispatch } from 'react-redux'
-import { gloStyles } from '../../../../../../App'
-import { ADD_ROOM, ADD_TODO } from '../../../../../reducers/types'
-import RemoveTodos from '../../RemoveTodos'
-import Navbar from '../Navbar'
+import { gloStyles } from '../../../../App'
+import { ADD_ROOM } from '../../../reducers/types'
 import RemoveARoom from './RemoveARoom'
 
 function CreateRoom() {

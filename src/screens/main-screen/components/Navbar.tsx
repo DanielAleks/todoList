@@ -1,11 +1,8 @@
-import { BaseNavigationContainer, useNavigation } from '@react-navigation/native';
-import React, { useEffect, useState } from 'react'
-import { Button, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { TextInput } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
+import React from 'react'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { useDispatch } from 'react-redux';
-import { gloStyles } from '../../../../../App';
-import signUpAction from '../../../../actions/signUpAction';
-import SettingsModal from './SettingsModal';
+import { gloStyles } from '../../../../App';
 
 function Navbar() {
   const navigation = useNavigation()

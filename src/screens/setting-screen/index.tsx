@@ -1,42 +1,30 @@
 import { useNavigation } from '@react-navigation/native'
-import React, { useState } from 'react'
+import React from 'react'
 import { View, TouchableOpacity, Text, StyleSheet, Modal } from 'react-native'
-import { TextInput } from 'react-native-paper'
 import { useDispatch } from 'react-redux'
-import { gloStyles } from '../../../../../App'
+import { gloStyles } from '../../../App'
 import CreateRoom from './createRoom/CreateRoom'
 import JoinARoom from './joinRoom/JoinARoom'
-import Navbar from './Navbar'
 
-function SettingsModal(modalVisable) {
-  const [modalVisabley, setModalVisabley] = useState(false)
+function SettingScreen() {
   const navigation = useNavigation()
   const dispatch = useDispatch()
-
-
-  const modalToggle = () => {
-    setModalVisabley(prev => !prev)
-  }
 
   return (
     <View>
       <Modal>
         <View style={styles.modalContainer}>
-
           <View style={{ alignItems: 'flex-end' }}>
             <TouchableOpacity onPress={() => navigation.navigate('main')} style={{ ...gloStyles.button, backgroundColor: '#5eccff', alignItems: 'center', }} >
               <Text>GoBack</Text>
             </TouchableOpacity>
-          </View>
 
+          </View>
             <CreateRoom/>
 
           <View style={{ position: 'absolute', bottom: 100, width: '100%' }}>
-
-
-
-          
             <JoinARoom/>
+
           </View>
         </View>
       </Modal>
@@ -59,4 +47,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default SettingsModal
+export default SettingScreen

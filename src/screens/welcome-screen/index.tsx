@@ -3,7 +3,7 @@ import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import { gloStyles } from '../../../App'
 import SignIn from './components/SignIn'
-import SignUp from './components/SignUp'
+import SignUp from './components/signUp/SignUp'
 
 const WelcomeScreen = () => {
   const navigation = useNavigation()

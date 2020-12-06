@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Text, View, TouchableOpacity, StyleSheet, Modal } from 'react-native'
-import { gloStyles } from '../../../../../../App'
+import { gloStyles } from '../../../../App'
 import ModalJoin from './ModalJoin'
 
 function JoinARoom() {

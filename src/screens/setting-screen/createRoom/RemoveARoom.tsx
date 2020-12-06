@@ -1,9 +1,9 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
-import { gloStyles } from '../../../../../../App'
-import { rootStoreT } from '../../../../../../store'
-import { REMOVE_ROOM, REMOVE_TODO } from '../../../../../reducers/types'
+import { gloStyles } from '../../../../App'
+import { rootStoreT } from '../../../../store'
+import { REMOVE_ROOM } from '../../../reducers/types'
 const RemoveARoom = () => {
 
   const todos = useSelector((state: rootStoreT) => state.rooms)

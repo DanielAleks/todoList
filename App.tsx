@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Navbar from './src/screens/main-screen/components/navbar/Navbar';
+import Navbar from './src/screens/main-screen/components/Navbar';
 import TodoList from './src/screens/main-screen/components/TodoList';
 import Navigation from './src/Navigation';
 
