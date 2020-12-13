@@ -12,9 +12,17 @@ export default function App() {
 }
 
 export const gloStyles = StyleSheet.create({
-  text: {
+  blackText: {
     color: 'black',
     fontSize: 14,
+  },
+  whiteText: {
+    color: 'white',
+    fontSize: 14,
+  },
+  x: {
+    alignItems: 'flex-end',
+    margin: 10
   },
   container: {
     display: 'flex',
@@ -38,7 +46,10 @@ export const gloStyles = StyleSheet.create({
   longButton: {
     width: '100%',
     height: 50,
-    backgroundColor: '#70b8fc'
+    backgroundColor: '#ff6702',
+    marginBottom: 10, 
+    justifyContent: 'center', 
+    alignItems: 'center'
   },
 
 });

@@ -17,17 +17,15 @@ function JoinARoom() {
     <View>
       {isModalVisable ?
         <View>
-
           <ModalJoin setIsModalVisable={setIsModalVisable} />
 
-          <TouchableOpacity style={{ ...gloStyles.longButton, marginBottom: 10, justifyContent: 'center', alignItems: 'center' }} onPress={toggleModal}>
-            <Text style={gloStyles.text}>Join Room</Text>
+          <TouchableOpacity style={gloStyles.longButton} onPress={toggleModal}>
+            <Text style={gloStyles.blackText}>Join Room</Text>
           </TouchableOpacity>
-          {/* non working up here */}
         </View>
         :
-        <TouchableOpacity style={{ ...gloStyles.longButton, marginBottom: 10, justifyContent: 'center', alignItems: 'center' }} onPress={toggleModal}>
-          <Text style={gloStyles.text}>Join Room</Text>
+        <TouchableOpacity style={gloStyles.longButton} onPress={toggleModal}>
+          <Text style={gloStyles.blackText}>Join Room</Text>
         </TouchableOpacity>
       }
     </View>

@@ -39,13 +39,13 @@ function TodoList() {
 
       <DelAddTodos />
 
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', }}>
+      <View style={styles.inputAligning}>
         <TextInput ref={ref => textInputRef.current = ref} style={gloStyles.inputStyle} value={input} onChangeText={(text) => setInput(text)} />
       </View>
-      <View style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
-        {/* <GoPencil/> */}
+
+      <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.bottomButton} onPress={addTodo}>
-            <FontAwesome name="pencil" size={22} color="black" />
+          <FontAwesome name="pencil" size={22} color="black" />
         </TouchableOpacity>
       </View>
     </View>
@@ -56,6 +56,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#dadada',
     flex: 1,
     width: '100%',
+  },
+  inputAligning: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonContainer: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end'
   },
   bottomButton: {
     backgroundColor: '#ff6702',

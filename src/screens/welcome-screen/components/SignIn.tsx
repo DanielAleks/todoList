@@ -16,57 +16,47 @@ function SignIn() {
   const submitInfo = () => {
     dispatch(signInAction({ username, password }))
   }
-  
+
 
   return (
-    <View style={{ ...styles.container, backgroundColor: '#ff6702', height: '100%' }}>
+    <View style={{ ...styles.container, ...styles.bgColor }}>
 
-      <ImageBackground style={{ opacity: .05, position: 'absolute', width: '100%', height: '100%' }} source={require('../../../../assets/books.jpg')} />
+      <ImageBackground style={styles.imgBg} source={require('../../../../assets/books.jpg')} />
       {modal ?
         <View style={{ width: '60%' }}>
-          <Text style={{ fontSize: 30, fontWeight: 'bold', color: '#ffe607' }}>
+          <Text style={styles.Logo}>
             GroupList
                   </Text>
 
-          <View style={{ flexDirection: 'column', marginTop: 30 }}>
-            <Text style={{ ...gloStyles.text, color: 'black', marginBottom: 10 }}>
+          <View style={styles.flexColumn}>
+            <Text style={{ ...gloStyles.blackText, marginBottom: 10 }}>
               Username
-                    </Text> 
-            <TextInput style={{ borderBottomColor: '#5a5151', borderBottomWidth: 1 }} value={username} onChangeText={(text) => setUsername(text)}/>
+                    </Text>
+            <TextInput style={gloStyles.inputStyle} value={username} onChangeText={(text) => setUsername(text)} />
           </View>
 
-          <View style={{ flexDirection: 'column' }} >
-            <Text style={{ ...gloStyles.text, color: 'black', marginTop: 10, marginBottom: 10 }}>
+          <View style={styles.flexColumn} >
+            <Text style={{ ...gloStyles.blackText, ...styles.textAlign }}>
               Password
                     </Text>
-            <TextInput style={{ borderBottomColor: '#5a5151', borderBottomWidth: 1 }} value={password} onChangeText={(text) => setPassword(text)} />
+            <TextInput style={gloStyles.inputStyle} value={password} onChangeText={(text) => setPassword(text)} />
           </View>
 
-          <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 10 }}>
-            <TouchableOpacity style={{ backgroundColor: '#ffe607', marginTop: 50, borderRadius: 10, height: 50, width: 150, alignItems: 'center', justifyContent: 'center' }} onPress={submitInfo}>
-              <Text style={{ ...gloStyles.text, }}>Sign In</Text>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity style={styles.button } onPress={submitInfo}>
+              <Text style={{ ...gloStyles.blackText, }}>Sign In</Text>
             </TouchableOpacity>
           </View>
 
-          <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 0 }}>
-            <TouchableOpacity style={{ marginTop: 10, alignItems: 'center', justifyContent: 'center' }} onPress={() => setModal(prev => !prev)}>
-              <Text style={{ ...gloStyles.text, color: '#0077ff', }}>Or Create Account</Text>
+          <View style={styles.blueButtonContainer}>
+            <TouchableOpacity style={styles.blueButton} onPress={() => setModal(prev => !prev)}>
+              <Text style={{ ...gloStyles.blackText, color: '#0077ff', }}>Or Create Account</Text>
             </TouchableOpacity>
-
           </View>
-
-
-          {/* <View>
-          <TouchableOpacity>
-          <Text style={{ color: 'red' }}>Create Account</Text>
-          </TouchableOpacity>
-        </View> */}
         </View>
         :
         <SignUp setModal={setModal} />
-
       }
-
     </View>
   )
 }
@@ -78,6 +68,55 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
+  },
+  flexColumn: {
+    flexDirection: 'column',
+  },
+  button: {
+    backgroundColor: '#ffe607',
+    marginTop: 50,
+    borderRadius: 10,
+    height: 50,
+    width: 150,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  blueButton: {
+    marginTop: 10,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  blueButtonContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 0
+  },
+  buttonContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 10
+  },
+  bgColor: {
+    backgroundColor: '#ff6702',
+    height: '100%'
+  },
+  Logo: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: '#ffe607',
+    marginBottom: 30
+  },
+  imgBg: {
+    opacity: .05,
+    position: 'absolute',
+    width: '100%',
+    height: '100%'
+  },
+  textAlign: {
+    marginTop: 10,
+    marginBottom: 10
   }
 })
 

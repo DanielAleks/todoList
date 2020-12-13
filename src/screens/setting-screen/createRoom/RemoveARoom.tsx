@@ -21,7 +21,7 @@ const RemoveARoom = () => {
         {todos.map((item) =>
           <TouchableOpacity style={styles.group} key={item.id} onPress={() => deleteTodo(item.id)}
           >
-            <Text style={{ ...gloStyles.text, color: 'black' }}> -{item.value} Group</Text>
+            <Text style={gloStyles.blackText}> -{item.value} Group</Text>
             </TouchableOpacity>
         )}
       </View>

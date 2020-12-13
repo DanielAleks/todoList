@@ -33,44 +33,36 @@ function SignUp({ setModal }) {
         transparent={true}
         visible={true}
       >
-        <View style={{}}>
           <TouchableOpacity style={gloStyles.button} onPress={() => setModal(prev => !prev)}>
             <Text>Go Back</Text>
           </TouchableOpacity>
 
-          <View style={{ width: 300, height: 600, margin: 60, backgroundColor: '#ffe607', padding: 50, borderRadius: 10 }}>
-            <Text style={{ ...gloStyles.text, color: 'black' }}>
+          <View style={styles.topText}>
+            <Text style={{ ...gloStyles.blackText, color: 'black' }}>
               Enter the following to make a new account.
                     </Text>
 
             <View style={{ marginTop: 30 }}>
-              <Text style={{ ...gloStyles.text, color: 'black' }}>
-                Username:
-              </Text>
+              <Text style={gloStyles.blackText}>Username:</Text>
               <TextInput style={{ ...gloStyles.inputStyle, marginBottom: 10 }} value={username} onChangeText={(text) => setUsername(text)} />
             </View>
 
-            <View  >
-              <Text style={{ ...gloStyles.text, color: 'black' }}>
-                Password:
-              </Text>
+            <View>
+              <Text style={gloStyles.blackText}>Password:</Text>
               <TextInput style={gloStyles.inputStyle} value={password} onChangeText={(text) => setPassword(text)} />
             </View>
 
             <View  >
-              <Text style={{ ...gloStyles.text, color: 'black' }}>
-                Email:
-              </Text>
+              <Text style={gloStyles.blackText}>Email:</Text>
               <TextInput style={gloStyles.inputStyle} value={email} onChangeText={(text) => setEmail(text)} />
             </View>
 
-            <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 10 }}>
-              <TouchableOpacity style={{ backgroundColor: '#ff6702', marginTop: 50, borderRadius: 10, height: 50, width: 150, alignItems: 'center', justifyContent: 'center' }} onPress={submitInfo}>
-                <Text style={{ ...gloStyles.text, }}>Create Account</Text>
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity style={styles.button} onPress={submitInfo}>
+                <Text style={gloStyles.blackText}>Create Account</Text>
               </TouchableOpacity>
             </View>
           </View>
-        </View>
       </Modal>
 
     </View>
@@ -84,7 +76,31 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-  }
+  },
+  buttonContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 10
+  },
+  button: {
+    backgroundColor: '#ff6702',
+    marginTop: 50,
+    borderRadius: 10,
+    height: 50,
+    width: 150,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  topText: {
+    width: 300,
+    height: 600,
+    margin: 60,
+    backgroundColor: '#ffe607',
+    padding: 50,
+    borderRadius: 10
+  },
+
 })
 
 export default SignUp

@@ -7,7 +7,7 @@ import { StatusBar } from 'expo-status-bar';
 
 const MainScreen = () => {
   return (
-    <View style={styles.containerNotSureYIHavThis}>
+    <View style={{flex: 1}}>
       <TodoList />
       <Navbar />
       <StatusBar style="auto" />
@@ -33,12 +33,6 @@ export const styles = StyleSheet.create({
     width: 100,
     backgroundColor: '#5c0f58',
     borderRadius: 40,
-  },
-  containerNotSureYIHavThis: {
-    flex: 1,
-    backgroundColor: '#978d8d',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 
   });

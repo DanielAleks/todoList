@@ -5,6 +5,8 @@ import { useDispatch } from 'react-redux'
 import { gloStyles } from '../../../App'
 import CreateRoom from './createRoom/CreateRoom'
 import JoinARoom from './joinRoom/JoinARoom'
+import { AntDesign } from '@expo/vector-icons';
+
 
 function SettingScreen() {
   const navigation = useNavigation()
@@ -14,17 +16,14 @@ function SettingScreen() {
     <View>
       <Modal>
         <View style={styles.modalContainer}>
-          <View style={{ alignItems: 'flex-end' }}>
-            <TouchableOpacity onPress={() => navigation.navigate('main')} style={{ ...gloStyles.button, backgroundColor: '#5eccff', alignItems: 'center', }} >
-              <Text>GoBack</Text>
-            </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('main')}>
+            <AntDesign name="back" size={24} style={styles.buttonBack} color="white" />
+          </TouchableOpacity>
 
-          </View>
-            <CreateRoom/>
+          <CreateRoom />
 
-          <View style={{ position: 'absolute', bottom: 100, width: '100%' }}>
-            <JoinARoom/>
-
+          <View style={styles.joinRoomButton}>
+            <JoinARoom />
           </View>
         </View>
       </Modal>
@@ -40,10 +39,21 @@ const styles = StyleSheet.create({
     top: 0,
     display: 'flex',
   },
+  joinRoomButton: {
+    position: 'absolute',
+    bottom: 100,
+    width: '100%'
+  },
   text: {
     fontSize: 14,
     color: 'white',
   },
+  buttonBack: {
+    margin: 10,
+    backgroundColor: '#3a3a3a',
+    width: 25,
+    borderRadius: 5
+  }
 });
 
 

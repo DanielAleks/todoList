@@ -21,23 +21,23 @@ function Navbar() {
 
 
   return (
-    <View style={{ ...styles.container }}>
+    <View style={styles.container}>
       <ModalOFParticipants />
       <View style={{ position: 'absolute', left: 0, marginLeft: 10 }}>
         <TouchableOpacity onPress={() => setModalParticipants(prev => !prev)}>
-          <Text style={gloStyles.text}>Danile, Ja...</Text>
+          <Text style={gloStyles.blackText}>Danile, Ja...</Text>
         </TouchableOpacity>
       </View>
       <ModalName />
       <View style={{ position: 'absolute' }}>
         <TouchableOpacity onPress={() => setModalRoomName(prev => !prev)}>
-          <Text style={{ ...gloStyles.text, fontWeight: 'bold', fontSize: 17 }}>NameOFgroup</Text>
+          <Text style={styles.blackText}>NameOFgroup</Text>
         </TouchableOpacity>
       </View>
 
       <View style={{ width: '100%', alignItems: 'flex-end' }}>
-        <TouchableOpacity style={{ ...gloStyles.button, backgroundColor: '#fff56c' }} onPress={() => navigation.navigate('rooms')}>
-          <Text style={gloStyles.text}>...</Text>
+        <TouchableOpacity style={gloStyles.button} onPress={() => navigation.navigate('rooms')}>
+          <Text style={gloStyles.blackText}>...</Text>
         </TouchableOpacity>
       </View>
 
@@ -57,10 +57,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  text: {
-    fontSize: 14,
-    color: 'white',
+  blackText: {
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 17
   },
+
 });
 
 export default Navbar
