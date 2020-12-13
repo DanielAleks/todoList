@@ -1,24 +1,28 @@
-const signUpAction = (usersInputData) => async (dispatch) => {
+const signUpAction = ({ username, password, email }) => async (dispatch) => {
 
-  const response = await fetch('http://10.0.0.7:5001/auth/signup', {
+  const url = 'https://ulti-todo-list.herokuapp.com/auth/signup'
+  const reqData = {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      username: 'usersInputData.username',
-      password: "hj",
-      email: "cruncxhyz"
+      username,
+      password,
+      email
     })
-  });
-
-  if (response.status === 202) {
-    const unwapped = await response.json()
-
   }
 
-  // console.log(response.status)
-  // console.log(response.text())
+  const response = await fetch(url, reqData);
+  console.log(response.status, 'response')
+  
+  const unwrapped = await response.json()
+  // console.log(await response.text())
+  console.log(unwrapped)
+//   if (response.status === 202) {
+//   }
+  
+//   console.log(response.status)
 }
 
 export default signUpAction

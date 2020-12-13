@@ -14,7 +14,7 @@ const WelcomeScreen = () => {
       {/* <TouchableOpacity style={gloStyles.button} onPress={() => navigation.navigate("main")}>
         <Text></Text>
       </TouchableOpacity> */}
-      <SignUp />
+      {/* <SignUp /> */}
       <SignIn />
     </View>
   )

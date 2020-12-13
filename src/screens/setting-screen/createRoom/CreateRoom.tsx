@@ -11,27 +11,39 @@ function CreateRoom() {
   // const [isFocused, setIsFocused] = useState(false)
   const dispatch = useDispatch()
   const textInputRef = useRef(null)
+  const [theModal, setTheModal] = useState(false)
 
   const addTodo = () => {
     dispatch({ type: ADD_ROOM, payload: input })
     setInput('')
   }
 
+  const makeModal = () => {
+    // setTheModal(prev => )
+  }
   
+
   return (
     <View style={styles.container}>
+
+
+      <View style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
+        <TouchableOpacity onPress={makeModal} style={{ ...gloStyles.longButton, marginBottom: 10, justifyContent: 'center', alignItems: 'center' }}>
+          <Text style={gloStyles.text}>activate Me</Text>
+        </TouchableOpacity>
+      </View>
 
       <RemoveARoom />
 
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', }}>
-      {/* onSubmitEditing={(e) => (e.nativeEvent.text)} */}
+        {/* onSubmitEditing={(e) => (e.nativeEvent.text)} */}
         <TextInput ref={ref => textInputRef.current = ref} style={gloStyles.inputStyle} value={input} onChangeText={(text) => setInput(text)} />
       </View>
 
       <View style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
         <TouchableOpacity onPress={addTodo} style={{ ...gloStyles.longButton, marginBottom: 10, justifyContent: 'center', alignItems: 'center' }}>
-              <Text style={gloStyles.text}>Create Room</Text>
-            </TouchableOpacity>
+          <Text style={gloStyles.text}>Create Room</Text>
+        </TouchableOpacity>
       </View>
 
     </View>
@@ -41,6 +53,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#dadada',
     flex: 1,
-    width: '100%',    },
+    width: '100%',
+  },
 })
 export default CreateRoom

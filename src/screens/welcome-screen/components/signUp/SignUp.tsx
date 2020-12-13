@@ -1,81 +1,78 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { Component, useState } from 'react'
 import { Text, View, TouchableOpacity, StyleSheet, Modal, TextInput } from 'react-native'
+import { sub } from 'react-native-reanimated'
 import { useDispatch } from 'react-redux'
 import { gloStyles } from '../../../../../App'
 import signUpAction from '../../../../actions/signUpAction'
 // import InfoProvided from './InfoProvided'
 // import signUpAction from '../../../actions/signUpAction'
 
-function SignUp() {
-  const [modal, setModal] = useState(false)
-  const [username, setUsername] = useState<any>()
-  const [password, setPassword] = useState<any>()
+function SignUp({ setModal }) {
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const dispatch = useDispatch()
 
   const navigation = useNavigation()
-  const signUp = () => {
-    const inputStuff = {
-      username: 'userse',
-      password: '23456',
-      email: '2345y'
-    }
-    dispatch(signUpAction(inputStuff))
-  }
 
   const modalState = () => {
     setModal(prev => !prev)
   }
 
   const submitInfo = () => {
-    
+    dispatch(signUpAction({ username, password, email }))
   }
-  
 
+  {/* // <InfoProvided modalState={modalState}/> */ }
   return (
+
     <View style={styles.container}>
-      {modal ?
-        <Modal style={{ width: 100, height: 100 }}>
-          <View style={{ backgroundColor: '#f1f1f1', width: '100%', height: '100%' }}>
-            <TouchableOpacity style={gloStyles.button} onPress={modalState}>
-              <Text>GoBack</Text>
-            </TouchableOpacity>
 
-            <View style={{ width: 300, margin: 60, backgroundColor: '#4f76ca', padding: 50, borderRadius: 10 }}>
-              <Text style={{ ...gloStyles.text, color: 'white' }}>
-                Enter the following to make a new account.
-                  </Text>
+      <Modal
+        transparent={true}
+        visible={true}
+      >
+        <View style={{}}>
+          <TouchableOpacity style={gloStyles.button} onPress={() => setModal(prev => !prev)}>
+            <Text>Go Back</Text>
+          </TouchableOpacity>
 
-              <View style={{ flexDirection: 'row', marginTop: 30 }}>
-                <Text style={{ ...gloStyles.text, color: 'white' }}>
-                  Username:
+          <View style={{ width: 300, height: 600, margin: 60, backgroundColor: '#ffe607', padding: 50, borderRadius: 10 }}>
+            <Text style={{ ...gloStyles.text, color: 'black' }}>
+              Enter the following to make a new account.
                     </Text>
-                <TextInput style={{ ...gloStyles.inputStyle, marginBottom: 10 }} value={username} onChangeText={(text) => setUsername(text)} />
-              </View>
 
-              <View style={{ flexDirection: 'row' }} >
-                <Text style={{ ...gloStyles.text, color: 'white' }}>
-                  Password:
-                    </Text>
-                <TextInput style={gloStyles.inputStyle} value={password} onChange={(text) => setPassword(text)}/>
-              </View>
+            <View style={{ marginTop: 30 }}>
+              <Text style={{ ...gloStyles.text, color: 'black' }}>
+                Username:
+              </Text>
+              <TextInput style={{ ...gloStyles.inputStyle, marginBottom: 10 }} value={username} onChangeText={(text) => setUsername(text)} />
+            </View>
 
-              <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 10 }}>
-                <TouchableOpacity style={{ ...gloStyles.button, alignItems: 'center', justifyContent: 'center' }} onPress={submitInfo}>
-                  <Text style={{ ...gloStyles.text, marginLeft: 10 }} >Create Account</Text>
-                </TouchableOpacity>
-              </View>
+            <View  >
+              <Text style={{ ...gloStyles.text, color: 'black' }}>
+                Password:
+              </Text>
+              <TextInput style={gloStyles.inputStyle} value={password} onChangeText={(text) => setPassword(text)} />
+            </View>
+
+            <View  >
+              <Text style={{ ...gloStyles.text, color: 'black' }}>
+                Email:
+              </Text>
+              <TextInput style={gloStyles.inputStyle} value={email} onChangeText={(text) => setEmail(text)} />
+            </View>
+
+            <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 10 }}>
+              <TouchableOpacity style={{ backgroundColor: '#ff6702', marginTop: 50, borderRadius: 10, height: 50, width: 150, alignItems: 'center', justifyContent: 'center' }} onPress={submitInfo}>
+                <Text style={{ ...gloStyles.text, }}>Create Account</Text>
+              </TouchableOpacity>
             </View>
           </View>
-        </Modal>
-        // <InfoProvided modalState={modalState}/>
-        :
-        <View>
-          <TouchableOpacity style={{ ...gloStyles.button, backgroundColor: 'blue' }} onPress={modalState}>
-            <Text style={gloStyles.text}>Sign Up</Text>
-          </TouchableOpacity>
         </View>
-      }
+      </Modal>
+
     </View>
   )
 }

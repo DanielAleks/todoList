@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Navbar from './src/screens/main-screen/components/Navbar';
+import Navbar from './src/screens/main-screen/navbar/Navbar';
 import TodoList from './src/screens/main-screen/components/TodoList';
 import Navigation from './src/Navigation';
 
@@ -30,8 +30,9 @@ export const gloStyles = StyleSheet.create({
     alignItems: 'center',
   },
   inputStyle: {
-    width: 100,
-    backgroundColor: 'white',
+    width: 170,
+    borderBottomWidth: 1,
+    borderBottomColor: 'black',
     borderRadius: 4
   },
   longButton: {

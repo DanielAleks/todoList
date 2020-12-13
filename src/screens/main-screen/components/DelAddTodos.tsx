@@ -12,7 +12,7 @@ const DelAddTodos = () => {
   const deleteTodo = (payload) => {
     dispatch({ type: REMOVE_TODO, payload })
   }
-
+//as a man thinketh
   return (
     <View style={{position: 'absolute', display: 'flex', flexDirection: 'row', flexWrap: 'wrap', marginTop: 100}}>
       {todos.map((item) =>

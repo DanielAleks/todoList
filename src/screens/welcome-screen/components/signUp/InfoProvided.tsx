@@ -1,6 +1,5 @@
 // import React, { useState } from 'react'
-// import { Modal, Text, View } from 'react-native'
-// import { TextInput, TouchableOpacity } from 'react-native-gesture-handler'
+// import { TextInput, TouchableOpacity, Modal, Text, View } from 'react-native'
 // import { gloStyles } from '../../../../../App'
 
 // function InfoProvided({ modalState }) {
