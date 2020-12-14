@@ -16,7 +16,7 @@ function SettingScreen() {
     <View>
       <Modal>
         <View style={styles.modalContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate('main')}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
             <AntDesign name="back" size={24} style={styles.buttonBack} color="white" />
           </TouchableOpacity>
 

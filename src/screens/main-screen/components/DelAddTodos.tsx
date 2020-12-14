@@ -1,6 +1,7 @@
 import React from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { Chip } from 'react-native-paper'
+import { Item } from 'react-native-paper/lib/typescript/src/components/List/List'
 import { useDispatch, useSelector } from 'react-redux'
 import { gloStyles } from '../../../../App'
 import { rootStoreT } from '../../../../store'
@@ -10,18 +11,35 @@ const DelAddTodos = () => {
   const dispatch = useDispatch()
 
   const deleteTodo = (payload) => {
+    // if (Item.value === "")
     dispatch({ type: REMOVE_TODO, payload })
   }
-//as a man thinketh
+  //as a man thinketh
   return (
-    <View style={{position: 'absolute', display: 'flex', flexDirection: 'row', flexWrap: 'wrap', marginTop: 100}}>
+    <View style={styles.container}>
       {todos.map((item) =>
         <TouchableOpacity key={item.id} onPress={() => deleteTodo(item.id)}>
-          <Chip icon="information" style={{ backgroundColor: 'red', width: 135, height: 50, margin: 10 }} onPress={() => deleteTodo(item.id)}> -{item.value} </Chip>
+          <Chip icon="information" style={styles.chippy} onPress={() => deleteTodo(item.id)}><Text style={gloStyles.whiteText}>{item.value}</Text></Chip>
         </TouchableOpacity>
       )}
     </View>
   )
 }
+const styles = StyleSheet.create({
+  container: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginTop: 100,
+    justifyContent: 'center'
+  },
+  chippy: {
+    backgroundColor: '#02947c',
+    height: 40,
+    margin: 10,
+    flexWrap: 'wrap',
+    display: 'flex'
+  }
+})
 
 export default DelAddTodos

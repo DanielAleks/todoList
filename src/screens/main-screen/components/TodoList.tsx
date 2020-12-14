@@ -23,18 +23,20 @@ function TodoList() {
   const textInputRef = useRef<TextInput>(null)
 
   const addTodo = () => {
-    dispatch({ type: ADD_TODO, payload: input })
     toggleFocus()
+    if (input.length > 0) {
+
+      dispatch({ type: ADD_TODO, payload: input })
+    } else return
+    setInput('')
     //gotta flip these two but something strange happens
     // dispatch(addListAction({ input }))
   }
 
   const toggleFocus = () => {
-    setIsFocused(prev => !prev)
+    setIsFocused(true)
     isFocused ? textInputRef.current.focus() : textInputRef.current.blur()
   }
-
-  const id = 'dsf'
 
   return (
     <View style={styles.container}>
@@ -42,7 +44,7 @@ function TodoList() {
       <DelAddTodos />
 
       <View style={styles.inputAligning}>
-        <TextInput ref={ref => textInputRef.current = ref} style={gloStyles.inputStyle} value={input} onChangeText={(text) => setInput(text)} />
+        <TextInput placeholder='My Todos...' ref={ref => textInputRef.current = ref} style={gloStyles.inputStyle} value={input} onChangeText={(text) => setInput(text)} />
       </View>
       <View style={styles.buttonContainer} >
         <TouchableOpacity style={styles.bottomButton} onPress={addTodo}>
@@ -54,22 +56,24 @@ function TodoList() {
 }
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#dadada',
+    backgroundColor: '#f1f1f1',
     flex: 1,
     width: '100%',
   },
   inputAligning: {
-    flex: 1,
+    position: 'absolute',
     justifyContent: 'center',
     alignItems: 'center',
+    bottom: 20,
+    left: 100
   },
   buttonContainer: {
-    display: 'flex',
+    flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'flex-end'
   },
   bottomButton: {
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#ff6702',
     width: 80,
     height: 80,
     margin: 10,
@@ -77,11 +81,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     display: 'flex',
     justifyContent: 'center'
-  },
-  bigPlus: {
-    fontSize: 50,
-    color: 'white',
-    fontWeight: '100',
   },
 
 })

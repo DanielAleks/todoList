@@ -18,11 +18,11 @@ const Navigation = () => {
 
           <Drawer.Navigator>
             <Drawer.Screen
-              options={{ title: 'Welcome!' }}
-              name="welcome" component={WelcomeScreen} />
-            <Drawer.Screen
               options={{ title: 'Main!' }}
               name="main" component={MainScreen} />
+            <Drawer.Screen
+              options={{ title: 'Welcome!' }}
+              name="welcome" component={WelcomeScreen} />
             <Drawer.Screen
               options={{ title: 'Rooms!' }}
               name="rooms" component={SettingScreen} />
