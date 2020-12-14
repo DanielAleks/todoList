@@ -1,15 +1,15 @@
 const signInAction = ({username, password}) => async (dispatch) => {
 
   const url = 'https://ulti-todo-list.herokuapp.com/auth/signin'
-  const reqData = {
+  const reqData = { 
     method: 'GET', // *GET, POST, PUT, DELETE, etc.
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      username: username,
-      password: password,
-    })
+      username,
+      password,
+    }) 
   }
 
   const response = await fetch(url, reqData);

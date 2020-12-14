@@ -7,13 +7,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { gloStyles } from '../../../../App'
 import { rootStoreT } from '../../../../store'
 import { ADD_TODO } from '../../../reducers/types'
-import DelAddTodos from './DelAddTodos';
 import { FontAwesome } from '@expo/vector-icons';
 import uuid from 'react-native-uuid'
+import { v4 as uuidv4 } from 'uuid';
+import DelAddTodos from './DelAddTodos';
 // import addListAction from '../../../actions/addListAction';
 
 
-
+const v4 = uuid
 
 function TodoList() {
   const [input, setInput] = useState<any>('')
@@ -33,17 +34,17 @@ function TodoList() {
     isFocused ? textInputRef.current.focus() : textInputRef.current.blur()
   }
 
+  const id = 'dsf'
+
   return (
     <View style={styles.container}>
-
 
       <DelAddTodos />
 
       <View style={styles.inputAligning}>
         <TextInput ref={ref => textInputRef.current = ref} style={gloStyles.inputStyle} value={input} onChangeText={(text) => setInput(text)} />
       </View>
-
-      <View style={styles.buttonContainer}>
+      <View style={styles.buttonContainer} >
         <TouchableOpacity style={styles.bottomButton} onPress={addTodo}>
           <FontAwesome name="pencil" size={22} color="black" />
         </TouchableOpacity>
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end'
   },
   bottomButton: {
-    backgroundColor: '#ff6702',
+    backgroundColor: '#f5f5f5',
     width: 80,
     height: 80,
     margin: 10,

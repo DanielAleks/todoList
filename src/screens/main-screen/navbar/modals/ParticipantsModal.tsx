@@ -16,9 +16,7 @@ function ParticipantsModal({ setModalParticipants }) {
       visible={true}
     >
       <View style={styles.container}>
-
         <View style={styles.modalArea}>
-
           <TouchableOpacity style={gloStyles.x} onPress={() => setModalParticipants(false)}>
             <Feather name="x-circle" size={24} color="black" />
           </TouchableOpacity>
@@ -35,8 +33,6 @@ function ParticipantsModal({ setModalParticipants }) {
               <Text style={{ color: 'white' }}>Remove</Text>
             </TouchableOpacity>
           </View>
-
-          {/* ppl, remove button, add button */}
         </View>
       </View>
     </Modal>

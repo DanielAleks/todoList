@@ -2,19 +2,18 @@ import React, { Component, useState } from 'react'
 import { TextInput, Text, View, TouchableOpacity, StyleSheet, Image, ImageBackground, Modal } from 'react-native'
 import { useDispatch } from 'react-redux'
 import { gloStyles } from '../../../../App'
-import SignUp from './signUp/SignUp'
 import signInAction from '../../../actions/signInAction'
 
 
 function SignIn() {
   const [modal, setModal] = useState(false)
+  const dispatch = useDispatch()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const dispatch = useDispatch()
 
 
   const submitInfo = () => {
-    dispatch(signInAction({ username, password }))
+    // dispatch(signInAction({ username, password }))
   }
 
 
@@ -22,7 +21,6 @@ function SignIn() {
     <View style={{ ...styles.container, ...styles.bgColor }}>
 
       <ImageBackground style={styles.imgBg} source={require('../../../../assets/books.jpg')} />
-      {modal ?
         <View style={{ width: '60%' }}>
           <Text style={styles.Logo}>
             GroupList
@@ -54,9 +52,6 @@ function SignIn() {
             </TouchableOpacity>
           </View>
         </View>
-        :
-        <SignUp setModal={setModal} />
-      }
     </View>
   )
 }

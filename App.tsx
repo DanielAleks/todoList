@@ -1,13 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Navbar from './src/screens/main-screen/navbar/Navbar';
-import TodoList from './src/screens/main-screen/components/TodoList';
+import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import Navigation from './src/Navigation';
+
+
 
 export default function App() {
   return (
-    <Navigation />
+
+   
+      <Navigation />
   );
 }
 
@@ -47,8 +48,8 @@ export const gloStyles = StyleSheet.create({
     width: '100%',
     height: 50,
     backgroundColor: '#ff6702',
-    marginBottom: 10, 
-    justifyContent: 'center', 
+    marginBottom: 10,
+    justifyContent: 'center',
     alignItems: 'center'
   },
 

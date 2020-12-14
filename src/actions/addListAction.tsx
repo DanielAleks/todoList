@@ -1,9 +1,9 @@
 const addListAction = ({ todo }) => async (dispatch) => {
 
-  const url = 'https://ulti-todo-list.herokuapp.com/auth/signin'
+  const url = 'https://ulti-todo-list.herokuapp.com/auth/list'
   const reqData = {
-    method: 'GET', // *GET, POST, PUT, DELETE, etc.
-    headers: {
+    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    headers: { 
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({

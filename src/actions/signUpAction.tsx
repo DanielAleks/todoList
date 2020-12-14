@@ -5,7 +5,7 @@ const signUpAction = ({ username, password, email }) => async (dispatch) => {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
     headers: {
       'Content-Type': 'application/json'
-    },
+    }, 
     body: JSON.stringify({
       username,
       password,
