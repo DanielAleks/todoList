@@ -3,17 +3,20 @@ import { TextInput, Text, View, TouchableOpacity, StyleSheet, Image, ImageBackgr
 import { useDispatch } from 'react-redux'
 import { gloStyles } from '../../../../App'
 import signInAction from '../../../actions/signInAction'
+import signUpAction from '../../../actions/signUpAction'
+
 
 
 function SignIn() {
-  const [modal, setModal] = useState(false)
+  const [createAccount, setCreateAccount] = useState(false)
   const dispatch = useDispatch()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('')
 
 
   const submitInfo = () => {
-    // dispatch(signInAction({ username, password }))
+    {createAccount ? dispatch(signUpAction({ username, password })) : dispatch(signInAction({ username, password }))}
   }
 
 
@@ -21,37 +24,47 @@ function SignIn() {
     <View style={{ ...styles.container, ...styles.bgColor }}>
 
       <ImageBackground style={styles.imgBg} source={require('../../../../assets/books.jpg')} />
-        <View style={{ width: '60%' }}>
-          <Text style={styles.Logo}>
-            GroupList
+      <View style={{ width: '60%' }}>
+        <Text style={styles.Logo}>
+          GroupList
                   </Text>
 
-          <View style={styles.flexColumn}>
-            <Text style={{ ...gloStyles.blackText, marginBottom: 10 }}>
-              Username
+        <View style={styles.flexColumn}>
+          <Text style={{ ...gloStyles.blackText, marginBottom: 10 }}>
+            Username
                     </Text>
-            <TextInput style={gloStyles.inputStyle} value={username} onChangeText={(text) => setUsername(text)} />
-          </View>
+          <TextInput style={gloStyles.inputStyle} value={username} onChangeText={(text) => setUsername(text)} />
+        </View>
 
+        <View style={styles.flexColumn} >
+          <Text style={{ ...gloStyles.blackText, ...styles.textAlign }}>
+            Password
+                    </Text>
+          <TextInput style={gloStyles.inputStyle} value={password} onChangeText={(text) => setPassword(text)} />
+        </View>
+
+        {createAccount ?
           <View style={styles.flexColumn} >
             <Text style={{ ...gloStyles.blackText, ...styles.textAlign }}>
-              Password
+              Email
                     </Text>
-            <TextInput style={gloStyles.inputStyle} value={password} onChangeText={(text) => setPassword(text)} />
+            <TextInput style={gloStyles.inputStyle} value={email} onChangeText={(text) => setEmail(text)} />
           </View>
+          : null}
 
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity style={styles.button } onPress={submitInfo}>
-              <Text style={{ ...gloStyles.blackText, }}>Sign In</Text>
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.blueButtonContainer}>
-            <TouchableOpacity style={styles.blueButton} onPress={() => setModal(prev => !prev)}>
-              <Text style={{ ...gloStyles.blackText, color: '#0077ff', }}>Or Create Account</Text>
-            </TouchableOpacity>
-          </View>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.button} onPress={submitInfo}>
+            <Text style={{ ...gloStyles.blackText, }}>{createAccount ? 'Sign Up' : 'Sign In'}</Text>
+          </TouchableOpacity>
         </View>
+
+        <View style={styles.blueButtonContainer}>
+          <TouchableOpacity style={styles.blueButton} onPress={() => setCreateAccount(prev => !prev)}>
+            <Text style={{ ...gloStyles.blackText, color: '#0077ff', }}>{!createAccount ? 'Or Create Account' : 'Or Sign In'}</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+
     </View>
   )
 }
