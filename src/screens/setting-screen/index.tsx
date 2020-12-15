@@ -30,7 +30,10 @@ function SettingScreen() {
         <AntDesign name="back" size={24} style={styles.buttonBack} color="white" />
       </TouchableOpacity>
 
-      <Portal>
+
+      <Provider>
+        {/* <Portal> // why do I need Portal??? works without */}
+
         <FAB.Group
           visible={true}
           open={open}
@@ -55,21 +58,21 @@ function SettingScreen() {
 
           onStateChange={onStateChange}
         />
-      </Portal>
+
+        {/* </Portal> */}
+      </Provider>
 
       {/* {createModal ?
       } */}
 
-      {joinModal ? <ModalJoin setJoinModal={setJoinModal}/> : null}
+      {joinModal ? <ModalJoin setJoinModal={setJoinModal} /> : null}
 
-      {createModal ? <CreateRoom setCreateModal={setCreateModal}/> : null}
+      {createModal ? <CreateRoom setCreateModal={setCreateModal} /> : null}
 
       {isEditing ? <View>
         <Text>You are in Editing Mode</Text>
         <TouchableOpacity style={styles.editingMode} onPress={() => setIsEditing(false)}><Text>Turn Off Editing mode</Text></TouchableOpacity>
       </View> : null}
-
-
     </View>
   )
 }

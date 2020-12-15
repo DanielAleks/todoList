@@ -17,7 +17,6 @@ const Navigation = () => {
 
   return (
     <Provider store={store}>
-      <PaperProvider>
         <NavigationContainer>
           <Drawer.Navigator>
             <Drawer.Screen
@@ -31,7 +30,6 @@ const Navigation = () => {
               name="rooms" component={SettingScreen} />
           </Drawer.Navigator>
         </NavigationContainer>
-      </PaperProvider>
     </Provider>
   )
 }
