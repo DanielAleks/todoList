@@ -32,44 +32,40 @@ function CreateRoom({ setCreateModal }) {
   ]
 
   const addTodo = () => {
-    if (input.length > 0) {
       dispatch({ type: ADD_ROOM, payload: input })
-    } else return
-    setInput('')
   }
 
   return (
-      <Modal
-        transparent={true}
-        visible={true}
-      >
-        <View style={gloStyles.modalBg}>
-          <View style={styles.absoluteModal}>
-            <View style={styles.modalArea}>
-              <TouchableOpacity style={gloStyles.x} onPress={() => setCreateModal(false)}>
-                <Feather name="x-circle" size={24} color="black" />
-              </TouchableOpacity>
+    <Modal
+      transparent={true}
+      visible={true}
+    >
+      <View style={gloStyles.modalBg}>
+        <View style={styles.absoluteModal}>
+          <View style={styles.modalArea}>
+            <TouchableOpacity style={gloStyles.x} onPress={() => setCreateModal(false)}>
+              <Feather name="x-circle" size={24} color="black" />
+            </TouchableOpacity>
 
-              <Text style={styles.header}>Create New Room</Text>
+            <Text style={styles.header}>Create New Room</Text>
 
-              <View>
-                <Text>Name</Text>
-                <TextInput style={gloStyles.inputStyle} value={name} onChangeText={(text) => setName(text)} />
-              </View>
-
-              <View>
-                <Text>Invite</Text>
-                <TextInput style={gloStyles.inputStyle} value={invite} onChangeText={(text) => setInvite(text)} />
-              </View>
-
-              <TouchableOpacity style={gloStyles.button} onPress={addTodo}>
-                <Text style={gloStyles.whiteText}>Create Room</Text>
-              </TouchableOpacity>
-
+            <View>
+              <Text>Name</Text>
+              <TextInput style={gloStyles.inputStyle} value={input} onChangeText={(text) => setName(text)} />
             </View>
+
+            <View>
+              <Text>Invite</Text>
+              <TextInput style={gloStyles.inputStyle} value={invite} onChangeText={(text) => setInvite(text)} />
+            </View>
+
+            <TouchableOpacity style={gloStyles.button} onPress={addTodo}>
+              <Text style={gloStyles.whiteText}>Create Room</Text>
+            </TouchableOpacity>
           </View>
         </View>
-      </Modal>
+      </View>
+    </Modal>
   );
 };
 const styles = StyleSheet.create({
@@ -87,7 +83,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
-    height: 250,
+    height: 300,
     width: 300,
     backgroundColor: '#c43d3d'
   },

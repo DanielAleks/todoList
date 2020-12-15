@@ -1,12 +1,14 @@
 import { NavigationContainer, useNavigation } from '@react-navigation/native'
 import React, { useState } from 'react'
-import { View, TouchableOpacity, Text, StyleSheet, Modal } from 'react-native'
+import { View, TouchableOpacity, Text, StyleSheet, Modal, TextInput } from 'react-native'
 import { useDispatch } from 'react-redux'
 import { gloStyles } from '../../../App'
 import CreateRoom from './createRoom/CreateRoom'
 import { AntDesign } from '@expo/vector-icons';
 import { Drawer, FAB, Portal, Provider } from 'react-native-paper';
 import ModalJoin from './joinRoom/ModalJoin'
+import { ADD_ROOM } from '../../reducers/types'
+import RemoveARoom from './createRoom/RemoveARoom'
 
 
 function SettingScreen() {
@@ -18,10 +20,22 @@ function SettingScreen() {
   const [isEditing, setIsEditing] = useState(false)
   const [joinModal, setJoinModal] = useState(false)
   const [createModal, setCreateModal] = useState(false)
+  const [input, setInput] = useState<any>('')
+  // const [isFocused, setIsFocused] = useState(false)
+  const [theModal, setTheModal] = useState(false)
+  const [name, setName] = useState('')
+  const [theme, setTheme] = useState([])
+  const [invite, setInvite] = useState('')
+  const [isColor, setIsColor] = useState(false)
+  const [isFlipped, setIsFlipped] = useState(false);
 
   const nowEditing = () => {
     navigation.navigate('rooms')
     setIsEditing(prev => !prev)
+  }
+
+  const addTodo = () => {
+    dispatch({ type: ADD_ROOM, payload: input })
   }
 
   return (
@@ -30,14 +44,25 @@ function SettingScreen() {
         <AntDesign name="back" size={24} style={styles.buttonBack} color="white" />
       </TouchableOpacity>
 
-      {createModal ? <CreateRoom setCreateModal={setCreateModal} /> : null}
+      <View style={{display: 'flex', alignItems: 'center'}}>
+        <Text style={styles.header}>My Rooms:</Text>
+      </View>
 
-      {joinModal ? <ModalJoin setJoinModal={setJoinModal} /> : null}
 
-      {isEditing ? <View>
-        <Text>You are in Editing Mode</Text>
-        <TouchableOpacity style={styles.editingMode} onPress={() => setIsEditing(false)}><Text>Turn Off Editing mode</Text></TouchableOpacity>
-      </View> : null}
+      <View style={{ position: 'absolute', width: '100%', top: 100 }}>
+        <RemoveARoom />
+      </View>
+
+      { createModal ? <CreateRoom setCreateModal={setCreateModal} /> : null}
+
+      { joinModal ? <ModalJoin setJoinModal={setJoinModal} /> : null}
+
+      {
+        isEditing ? <View>
+          <Text>You are in Editing Mode</Text>
+          <TouchableOpacity style={styles.editingMode} onPress={() => setIsEditing(false)}><Text>Turn Off Editing mode</Text></TouchableOpacity>
+        </View> : null
+      }
 
       <Provider>
         {/* <Portal> // why do I need Portal??? works without */}
@@ -69,18 +94,23 @@ function SettingScreen() {
 
         {/* </Portal> */}
       </Provider>
-    </View>
+    </View >
 
   )
 }
 const styles = StyleSheet.create({
   modalContainer: {
-    backgroundColor: '#e8eeb6',
+    backgroundColor: '#f0f0f0',
     width: '100%',
     height: 800,
     position: 'absolute',
     top: 0,
     display: 'flex',
+  },
+  header: {
+    position: 'absolute',
+    fontWeight: 'bold',
+    fontSize: 22,
   },
   plusButton: {
     position: 'absolute',

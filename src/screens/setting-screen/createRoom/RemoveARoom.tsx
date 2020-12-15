@@ -16,13 +16,13 @@ const RemoveARoom = () => {
 
   return (
     <View>
-      <View style={{height: '90%'}}>
+      <View style={{ height: '90%' }}>
 
         {todos.map((item) =>
           <TouchableOpacity style={styles.group} key={item.id} onPress={() => deleteTodo(item.id)}
           >
-            <Text style={gloStyles.blackText}> -{item.value} Group</Text>
-            </TouchableOpacity>
+            <Text style={styles.text}> -{item.value} Group</Text>
+          </TouchableOpacity>
         )}
       </View>
     </View>
@@ -30,10 +30,15 @@ const RemoveARoom = () => {
 }
 const styles = StyleSheet.create({
   group: {
-    alignItems: 'center',
-    marginTop: 10,
-    width: '100%',
-    backgroundColor: '#a7a7a7'
+    borderWidth: .25,
+    borderColor: 'white',
+    backgroundColor: '#222222',
+    height: 50,
+    justifyContent: 'center'
   },
+  text: {
+    color: '#e9e9e9',
+    marginLeft: 30
+  }
 })
-  export default RemoveARoom
+export default RemoveARoom

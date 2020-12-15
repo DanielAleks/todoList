@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   chippy: {
-    backgroundColor: '#02947c',
+    backgroundColor: '#02dabd',
     height: 40,
     margin: 10,
     flexWrap: 'wrap',
