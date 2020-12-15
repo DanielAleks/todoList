@@ -1,32 +1,71 @@
-import { useNavigation } from '@react-navigation/native'
-import React from 'react'
+import { NavigationContainer, useNavigation } from '@react-navigation/native'
+import React, { useState } from 'react'
 import { View, TouchableOpacity, Text, StyleSheet, Modal } from 'react-native'
 import { useDispatch } from 'react-redux'
 import { gloStyles } from '../../../App'
 import CreateRoom from './createRoom/CreateRoom'
 import JoinARoom from './joinRoom/JoinARoom'
 import { AntDesign } from '@expo/vector-icons';
+import { Drawer, FAB, Portal, Provider } from 'react-native-paper';
 
 
 function SettingScreen() {
   const navigation = useNavigation()
   const dispatch = useDispatch()
+  const [state, setState] = React.useState({ open: false });
+  const onStateChange = ({ open }) => setState({ open });
+  const { open } = state;
+  const [isEditing, setIsEditing] = useState(false)
 
+  const nowEditing = () => {
+    navigation.navigate('rooms')
+    setIsEditing(true)
+  }
+  
   return (
-    <View>
-      <Modal>
-        <View style={styles.modalContainer}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <AntDesign name="back" size={24} style={styles.buttonBack} color="white" />
-          </TouchableOpacity>
+    <View style={styles.modalContainer}>
+      <TouchableOpacity onPress={() => navigation.navigate('main')}>
+        <AntDesign name="back" size={24} style={styles.buttonBack} color="white" />
+      </TouchableOpacity>
 
-          <CreateRoom />
+      <Portal>
+        <FAB.Group
+          visible={true}
+          open={open}
+          icon={open ? 'calendar-today' : 'plus'}
+          actions={[
+            {
+              icon: 'account-arrow-left',
+              label: 'Edit Rooms',
+              onPress: nowEditing,
+            },
+            {
+              icon: 'email',
+              label: 'Join Room',
+              onPress: () => navigation.navigate('join'),
+            },
+            {
+              icon: 'bell',
+              label: 'Create Room',
+              onPress: () => navigation.navigate('create'),
+            },
+          ]}
 
-          <View style={styles.joinRoomButton}>
-            <JoinARoom />
-          </View>
-        </View>
-      </Modal>
+          onStateChange={onStateChange}
+          onPress={() => {
+            console.log('objectsdd')
+            if (open) {
+              // do something if the speed dial is open
+            }
+          }}
+        />
+      </Portal>
+
+      {isEditing ?
+        <Text>You are in Editing Mode</Text>
+        : null}
+
+
     </View>
   )
 }
