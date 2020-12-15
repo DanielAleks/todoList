@@ -9,7 +9,6 @@ import SettingScreen from './screens/setting-screen';
 import { StatusBar, View } from 'react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
 import CreateRoom from './screens/setting-screen/createRoom/CreateRoom';
-import JoinARoom from './screens/setting-screen/joinRoom/JoinARoom';
 
 
 const Drawer = createDrawerNavigator();
@@ -30,12 +29,6 @@ const Navigation = () => {
             <Drawer.Screen
               options={{ title: 'Rooms!' }}
               name="rooms" component={SettingScreen} />
-               <Drawer.Screen
-              options={{ title: 'Create!' }}
-              name="create" component={CreateRoom} />
-               <Drawer.Screen
-              options={{ title: 'Join!' }}
-              name="join" component={JoinARoom} />
           </Drawer.Navigator>
         </NavigationContainer>
       </PaperProvider>

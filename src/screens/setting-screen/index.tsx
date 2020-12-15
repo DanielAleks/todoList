@@ -4,9 +4,9 @@ import { View, TouchableOpacity, Text, StyleSheet, Modal } from 'react-native'
 import { useDispatch } from 'react-redux'
 import { gloStyles } from '../../../App'
 import CreateRoom from './createRoom/CreateRoom'
-import JoinARoom from './joinRoom/JoinARoom'
 import { AntDesign } from '@expo/vector-icons';
 import { Drawer, FAB, Portal, Provider } from 'react-native-paper';
+import ModalJoin from './joinRoom/ModalJoin'
 
 
 function SettingScreen() {
@@ -16,12 +16,14 @@ function SettingScreen() {
   const onStateChange = ({ open }) => setState({ open });
   const { open } = state;
   const [isEditing, setIsEditing] = useState(false)
+  const [joinModal, setJoinModal] = useState(false)
+  const [createModal, setCreateModal] = useState(false)
 
   const nowEditing = () => {
     navigation.navigate('rooms')
-    setIsEditing(true)
+    setIsEditing(prev => !prev)
   }
-  
+
   return (
     <View style={styles.modalContainer}>
       <TouchableOpacity onPress={() => navigation.navigate('main')}>
@@ -32,38 +34,40 @@ function SettingScreen() {
         <FAB.Group
           visible={true}
           open={open}
-          icon={open ? 'calendar-today' : 'plus'}
+          icon={open ? 'book-variant' : 'plus'}
           actions={[
             {
-              icon: 'account-arrow-left',
-              label: 'Edit Rooms',
+              icon: 'account-edit',
+              label: isEditing ? 'Turn Off Editing Mode' : 'Edit Rooms',
               onPress: nowEditing,
             },
             {
-              icon: 'email',
+              icon: 'account-search',
               label: 'Join Room',
-              onPress: () => navigation.navigate('join'),
+              onPress: () => setJoinModal(prev => !prev),
             },
             {
-              icon: 'bell',
+              icon: 'book-plus-multiple',
               label: 'Create Room',
-              onPress: () => navigation.navigate('create'),
+              onPress: () => setCreateModal(true),
             },
           ]}
 
           onStateChange={onStateChange}
-          onPress={() => {
-            console.log('objectsdd')
-            if (open) {
-              // do something if the speed dial is open
-            }
-          }}
         />
       </Portal>
 
-      {isEditing ?
+      {/* {createModal ?
+      } */}
+
+      {joinModal ? <ModalJoin setJoinModal={setJoinModal}/> : null}
+
+      {createModal ? <CreateRoom setCreateModal={setCreateModal}/> : null}
+
+      {isEditing ? <View>
         <Text>You are in Editing Mode</Text>
-        : null}
+        <TouchableOpacity style={styles.editingMode} onPress={() => setIsEditing(false)}><Text>Turn Off Editing mode</Text></TouchableOpacity>
+      </View> : null}
 
 
     </View>
@@ -77,6 +81,14 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     display: 'flex',
+  },
+  editingMode: {
+    height: 40,
+    width: 200,
+    backgroundColor: '#cccccc',
+    borderRadius: 5,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   joinRoomButton: {
     position: 'absolute',

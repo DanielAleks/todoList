@@ -6,7 +6,7 @@ import Navigation from './src/Navigation';
 
 export default function App() {
   return (
-      <Navigation />
+    <Navigation />
   );
 }
 
@@ -19,9 +19,15 @@ export const gloStyles = StyleSheet.create({
     color: 'white',
     fontSize: 14,
   },
+  modalBg: {
+    backgroundColor: 'rgba(0,0,0, .5)',
+    height: '100%'
+  },
   x: {
-    alignItems: 'flex-end',
-    margin: 10
+    position: 'absolute',
+    margin: 10,
+    top: 0,
+    right: 0
   },
   container: {
     display: 'flex',
