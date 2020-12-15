@@ -34,13 +34,13 @@ export const gloStyles = StyleSheet.create({
     flexDirection: 'row'
   },
   button: {
-    display: 'flex',
-    justifyContent: 'center',
-    height: 50,
+    height: 30,
     width: 100,
-    backgroundColor: '#f6ffc3',
-    borderRadius: 40,
+    backgroundColor: '#383838',
+    borderRadius: 5,
     alignItems: 'center',
+    justifyContent: 'center',
+    margin: 10
   },
   inputStyle: {
     width: 170,
@@ -48,15 +48,6 @@ export const gloStyles = StyleSheet.create({
     borderBottomColor: 'black',
     borderRadius: 4
   },
-  longButton: {
-    width: '100%',
-    height: 50,
-    backgroundColor: '#ff6702',
-    marginBottom: 10,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-
 });
 const styles = StyleSheet.create({
   container: {

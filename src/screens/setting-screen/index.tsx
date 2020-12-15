@@ -30,6 +30,14 @@ function SettingScreen() {
         <AntDesign name="back" size={24} style={styles.buttonBack} color="white" />
       </TouchableOpacity>
 
+      {createModal ? <CreateRoom setCreateModal={setCreateModal} /> : null}
+
+      {joinModal ? <ModalJoin setJoinModal={setJoinModal} /> : null}
+
+      {isEditing ? <View>
+        <Text>You are in Editing Mode</Text>
+        <TouchableOpacity style={styles.editingMode} onPress={() => setIsEditing(false)}><Text>Turn Off Editing mode</Text></TouchableOpacity>
+      </View> : null}
 
       <Provider>
         {/* <Portal> // why do I need Portal??? works without */}
@@ -52,7 +60,7 @@ function SettingScreen() {
             {
               icon: 'book-plus-multiple',
               label: 'Create Room',
-              onPress: () => setCreateModal(true),
+              onPress: () => setCreateModal(prev => !prev),
             },
           ]}
 
@@ -61,19 +69,8 @@ function SettingScreen() {
 
         {/* </Portal> */}
       </Provider>
-
-      {/* {createModal ?
-      } */}
-
-      {joinModal ? <ModalJoin setJoinModal={setJoinModal} /> : null}
-
-      {createModal ? <CreateRoom setCreateModal={setCreateModal} /> : null}
-
-      {isEditing ? <View>
-        <Text>You are in Editing Mode</Text>
-        <TouchableOpacity style={styles.editingMode} onPress={() => setIsEditing(false)}><Text>Turn Off Editing mode</Text></TouchableOpacity>
-      </View> : null}
     </View>
+
   )
 }
 const styles = StyleSheet.create({
@@ -84,6 +81,13 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     display: 'flex',
+  },
+  plusButton: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    height: 1000,
+    width: 1000
   },
   editingMode: {
     height: 40,

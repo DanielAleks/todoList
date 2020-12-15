@@ -7,8 +7,6 @@ import RemoveARoom from './RemoveARoom'
 import { Feather } from '@expo/vector-icons';
 import { disableExpoCliLogging } from 'expo/build/logs/Logs'
 // import DropDownPicker from 'react-native-dropdown-picker';
-import CardFlip from 'react-native-card-flip';
-import FlipCard from 'react-native-flip-card'
 
 function CreateRoom({ setCreateModal }) {
   const [input, setInput] = useState<any>('')
@@ -41,131 +39,57 @@ function CreateRoom({ setCreateModal }) {
   }
 
   return (
+      <Modal
+        transparent={true}
+        visible={true}
+      >
+        <View style={gloStyles.modalBg}>
+          <View style={styles.absoluteModal}>
+            <View style={styles.modalArea}>
+              <TouchableOpacity style={gloStyles.x} onPress={() => setCreateModal(false)}>
+                <Feather name="x-circle" size={24} color="black" />
+              </TouchableOpacity>
 
-    
-<FlipCard style={{backgroundColor: 'red', height: 100, width: 100, position: 'absolute', top: 300, left: 200}}
-  friction={6}
-  perspective={1000}
-  flipHorizontal={true}
-  flipVertical={false}
-  flip={false}
-  clickable={true}
-  onFlipEnd={(isFlipEnd)=>{console.log('isFlipEnd', isFlipEnd)}}>
-  {/* Face Side */}
-  <View style={styles.face}>
-    <Text>The Face</Text>
-  </View>
-  {/* Back Side */}
-  <View style={styles.back}>
-    <Text>The Back</Text>
-  </View>
-</FlipCard>
-    // <CardFlip style={styles.cardContainer} ref={(card) => this.card = card} >
-    //   <TouchableOpacity style={styles.card} onPress={() => this.card.flip()} ><Text>AB</Text></TouchableOpacity>
-    //   <TouchableOpacity style={styles.card} onPress={() => this.card.flip()} ><Text>CD</Text></TouchableOpacity>
-    // </CardFlip>
+              <Text style={styles.header}>Create New Room</Text>
 
+              <View>
+                <Text>Name</Text>
+                <TextInput style={gloStyles.inputStyle} value={name} onChangeText={(text) => setName(text)} />
+              </View>
 
-    // <CardFlip style={styles.cardContainer} ref={(card) => this.card = card} >
-    //   <Modal
-    //     transparent={true}
-    //     visible={true}
-    //   >
-    //     <View style={gloStyles.modalBg}>
-    //       <View style={styles.absoluteModal}>
-    //         <View style={styles.modalArea}>
-    //           <TouchableOpacity style={gloStyles.x} onPress={() => setCreateModal(false)}>
-    //             <Feather name="x-circle" size={24} color="black" />
-    //           </TouchableOpacity>
+              <View>
+                <Text>Invite</Text>
+                <TextInput style={gloStyles.inputStyle} value={invite} onChangeText={(text) => setInvite(text)} />
+              </View>
 
-    //           <TouchableOpacity style={styles.card} onPress={() => this.card.flip()} ><Text>AB</Text></TouchableOpacity>
-    //           <TouchableOpacity style={styles.card} onPress={() => this.card.flip()} ><Text>CD</Text></TouchableOpacity>
-    //           <View>
-    //             <Text>Name</Text>
-    //             <TextInput style={gloStyles.inputStyle} value={name} onChangeText={(text) => setName(text)} />
-    //           </View>
+              <TouchableOpacity style={gloStyles.button} onPress={addTodo}>
+                <Text style={gloStyles.whiteText}>Create Room</Text>
+              </TouchableOpacity>
 
-    //           <View>
-    //             <Text>Invite</Text>
-    //             <TextInput style={gloStyles.inputStyle} value={invite} onChangeText={(text) => setInvite(text)} />
-    //           </View>
-
-    //           <View>
-    //             <TouchableOpacity style={gloStyles.button} >
-    //               <Text>Change Theme</Text>
-    //             </TouchableOpacity>
-    //           </View>
-
-
-    //           <TouchableOpacity style={gloStyles.button} onPress={addTodo}>
-    //             <Text>Create Room</Text>
-    //           </TouchableOpacity>
-
-    //           <View style={styles.inputContainer}>
-    //             <TextInput ref={ref => textInputRef.current = ref} style={gloStyles.inputStyle} value={input} onChangeText={(text) => setInput(text)} />
-    //           </View>
-    //         </View>
-    //       </View>
-    //     </View>
-    //   </Modal>
-    // </CardFlip>
+            </View>
+          </View>
+        </View>
+      </Modal>
   );
 };
 const styles = StyleSheet.create({
-  back: {
-    height: 100,
-    width: 100
-  },
-  face: {
-    height: 100,
-    width: 100
-  },
   absoluteModal: {
     position: 'absolute',
     bottom: '30%',
     right: '15%',
   },
-  cardContainer: {
-    padding: 20,
-    margin: 20,
-    width: 200,
-    height: 300
-  },
-  card: {
-    height: 100,
-    width: 100
+  header: {
+    color: 'black',
+    fontSize: 22,
+    fontWeight: 'bold'
   },
   modalArea: {
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
-    height: 400,
+    height: 250,
     width: 300,
-    backgroundColor: 'pink'
-  },
-  modalContainer: {
-    backgroundColor: '#b90600',
-    width: '80%',
-    height: 300,
-    justifyContent: 'center',
-    alignItems: 'center',
-    display: 'flex'
-  },
-  buttonAlign: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start'
-  },
-  longStyles: {
-    backgroundColor: 'red',
-    marginBottom: 100,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  inputContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: '#c43d3d'
   },
 })
 export default CreateRoom
