@@ -14,18 +14,12 @@ import RemoveARoom from './createRoom/RemoveARoom'
 function SettingScreen() {
   const navigation = useNavigation()
   const dispatch = useDispatch()
-  const [state, setState] = React.useState({ open: false });
+  const [state, setState] = useState({ open: false });
   const [isEditing, setIsEditing] = useState(false)
   const [joinModal, setJoinModal] = useState(false)
   const [createModal, setCreateModal] = useState(false)
   const [input, setInput] = useState<any>('')
   // const [isFocused, setIsFocused] = useState(false)
-  const [theModal, setTheModal] = useState(false)
-  const [name, setName] = useState('')
-  const [theme, setTheme] = useState([])
-  const [invite, setInvite] = useState('')
-  const [isColor, setIsColor] = useState(false)
-  const [isFlipped, setIsFlipped] = useState(false);
   
   const onStateChange = ({ open }) => setState({ open });
   const { open } = state;
@@ -61,7 +55,7 @@ function SettingScreen() {
       {
         isEditing ? <View>
           <Text>You are in Editing Mode</Text>
-          <TouchableOpacity style={styles.editingMode} onPress={() => setIsEditing(false)}><Text>Turn Off Editing mode</Text></TouchableOpacity>
+          <TouchableOpacity style={gloStyles.editingMode} onPress={() => setIsEditing(false)}><Text>Turn Off Editing mode</Text></TouchableOpacity>
         </View> : null
       }
 
@@ -119,14 +113,6 @@ const styles = StyleSheet.create({
     right: 0,
     height: 1000,
     width: 1000
-  },
-  editingMode: {
-    height: 40,
-    width: 200,
-    backgroundColor: '#cccccc',
-    borderRadius: 5,
-    justifyContent: 'center',
-    alignItems: 'center'
   },
   joinRoomButton: {
     position: 'absolute',

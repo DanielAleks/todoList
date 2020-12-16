@@ -48,6 +48,14 @@ export const gloStyles = StyleSheet.create({
     borderBottomColor: 'black',
     borderRadius: 4
   },
+  editingMode: {
+    height: 40,
+    width: 200,
+    backgroundColor: '#cccccc',
+    borderRadius: 5,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
 });
 const styles = StyleSheet.create({
   container: {
