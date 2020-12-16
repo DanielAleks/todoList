@@ -5,6 +5,9 @@ import { gloStyles } from '../../../../App'
 import { rootStoreT } from '../../../../store'
 import { ADD_LIST, REMOVE_LIST } from '../../../reducers/types'
 import { TextInput, TouchableHighlight, TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler'
+import DelAddTodos from './DelAddTodos'
+import todosReducer from '../../../reducers/todosReducer'
+import AddATodo from './fabGroup/AddATodo'
 
 function Lists({ editMode }) {
   const lists = useSelector((state: rootStoreT) => state.lists)
@@ -28,23 +31,20 @@ function Lists({ editMode }) {
     <View>
       {lists.map((item) =>
         <View key={item.id}>
-          <TouchableWithoutFeedback key={item.id} style={{...styles.group, height: 30, borderWidth: .25}} onPress={() => {
+          <TouchableWithoutFeedback key={item.id} style={{ ...styles.group, height: 30, borderWidth: .25 }} onPress={() => {
             isDropped === '' ? setIsDropped(item.id) : setIsDropped('')
           }}>
-              <Text style={styles.text} key={item.id}>-{item.value}</Text>
+            <Text style={styles.text} key={item.id}>-{item.value}</Text>
 
 
-              <TouchableOpacity style={{ display: editMode ? 'flex' : 'none', width: 110, backgroundColor: 'red', flex: 1, alignItems: 'center', justifyContent: 'center' }} onPress={removeList}>
-                <Text>X</Text>
-              </TouchableOpacity>
+            <TouchableOpacity style={{ display: editMode ? 'flex' : 'none', width: 110, backgroundColor: 'red', flex: 1, alignItems: 'center', justifyContent: 'center' }} onPress={removeList}>
+              <Text>X</Text>
+            </TouchableOpacity>
           </TouchableWithoutFeedback>
 
-          <View>
-            <View>
-              <Text style={{ ...gloStyles.blackText, height: '100%', display: isDropped === item.id ? 'flex' : 'none' }}>INFORMATION</Text>
-            </View>
 
-          </View>
+
+          <View style={{ ...gloStyles.blackText, height: '80%', backgroundColor: '#afafaf', display: isDropped === item.id ? 'flex' : 'none' }}><DelAddTodos /></View>
         </View>
       )}
     </View>

@@ -41,9 +41,7 @@ const MainScreen = () => {
   return (
     <View style={{ flex: 1 }}>
       <Navbar />
-      <Lists editMode={editMode}/>
-      <DelAddTodos />
-
+      <Lists editMode={editMode} />
 
       <StatusBar style="auto" />
 
