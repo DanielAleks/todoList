@@ -6,8 +6,8 @@ import { Feather } from '@expo/vector-icons';
 
 function RoomNameModal({ setModalRoomName }) {
   const [groupName, setGroupName] = useState('')
-  const [currentGroupName, setCurrentGroupName] = useState('')
 
+  
 
   return (
     <Modal
@@ -24,7 +24,7 @@ function RoomNameModal({ setModalRoomName }) {
 
           <View style={{ justifyContent: 'center', alignItems: 'center' }}>
             <Text>Edit Your Group Name:</Text>
-            <TextInput style={{ ...gloStyles.inputStyle }} value={groupName} placeholder={currentGroupName} onChangeText={(text) => setGroupName(text)} />
+            <TextInput style={{ ...gloStyles.inputStyle }} value={groupName} placeholder='Group Name...' onChangeText={(text) => setGroupName(text)} />
           </View>
 
         </View>

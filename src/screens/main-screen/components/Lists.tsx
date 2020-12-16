@@ -6,7 +6,7 @@ import { rootStoreT } from '../../../../store'
 import { ADD_LIST, REMOVE_LIST } from '../../../reducers/types'
 import { TextInput, TouchableHighlight, TouchableOpacity } from 'react-native-gesture-handler'
 
-function Lists() {
+function Lists({editMode}) {
   const lists = useSelector((state: rootStoreT) => state.lists)
   const [isDropped, setIsDropped] = useState<any>([])
   const [value, setValue] = useState('')
@@ -23,30 +23,32 @@ function Lists() {
 
   }
 
+const dropList = (item) => {
+  editMode ? setIsDropped(item.id) : null
+}
 
 
   return (
     <View>
-      <Text style={gloStyles.blackText}>Lists:</Text>
-
-      <TextInput style={gloStyles.inputStyle} value={value} onChangeText={(text) => setValue(text)} />
-
-      <TouchableOpacity style={gloStyles.button} onPress={addList}>
-        <Text style={gloStyles.whiteText}>Create List</Text>
-      </TouchableOpacity>
-
       {lists.map((item) =>
         <View>
           <View style={{ display: 'flex', backgroundColor: 'pink', flexDirection: 'row', borderWidth: .25 }}>
-            <TouchableOpacity style={styles.group} onPress={() => setIsDropped(item.id)}>
+            <TouchableOpacity style={styles.group} onPress={dropList}>
               <View>
                 <Text style={styles.text} key={item.id}>-{item.value}</Text>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity style={{ width: 110, backgroundColor: 'red', flex: 1, alignItems: 'center', justifyContent: 'center' }} onPress={() => setIsDropped('')}>
+
+          <TouchableOpacity style={gloStyles.button} onPress={() => setIsDropped('')}>
+            <Text style={gloStyles.whiteText}>Remove items under</Text>
+          </TouchableOpacity>
+
+            <TouchableOpacity style={{ display: editMode ? 'flex' : 'none', width: 110, backgroundColor: 'red', flex: 1, alignItems: 'center', justifyContent: 'center' }} onPress={removeList}>
               <Text>X</Text>
             </TouchableOpacity>
+
           </View>
+
           <View>
             <Text style={{ ...gloStyles.blackText, height: 100, display: isDropped === item.id ? 'flex' : 'none' }}>INFORMATION</Text>
           </View>
@@ -61,7 +63,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#222222',
     height: 50,
     justifyContent: 'center',
-    width: 300,
+    width: '100%',
     flexDirection: 'row',
   },
   text: {
