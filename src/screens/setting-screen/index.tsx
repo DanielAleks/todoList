@@ -15,8 +15,6 @@ function SettingScreen() {
   const navigation = useNavigation()
   const dispatch = useDispatch()
   const [state, setState] = React.useState({ open: false });
-  const onStateChange = ({ open }) => setState({ open });
-  const { open } = state;
   const [isEditing, setIsEditing] = useState(false)
   const [joinModal, setJoinModal] = useState(false)
   const [createModal, setCreateModal] = useState(false)
@@ -28,7 +26,10 @@ function SettingScreen() {
   const [invite, setInvite] = useState('')
   const [isColor, setIsColor] = useState(false)
   const [isFlipped, setIsFlipped] = useState(false);
-
+  
+  const onStateChange = ({ open }) => setState({ open });
+  const { open } = state;
+  
   const nowEditing = () => {
     navigation.navigate('rooms')
     setIsEditing(prev => !prev)
@@ -90,7 +91,7 @@ function SettingScreen() {
           ]}
 
           onStateChange={onStateChange}
-        />
+        /> 
 
         {/* </Portal> */}
       </Provider>

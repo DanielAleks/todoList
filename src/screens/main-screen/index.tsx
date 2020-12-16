@@ -1,18 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import TodoList from './components/TodoList'
 import { StyleSheet, Text, View } from 'react-native';
 import Navbar from './navbar/Navbar';
 import { StatusBar } from 'expo-status-bar';
+import TodosProvider from './components/TodosProvider';
 
 
 const MainScreen = () => {
-  return (
-    <View style={{flex: 1}}>
-      <View style={{height: 70}}>
 
-      <Navbar />
+
+
+  return (
+    <View style={{ flex: 1 }}>
+      <View style={{ height: 70 }}>
+        <Navbar />
       </View>
       <TodoList />
+      <TodosProvider />
       <StatusBar style="auto" />
     </View>
   )
@@ -38,4 +42,4 @@ export const styles = StyleSheet.create({
     borderRadius: 40,
   },
 
-  });
+});
