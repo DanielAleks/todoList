@@ -11,6 +11,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import uuid from 'react-native-uuid'
 import { v4 as uuidv4 } from 'uuid';
 import DelAddTodos from './DelAddTodos';
+import Lists from './Lists';
 // import addListAction from '../../../actions/addListAction';
 
 
@@ -40,6 +41,8 @@ function TodoList() {
 
   return (
     <View style={styles.container}>
+      <Lists />
+
 
       <DelAddTodos />
 

@@ -8,8 +8,11 @@ import { StatusBar } from 'expo-status-bar';
 const MainScreen = () => {
   return (
     <View style={{flex: 1}}>
-      <TodoList />
+      <View style={{height: 70}}>
+
       <Navbar />
+      </View>
+      <TodoList />
       <StatusBar style="auto" />
     </View>
   )

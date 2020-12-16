@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ff6702',
-    position: 'absolute',
     top: 0,
     height: 80,
     width: '100%',

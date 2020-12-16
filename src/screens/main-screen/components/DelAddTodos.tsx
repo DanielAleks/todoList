@@ -19,7 +19,7 @@ const DelAddTodos = () => {
     <View style={styles.container}>
       {todos.map((item) =>
         <TouchableOpacity key={item.id} onPress={() => deleteTodo(item.id)}>
-          <Chip icon="information" style={styles.chippy} onPress={() => deleteTodo(item.id)}><Text style={gloStyles.whiteText}>{item.value}</Text></Chip>
+          <Chip icon="information" style={styles.chippy}><Text style={gloStyles.whiteText}>{item.value}</Text></Chip>
         </TouchableOpacity>
       )}
     </View>
