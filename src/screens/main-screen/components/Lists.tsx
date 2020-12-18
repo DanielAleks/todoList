@@ -27,7 +27,7 @@ function Lists({ editMode }) {
     dispatch({ type: REMOVE_TODO, payload })
 
 
-  return (
+  return ( 
     <View>
       {lists.map((item) =>
         <View key={item.id}>

@@ -3,37 +3,16 @@ import { View, TouchableOpacity, TextInput, Text, StyleSheet, Modal } from 'reac
 import { useDispatch } from 'react-redux'
 import { gloStyles } from '../../../../App'
 import { ADD_ROOM } from '../../../reducers/types'
-import RemoveARoom from './RemoveARoom'
 import { Feather } from '@expo/vector-icons';
-import { disableExpoCliLogging } from 'expo/build/logs/Logs'
-// import DropDownPicker from 'react-native-dropdown-picker';
 
 function CreateRoom({ setCreateModal }) {
-  const [input, setInput] = useState<any>('')
-  // const [isFocused, setIsFocused] = useState(false)
   const dispatch = useDispatch()
-  const textInputRef = useRef(null)
-  const [theModal, setTheModal] = useState(false)
   const [name, setName] = useState('')
-  const [theme, setTheme] = useState([])
   const [invite, setInvite] = useState('')
-  const [isColor, setIsColor] = useState(false)
-  const [isFlipped, setIsFlipped] = useState(false);
 
-  const themes = [
-    { label: 'Default', value: '#ff6702' },
-    { label: 'Aqua Menthe', value: '#7fffd4' },
-    { label: 'Proton Purple', value: '#8a2be2' },
-    { label: 'Office Green', value: '#008000' },
-    { label: 'Just Blue', value: '#0000ff' },
-    { label: 'Blush Pink', value: '#ffc0cb' },
-    { label: 'Chartreuse Yellow', value: '#dfff00' },
-    { label: 'Cosmic Latte', value: '#fff9e3' },
-  ]
+  const addTodo = (payload) =>
+    dispatch({ type: ADD_ROOM, payload: name }) 
 
-  const addTodo = () => {
-      dispatch({ type: ADD_ROOM, payload: input })
-  }
 
   return (
     <Modal
@@ -43,15 +22,22 @@ function CreateRoom({ setCreateModal }) {
       <View style={gloStyles.modalBg}>
         <View style={styles.absoluteModal}>
           <View style={styles.modalArea}>
-            <TouchableOpacity style={gloStyles.x} onPress={() => setCreateModal(false)}>
-              <Feather name="x-circle" size={24} color="black" />
+            <TouchableOpacity
+              style={gloStyles.x}
+              onPress={() => setCreateModal(false)}
+            >
+              <Feather
+                name="x-circle"
+                size={24}
+                color="black"
+              />
             </TouchableOpacity>
 
             <Text style={styles.header}>Create New Room</Text>
 
             <View>
               <Text>Name</Text>
-              <TextInput style={gloStyles.inputStyle} value={input} onChangeText={(text) => setName(text)} />
+              <TextInput style={gloStyles.inputStyle} value={name} onChangeText={(text) => setName(text)} />
             </View>
 
             <View>

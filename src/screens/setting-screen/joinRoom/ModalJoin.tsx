@@ -13,14 +13,24 @@ function ModalJoin({ setJoinModal }) {
         <View style={styles.absoluteModal}>
           <View style={styles.modalArea}>
 
-            <TouchableOpacity style={gloStyles.x} onPress={() => setJoinModal(false)}>
-              <Feather name="x-circle" size={22} color="black" />
+            <TouchableOpacity
+              style={gloStyles.x}
+              onPress={() => setJoinModal(false)}
+            >
+              <Feather
+                name="x-circle"
+                size={22}
+                color="black"
+              />
             </TouchableOpacity>
 
             <Text style={gloStyles.blackText}>Type in Group Key</Text>
             <TextInput style={{ ...gloStyles.inputStyle, margin: 10 }} />
 
-            <TouchableOpacity style={gloStyles.button} onPress={() => setJoinModal(false)}>
+            <TouchableOpacity
+              style={gloStyles.button}
+              onPress={() => setJoinModal(false)}
+            >
               <Text style={gloStyles.whiteText}>Search</Text>
             </TouchableOpacity>
           </View>

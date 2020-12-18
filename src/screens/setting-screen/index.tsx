@@ -1,50 +1,46 @@
-import { NavigationContainer, useNavigation } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
 import React, { useState } from 'react'
-import { View, TouchableOpacity, Text, StyleSheet, Modal, TextInput } from 'react-native'
-import { useDispatch } from 'react-redux'
+import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import { gloStyles } from '../../../App'
 import CreateRoom from './createRoom/CreateRoom'
 import { AntDesign } from '@expo/vector-icons';
-import { Drawer, FAB, Portal, Provider } from 'react-native-paper';
+import { FAB, Provider } from 'react-native-paper';
 import ModalJoin from './joinRoom/ModalJoin'
-import { ADD_ROOM } from '../../reducers/types'
 import RemoveARoom from './createRoom/RemoveARoom'
+import { rootStoreT } from '../../../store'
+import { useSelector } from 'react-redux'
 
 
 function SettingScreen() {
   const navigation = useNavigation()
-  const dispatch = useDispatch()
   const [state, setState] = useState({ open: false });
   const [isEditing, setIsEditing] = useState(false)
   const [joinModal, setJoinModal] = useState(false)
   const [createModal, setCreateModal] = useState(false)
-  const [input, setInput] = useState<any>('')
-  // const [isFocused, setIsFocused] = useState(false)
-  
   const onStateChange = ({ open }) => setState({ open });
   const { open } = state;
-  
+
   const nowEditing = () => {
     navigation.navigate('rooms')
     setIsEditing(prev => !prev)
   }
 
-  const addTodo = () => {
-    dispatch({ type: ADD_ROOM, payload: input })
-  }
-
   return (
     <View style={styles.modalContainer}>
       <TouchableOpacity onPress={() => navigation.navigate('main')}>
-        <AntDesign name="back" size={24} style={styles.buttonBack} color="white" />
+        <AntDesign name="back"
+          size={24}
+          style={styles.buttonBack}
+          color="white"
+        />
       </TouchableOpacity>
 
-      <View style={{display: 'flex', alignItems: 'center'}}>
+      <View style={styles.headerContainer}>
         <Text style={styles.header}>My Rooms:</Text>
       </View>
 
 
-      <View style={{ position: 'absolute', width: '100%', top: 100 }}>
+      <View style={styles.roomContainer}>
         <RemoveARoom />
       </View>
 
@@ -52,12 +48,15 @@ function SettingScreen() {
 
       { joinModal ? <ModalJoin setJoinModal={setJoinModal} /> : null}
 
-      {
-        isEditing ? <View>
+      {isEditing ?
+        <View>
           <Text>You are in Editing Mode</Text>
-          <TouchableOpacity style={gloStyles.editingMode} onPress={() => setIsEditing(false)}><Text>Turn Off Editing mode</Text></TouchableOpacity>
-        </View> : null
-      }
+          <TouchableOpacity
+            style={gloStyles.editingMode}
+            onPress={() => setIsEditing(false)}>
+            <Text>Turn Off Editing mode</Text>
+          </TouchableOpacity>
+        </View> : null}
 
       <Provider>
         {/* <Portal> // why do I need Portal??? works without */}
@@ -85,7 +84,7 @@ function SettingScreen() {
           ]}
 
           onStateChange={onStateChange}
-        /> 
+        />
 
         {/* </Portal> */}
       </Provider>
@@ -128,7 +127,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#3a3a3a',
     width: 25,
     borderRadius: 5
-  }
+  },
+  headerContainer: {
+    display: 'flex',
+    alignItems: 'center'
+  },
+  roomContainer: {
+    position: 'absolute',
+    width: '100%',
+    top: 100
+  },
 });
 
 

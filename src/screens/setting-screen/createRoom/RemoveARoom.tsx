@@ -1,7 +1,6 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
-import { gloStyles } from '../../../../App'
 import { rootStoreT } from '../../../../store'
 import { REMOVE_ROOM } from '../../../reducers/types'
 const RemoveARoom = () => {
@@ -19,9 +18,14 @@ const RemoveARoom = () => {
       <View style={{ height: '90%' }}>
 
         {todos.map((item) =>
-          <TouchableOpacity style={styles.group} key={item.id} onPress={() => deleteTodo(item.id)}
+          <TouchableOpacity
+            style={styles.group}
+            key={item.id}
+            onPress={() => deleteTodo(item.id)}
           >
-            <Text style={styles.text}> -{item.value} Group</Text>
+            <Text style={styles.text}>
+              -{item.value} Group
+            </Text>
           </TouchableOpacity>
         )}
       </View>
