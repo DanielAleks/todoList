@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, TouchableWithoutFeedbackComponent, View, TextInput, TouchableHighlight, TouchableOpacity, TouchableWithoutFeedback } from 'react-native'
+import { StyleSheet, Text, TouchableWithoutFeedbackComponent, View } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import { gloStyles } from '../../../../App'
 import { rootStoreT } from '../../../../store'
@@ -7,6 +7,7 @@ import { ADD_LIST, REMOVE_LIST } from '../../../reducers/types'
 import DelAddTodos from './DelAddTodos'
 import todosReducer from '../../../reducers/todosReducer'
 import AddATodo from './fabGroup/AddATodo'
+import { TextInput, TouchableHighlight, TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler'
 
 function Lists({ editMode }) {
   const lists = useSelector((state: rootStoreT) => state.lists)
@@ -28,15 +29,6 @@ function Lists({ editMode }) {
 
   return (
     <View>
-      <TouchableWithoutFeedback style={{ ...styles.group, height: 30, borderWidth: .25 }} 
-      // onPress={() => {
-      //       isDropped === '' ? setIsDropped(item.id) : setIsDropped('')
-      //     }}
-          >
-            <Text style={styles.text} >-Kitchen Clean</Text>
-          </TouchableWithoutFeedback>
-          <DelAddTodos  />
-
       {lists.map((item) =>
         <View key={item.id}>
           <TouchableWithoutFeedback style={{ ...styles.group, height: 30, borderWidth: .25 }} onPress={() => {
