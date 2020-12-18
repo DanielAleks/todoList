@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, TouchableWithoutFeedbackComponent, View } from 'react-native'
+import { StyleSheet, Text, TouchableWithoutFeedbackComponent, View, TextInput, TouchableHighlight, TouchableOpacity, TouchableWithoutFeedback } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import { gloStyles } from '../../../../App'
 import { rootStoreT } from '../../../../store'
 import { ADD_LIST, REMOVE_LIST } from '../../../reducers/types'
-import { TextInput, TouchableHighlight, TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler'
 import DelAddTodos from './DelAddTodos'
 import todosReducer from '../../../reducers/todosReducer'
 import AddATodo from './fabGroup/AddATodo'
@@ -29,22 +28,30 @@ function Lists({ editMode }) {
 
   return (
     <View>
+      <TouchableWithoutFeedback style={{ ...styles.group, height: 30, borderWidth: .25 }} 
+      // onPress={() => {
+      //       isDropped === '' ? setIsDropped(item.id) : setIsDropped('')
+      //     }}
+          >
+            <Text style={styles.text} >-Kitchen Clean</Text>
+          </TouchableWithoutFeedback>
+          <DelAddTodos  />
+
       {lists.map((item) =>
         <View key={item.id}>
-          <TouchableWithoutFeedback key={item.id} style={{ ...styles.group, height: 30, borderWidth: .25 }} onPress={() => {
+          <TouchableWithoutFeedback style={{ ...styles.group, height: 30, borderWidth: .25 }} onPress={() => {
             isDropped === '' ? setIsDropped(item.id) : setIsDropped('')
           }}>
             <Text style={styles.text} key={item.id}>-{item.value}</Text>
-
-
-            <TouchableOpacity style={{ display: editMode ? 'flex' : 'none', width: 110, backgroundColor: 'red', flex: 1, alignItems: 'center', justifyContent: 'center' }} onPress={removeList}>
-              <Text>X</Text>
-            </TouchableOpacity>
           </TouchableWithoutFeedback>
 
 
-
-          <View style={{ ...gloStyles.blackText, height: '80%', backgroundColor: '#afafaf', display: isDropped === item.id ? 'flex' : 'none' }}><DelAddTodos /></View>
+          {/* <TouchableOpacity style={{ display: editMode ? 'flex' : 'none', width: 110, backgroundColor: 'red', flex: 1, alignItems: 'center', justifyContent: 'center' }} onPress={removeList}>
+              <Text>X</Text>
+            </TouchableOpacity> */}
+          <View style={{ ...gloStyles.blackText, height: '80%', backgroundColor: '#afafaf', display: isDropped === item.id ? 'flex' : 'none' }}>
+            <DelAddTodos  />
+          </View>
         </View>
       )}
     </View>

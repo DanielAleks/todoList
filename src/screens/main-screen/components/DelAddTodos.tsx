@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { gloStyles } from '../../../../App'
 import { rootStoreT } from '../../../../store'
 import { REMOVE_TODO } from '../../../reducers/types'
+
+
 const DelAddTodos = () => {
   const todos = useSelector((state: rootStoreT) => state.todos)
   const dispatch = useDispatch()
