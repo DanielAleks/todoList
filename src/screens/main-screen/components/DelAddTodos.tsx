@@ -16,7 +16,6 @@ const DelAddTodos = () => {
     // if (Item.value === "")
     dispatch({ type: REMOVE_TODO, payload })
   }
-  //as a man thinketh
   return (
     <View style={styles.container}>
       {todos.map((item) =>

@@ -27,7 +27,7 @@ function CreateAList({ setCreateListModal }) {
       visible={true}
     >
       <View style={gloStyles.modalBg}>
-        <View style={styles.absoluteModal}> 
+        <View style={styles.absoluteModal}>
           <View style={styles.modalArea}>
             <TouchableOpacity style={gloStyles.x} onPress={() => setCreateListModal(false)}>
               <Feather name="x-circle" size={24} color="black" />
@@ -39,7 +39,6 @@ function CreateAList({ setCreateListModal }) {
             <TouchableOpacity style={gloStyles.button} onPress={addList} >
               <Text style={gloStyles.whiteText}>Create List</Text>
             </TouchableOpacity>
-
           </View>
         </View>
       </View>

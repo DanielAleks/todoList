@@ -42,12 +42,9 @@ const MainScreen = () => {
     <View style={{ flex: 1 }}>
       <Navbar />
       <Lists editMode={editMode} />
-
       <StatusBar style="auto" />
 
-
       {todoModal ? <AddATodo setTodoModal={setTodoModal} /> : null}
-
       {CreateListModal ? <CreateAList setCreateListModal={setCreateListModal} /> : null}
 
       <Provider>

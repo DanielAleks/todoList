@@ -46,7 +46,7 @@ export const gloStyles = StyleSheet.create({
     width: 170,
     borderBottomWidth: 1,
     borderBottomColor: 'black',
-    borderRadius: 4
+    borderRadius: 4,
   },
   editingMode: {
     height: 40,
