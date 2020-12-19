@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, View, TouchableOpacity } from 'react-native'
-import { TextInput } from 'react-native-gesture-handler'
+import { TextInput} from 'react-native-gesture-handler'
 import { signInStyles } from '../screens/welcome-screen'
 import { gloStyles } from '../../App'
 import { mainStyles } from '../screens/main-screen'
@@ -9,14 +9,18 @@ import { AntDesign } from '@expo/vector-icons'
 
 export const PureButton = ({ pureButtonData }) => {
   return (
-    <TouchableOpacity style={gloStyles.button} onPress={pureButtonData.button}>
+    <TouchableOpacity
+      key={pureButtonData.key}
+      style={pureButtonData.buttonStyle}
+      onPress={pureButtonData.button}
+    >
       <Text style={pureButtonData.textStyle}>{pureButtonData.text}</Text>
     </TouchableOpacity>
   )
 }
 
 export const DynamicBack = ({ backData }) => {
-  return (
+  return ( 
     <TouchableOpacity onPress={backData.button}>
       <AntDesign style={backData.style} name="back" size={24} color="white" />
     </TouchableOpacity>

@@ -2,12 +2,25 @@ import React, { useState } from 'react'
 import { Text, View, Modal, TouchableOpacity, StyleSheet } from 'react-native'
 import { gloStyles } from '../../../../../App'
 import { Feather } from '@expo/vector-icons'
-import { DynamicFeather } from '../../../../reusables/dynamicStuff'
+import { DynamicFeather, PureButton } from '../../../../reusables/dynamicStuff'
 
 function ParticipantsModal({ setModalParticipants }) {
   const [people, setPeople] = useState('')
 
   const featherData = { button: () => setModalParticipants(false) }
+
+  const pureButtonData = [
+    {
+      button: () => setPeople('fix'),
+      textStyle: gloStyles.whiteText,
+      text: 'Add',
+    },
+    {
+      button: () => setPeople('fix'),
+      textStyle: gloStyles.whiteText,
+      text: 'Remove',
+    },
+  ]
 
   return (
     <Modal transparent={true} visible={true}>
@@ -17,20 +30,12 @@ function ParticipantsModal({ setModalParticipants }) {
             <DynamicFeather featherData={featherData} />
 
             <Text>People in blank group</Text>
-            <Text style={styles.text}>{people} people...</Text>
+            <Text style={styles.marginText}>{people} people...</Text>
 
             <View style={styles.bothButtons}>
               
-              <TouchableOpacity style={styles.button} onPress={() => setPeople('fix')}>
-                <Text style={{ color: 'white' }}>Add</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={{ ...styles.button, marginLeft: 10 }}
-                onPress={() => setPeople('fix')}
-              >
-                <Text style={{ color: 'white' }}>Remove</Text>
-              </TouchableOpacity>
+              <PureButton pureButtonData={pureButtonData} />
+              <PureButton pureButtonData={pureButtonData} />
             </View>
           </View>
         </View>
@@ -55,18 +60,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     margin: 20,
   },
-  text: {
+  marginText: {
     marginTop: 10,
     marginLeft: 20,
-  },
-
-  button: {
-    height: 30,
-    width: 100,
-    backgroundColor: '#383838',
-    borderRadius: 5,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 })
 

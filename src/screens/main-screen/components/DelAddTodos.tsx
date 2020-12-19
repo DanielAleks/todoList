@@ -7,8 +7,7 @@ import { rootStoreT } from '../../../../store'
 import { REMOVE_TODO } from '../../../reducers/types'
 
 
-const DelAddTodos = () => {
-  const todos = useSelector((state: rootStoreT) => state.todos)
+const DelAddTodos = ({ item }) => {
   const dispatch = useDispatch()
 
   const deleteTodo = (payload) =>
@@ -16,24 +15,25 @@ const DelAddTodos = () => {
 
   return (
     <View style={styles.container}>
-      {todos.map((item) =>
-        <TouchableOpacity
-          key={item.id}
-          onPress={() => deleteTodo(item.id)}>
-          <Chip
-            style={styles.chippy}
-            icon="information"
-          >
-            <Text style={gloStyles.whiteText}>
-              {item.value}
-            </Text>
-          </Chip>
-        </TouchableOpacity>
-      )}
+
+      //* Can't be a Dynamic button
+      <TouchableOpacity
+        key={item.id}
+        onPress={() => deleteTodo(item.id)}>
+        <Chip
+          style={styles.chippy}
+          icon="information"
+        >
+          <Text style={gloStyles.whiteText}>
+            {item.value}
+          </Text>
+        </Chip>
+      </TouchableOpacity>
     </View>
   )
 }
 const styles = StyleSheet.create({
+  //! May not need this
   container: {
     display: 'flex',
     flexDirection: 'row',

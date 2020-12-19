@@ -7,8 +7,12 @@ import { FAB, Provider } from 'react-native-paper'
 import ModalJoin from './joinRoom/ModalJoin'
 import RemoveARoom from './createRoom/RemoveARoom'
 import { DynamicBack, PureButton } from '../../reusables/dynamicStuff'
+import { useSelector } from 'react-redux'
+import { rootStoreT } from '../../../store'
+import DelAddTodos from '../main-screen/components/DelAddTodos'
 
 function SettingScreen() {
+  const rooms = useSelector((state: rootStoreT) => state.rooms)
   const navigation = useNavigation()
   const [state, setState] = useState({ open: false })
   const [isEditing, setIsEditing] = useState(false)
@@ -21,6 +25,7 @@ function SettingScreen() {
     button: () => setIsEditing(false),
     text: 'Turn Off Editing mode',
     textStyle: gloStyles.whiteText,
+    buttonStyle: gloStyles.button
   }
 
   const backData = {
@@ -41,9 +46,10 @@ function SettingScreen() {
         <Text style={styles.header}>My Rooms:</Text>
       </View>
       <View style={styles.roomContainer}>
-        <RemoveARoom />
+        {rooms.map((item) => (
+          <RemoveARoom item={item} />
+        ))}
       </View>
-
       {createModal ? <CreateRoom setCreateModal={setCreateModal} /> : null}
       {joinModal ? <ModalJoin setJoinModal={setJoinModal} /> : null}
       {isEditing ? (

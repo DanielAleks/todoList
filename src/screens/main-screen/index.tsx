@@ -14,28 +14,34 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 import { gloStyles } from '../../../App'
 
 const MainScreen = () => {
+  const lists = useSelector((state: rootStoreT) => state.lists)
+  const todos = useSelector((state: rootStoreT) => state.todos)
   const [editMode, setEditMode] = useState(false)
   const [CreateListModal, setCreateListModal] = useState(false)
   const [todoModal, setTodoModal] = useState(false)
   const [state, setState] = useState({ open: false })
-  // const lists = useSelector((state: rootStoreT) => state.lists)
-  // const [isDropped, setIsDropped] = useState<any>([])
-  // const [value, setValue] = useState('')
   const dispatch = useDispatch()
+  const onStateChange = ({ open }) => setState({ open })
+  const { open } = state
 
   const addList = (payload) => dispatch({ type: ADD_LIST, payload })
 
   const nowEditing = () => setEditMode((prev) => !prev)
 
-  const onStateChange = ({ open }) => setState({ open })
-  const { open } = state
 
   return (
     <View style={{ flex: 1 }}>
       <Navbar />
-      <Lists editMode={editMode} />
-      <StatusBar style="auto" />
 
+      {lists.map((item) =>
+        <Lists item={item} editMode={editMode} />
+      )}
+
+        {todos.map((item) =>
+          <DelAddTodos item={item} />
+        )}
+
+      <StatusBar style="auto" />
       {todoModal ? <AddATodo setTodoModal={setTodoModal} /> : null}
       {CreateListModal ? <CreateAList setCreateListModal={setCreateListModal} /> : null}
 

@@ -1,11 +1,17 @@
 import React from 'react'
-import { TextInput, TouchableOpacity, Modal, Text, View, StyleSheet } from 'react-native'
+import { TextInput, Modal, Text, View, StyleSheet } from 'react-native'
 import { gloStyles } from '../../../../App'
-import { Feather } from '@expo/vector-icons'
-import { DynamicFeather } from '../../../reusables/dynamicStuff'
+import { DynamicFeather, PureButton } from '../../../reusables/dynamicStuff'
 
 function ModalJoin({ setJoinModal }) {
   const featherData = { button: () => setJoinModal(false) }
+  const pureButtonData = 
+    {
+      button: () => setJoinModal(false),
+      textStyle: gloStyles.whiteText,
+      text: 'Search',
+    }
+
 
   return (
     <Modal transparent={true} visible={true}>
@@ -16,10 +22,7 @@ function ModalJoin({ setJoinModal }) {
 
             <Text style={gloStyles.blackText}>Type in Group Key</Text>
             <TextInput style={{ ...gloStyles.inputStyle, margin: 10 }} />
-
-            <TouchableOpacity style={gloStyles.button} onPress={() => setJoinModal(false)}>
-              <Text style={gloStyles.whiteText}>Search</Text>
-            </TouchableOpacity>
+            <PureButton pureButtonData={pureButtonData} />
           </View>
         </View>
       </View>

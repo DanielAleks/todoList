@@ -1,62 +1,55 @@
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native'
 import React, { useState } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { gloStyles } from '../../../../App';
-import ParticipantsModal from './modals/ParticipantsModal';
-import RoomNameModal from './modals/RoomNameModal';
+import { mainStyles } from '..'
+import { gloStyles } from '../../../../App'
+import { PureButton } from '../../../reusables/dynamicStuff'
+import ParticipantsModal from './modals/ParticipantsModal'
+import RoomNameModal from './modals/RoomNameModal'
 
 function Navbar() {
   const navigation = useNavigation()
   const [modalParticipants, setModalParticipants] = useState(false)
-  const [modalRoomName, setModalRoomName] = useState(false) 
+  const [modalRoomName, setModalRoomName] = useState(false)
 
-  const ModalName = () =>
-    modalRoomName ?
-      <RoomNameModal setModalRoomName={setModalRoomName} />
-      : null
-
-  const ModalOFParticipants = () =>
-    modalParticipants ?
-      <ParticipantsModal setModalParticipants={setModalParticipants} />
-      : null
-
-
+  const pureButtonData = [
+    {
+      button: () => setModalParticipants((prev) => !prev),
+      buttonStyle: mainStyles.header,
+      textStyle: gloStyles.blackText,
+      text: 'Danile, Ja...',
+    },
+    {
+      button: () => navigation.navigate('rooms'),
+      buttonStyle: mainStyles.button,
+      textStyle: gloStyles.whiteText,
+      text: '...',
+    },
+    {
+      button: () => setModalRoomName((prev) => !prev),
+      buttonStyle: mainStyles.header,
+      textStyle: gloStyles.whiteText,
+      text: 'NameOFgroup',
+    },
+  ]
   return (
     <View style={styles.container}>
-      <ModalOFParticipants />
+      {modalParticipants ? <ParticipantsModal setModalParticipants={setModalParticipants} /> : null}
+
       <View style={styles.innerContainer}>
-        <TouchableOpacity
-          onPress={() => setModalParticipants(prev => !prev)}
-        >
-          <Text style={gloStyles.blackText}>
-            Danile, Ja...
-            </Text>
-        </TouchableOpacity>
+        <PureButton pureButtonData={pureButtonData[0]} />
       </View>
-      <ModalName />
+
+      {modalRoomName ? <RoomNameModal setModalRoomName={setModalRoomName} /> : null}
+
       <View style={{ position: 'absolute' }}>
-        <TouchableOpacity
-          onPress={() => setModalRoomName(prev => !prev)}
-        >
-          <Text style={styles.blackText}>
-            NameOFgroup
-            </Text>
-        </TouchableOpacity>
+        <PureButton pureButtonData={pureButtonData[2]} />
       </View>
 
       <View style={styles.settings}>
-        <TouchableOpacity
-          style={gloStyles.button}
-          onPress={() => navigation.navigate('rooms')}
-        >
-          <Text style={gloStyles.blackText}>
-            ...
-            </Text>
-        </TouchableOpacity>
+        <PureButton pureButtonData={pureButtonData[1]} />
       </View>
-
     </View>
-
   )
 }
 const styles = StyleSheet.create({
@@ -67,23 +60,17 @@ const styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center'
-  },
-  blackText: {
-    color: 'black',
-    fontWeight: 'bold',
-    fontSize: 17
+    alignItems: 'center',
   },
   innerContainer: {
     position: 'absolute',
     left: 0,
-    marginLeft: 10
+    marginLeft: 10,
   },
   settings: {
     width: '100%',
-    alignItems: 'flex-end'
+    alignItems: 'flex-end',
   },
-
-});
+})
 
 export default Navbar

@@ -3,8 +3,8 @@ import { View, TouchableOpacity, TextInput, Text, StyleSheet, Modal } from 'reac
 import { useDispatch } from 'react-redux'
 import { gloStyles } from '../../../../App'
 import { ADD_ROOM } from '../../../reducers/types'
-import { DynamicFeather, DynamicInput } from '../../../reusables/dynamicStuff'
-import {mainStyles} from '../../main-screen/index'
+import { DynamicFeather, DynamicInput, PureButton } from '../../../reusables/dynamicStuff'
+import { mainStyles } from '../../main-screen/index'
 
 function CreateRoom({ setCreateModal }) {
   const dispatch = useDispatch()
@@ -12,7 +12,7 @@ function CreateRoom({ setCreateModal }) {
   const [invite, setInvite] = useState('')
 
   //! Something wrong with the payload
-  const addTodo = (payload) => dispatch({ type: ADD_ROOM, payload: name })
+  const addRoom = (payload) => dispatch({ type: ADD_ROOM, payload })
 
   const featherData = { button: () => setCreateModal(false) }
 
@@ -32,6 +32,12 @@ function CreateRoom({ setCreateModal }) {
       onChangeText: (text) => setInvite(text),
     },
   ]
+  const pureButtonData = {
+    buttonStyle: gloStyles.button,
+    textStyle: gloStyles.whiteText,
+    onPress: () => addRoom,
+    text: 'Create Room'
+  }
 
   return (
     <Modal transparent={true} visible={true}>
@@ -40,13 +46,13 @@ function CreateRoom({ setCreateModal }) {
           <View style={styles.modalArea}>
             <DynamicFeather featherData={featherData} />
             <Text style={mainStyles.header}>Create New Room</Text>
-
+//*Name 
             <DynamicInput collectedData={collectedData[0]} />
+//*Invite 
             <DynamicInput collectedData={collectedData[1]} />
 
-            <TouchableOpacity style={gloStyles.button} onPress={addTodo}>
-              <Text style={gloStyles.whiteText}>Create Room</Text>
-            </TouchableOpacity>
+//*Create Room 
+            <PureButton pureButtonData={pureButtonData} />
           </View>
         </View>
       </View>
