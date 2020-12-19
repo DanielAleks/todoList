@@ -66,7 +66,9 @@ export const signInStyles = StyleSheet.create({
   },
   textAlign: {
     marginTop: 10,
-    marginBottom: 10
+    marginBottom: 10,
+    color: 'black',
+    fontSize: 14,
   }
 })
 

@@ -3,47 +3,46 @@ import { View, TouchableOpacity, TextInput, Text, StyleSheet, Modal } from 'reac
 import { useDispatch } from 'react-redux'
 import { gloStyles } from '../../../../App'
 import { ADD_ROOM } from '../../../reducers/types'
-import { Feather } from '@expo/vector-icons';
-import { DynamicFeather } from '../../../reusables/dynamicStuff'
+import { DynamicFeather, DynamicInput } from '../../../reusables/dynamicStuff'
+import {mainStyles} from '../../main-screen/index'
 
 function CreateRoom({ setCreateModal }) {
   const dispatch = useDispatch()
   const [name, setName] = useState('')
   const [invite, setInvite] = useState('')
 
-  const addTodo = (payload) =>
-    dispatch({ type: ADD_ROOM, payload: name }) 
+  //! Something wrong with the payload
+  const addTodo = (payload) => dispatch({ type: ADD_ROOM, payload: name })
 
-  const featherData = {button: () => setCreateModal(false)}
+  const featherData = { button: () => setCreateModal(false) }
 
- 
+  const collectedData = [
+    {
+      viewStyle: null,
+      textStyle: gloStyles.blackText,
+      name: 'name',
+      value: name,
+      onChangeText: (text) => setName(text),
+    },
+    {
+      viewStyle: null,
+      textStyle: gloStyles.blackText,
+      name: 'invite',
+      value: invite,
+      onChangeText: (text) => setInvite(text),
+    },
+  ]
+
   return (
-    <Modal
-      transparent={true}
-      visible={true}
-    >
+    <Modal transparent={true} visible={true}>
       <View style={gloStyles.modalBg}>
         <View style={styles.absoluteModal}>
           <View style={styles.modalArea}>
-          <DynamicFeather featherData={featherData}/>
+            <DynamicFeather featherData={featherData} />
+            <Text style={mainStyles.header}>Create New Room</Text>
 
-            <Text style={styles.header}>Create New Room</Text>
-
-            <View>
-              <Text>Name</Text>
-              <TextInput 
-              style={gloStyles.inputStyle} 
-              value={name}  
-              onChangeText={(text) => setName(text)} />
-            </View>
-
-            <View>
-              <Text>Invite</Text>
-              <TextInput 
-              style={gloStyles.inputStyle} 
-              value={invite} 
-              onChangeText={(text) => setInvite(text)} />
-            </View>
+            <DynamicInput collectedData={collectedData[0]} />
+            <DynamicInput collectedData={collectedData[1]} />
 
             <TouchableOpacity style={gloStyles.button} onPress={addTodo}>
               <Text style={gloStyles.whiteText}>Create Room</Text>
@@ -52,18 +51,13 @@ function CreateRoom({ setCreateModal }) {
         </View>
       </View>
     </Modal>
-  );
-};
+  )
+}
 const styles = StyleSheet.create({
   absoluteModal: {
     position: 'absolute',
     bottom: '30%',
     right: '15%',
-  },
-  header: {
-    color: 'black',
-    fontSize: 22,
-    fontWeight: 'bold'
   },
   modalArea: {
     justifyContent: 'center',
@@ -71,7 +65,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     height: 300,
     width: 300,
-    backgroundColor: '#c43d3d'
+    backgroundColor: '#c43d3d',
   },
 })
+
 export default CreateRoom

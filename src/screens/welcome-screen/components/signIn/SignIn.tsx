@@ -5,7 +5,7 @@ import { signInStyles } from '../..'
 import { gloStyles } from '../../../../../App'
 import signInAction from '../../../../actions/signInAction'
 import signUpAction from '../../../../actions/signUpAction'
-import { DynamicButtons, DynamicInput, DynamicText } from '../../../../reusables/dynamicStuff'
+import { DynamicButtons, DynamicInput } from '../../../../reusables/dynamicStuff'
 
 function SignIn() {
   const [createAccount, setCreateAccount] = useState(false)
@@ -14,24 +14,24 @@ function SignIn() {
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
 
-  const textData = [
-    {text: 'siT'},
-    {text: 'siGN'},
-    {text: 'siPISS'},
-  ]
-
   const collectedData = [
     {
+      viewStyle: signInStyles.flexColumn,
+      textStyle: signInStyles.textAlign,
       name: 'Username',
       value: username,
       onChangeText: (text) => setUsername(text)
     },
     {
+      viewStyle: signInStyles.flexColumn,
+      textStyle: signInStyles.textAlign,
       name: 'Password',
       value: password,
       onChangeText: (text) => setPassword(text)
     },
     {
+      viewStyle: signInStyles.flexColumn,
+      textStyle: signInStyles.textAlign,
       name: 'Email',
       value: email,
       onChangeText: (text) => setEmail(text)

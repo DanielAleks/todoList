@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, View, Modal, TextInput, TouchableOpacity } from 'react-native'
 import { gloStyles } from '../../../../../App'
-import { Feather } from '@expo/vector-icons';
-import { useDispatch } from 'react-redux';
-import { ADD_TODO } from '../../../../reducers/types';
-import { DynamicFeather } from '../../../../reusables/dynamicStuff';
+import { Feather } from '@expo/vector-icons'
+import { useDispatch } from 'react-redux'
+import { ADD_TODO } from '../../../../reducers/types'
+import { DynamicFeather } from '../../../../reusables/dynamicStuff'
 
 function AddATodo({ setTodoModal }) {
   const [input, setInput] = useState('')
@@ -13,51 +13,35 @@ function AddATodo({ setTodoModal }) {
 
   const addTodo = () => {
     dispatch({ type: ADD_TODO, payload: input })
-
   }
 
-  const addTag = () => {
-  }
+  const addTag = () => {}
 
-  const featherData = {button: () => setTodoModal(false)}
-
+  const featherData = { button: () => setTodoModal(false) }
 
   return (
-    <Modal
-      transparent={true}
-      visible={true}
-    >
+    <Modal transparent={true} visible={true}>
       <View style={gloStyles.modalBg}>
         <View style={styles.absoluteModal}>
           <View style={styles.modalArea}>
-          <DynamicFeather featherData={featherData}/>
+            <DynamicFeather featherData={featherData} />
 
-            <Text style={gloStyles.blackText}>
-              Add A Todo:
-              </Text>
+            <Text style={gloStyles.blackText}>Add A Todo:</Text>
             <TextInput
               style={{ ...gloStyles.inputStyle, margin: 10 }}
               value={input}
-              placeholder='My Todos...'
+              placeholder="My Todos..."
               onChangeText={(text) => setInput(text)}
             />
 
-            <TouchableOpacity
-              style={gloStyles.button}
-              onPress={addTag}
-            >
+            <TouchableOpacity style={gloStyles.button} onPress={addTag}>
               <Text style={gloStyles.whiteText}>Add Tag</Text>
             </TouchableOpacity>
             <TextInput style={gloStyles.inputStyle} />
 
-            <TouchableOpacity
-              style={gloStyles.button}
-              onPress={addTodo}
-            >
+            <TouchableOpacity style={gloStyles.button} onPress={addTodo}>
               <Text style={gloStyles.whiteText}>Create Todo</Text>
             </TouchableOpacity>
-
-
           </View>
         </View>
       </View>
