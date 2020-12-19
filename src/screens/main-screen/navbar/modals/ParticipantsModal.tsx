@@ -3,12 +3,8 @@ import { Text, View, Modal, TouchableOpacity, StyleSheet } from 'react-native'
 import { gloStyles } from '../../../../../App'
 import { Feather } from '@expo/vector-icons';
 
-
 function ParticipantsModal({ setModalParticipants }) {
   const [people, setPeople] = useState('')
-
-
-
 
   return (
     <Modal
@@ -17,19 +13,34 @@ function ParticipantsModal({ setModalParticipants }) {
     >
       <View style={styles.container}>
         <View style={styles.modalArea}>
-          <TouchableOpacity style={gloStyles.x} onPress={() => setModalParticipants(false)}>
-            <Feather name="x-circle" size={24} color="black" />
+          <TouchableOpacity
+            style={gloStyles.x}
+            onPress={() => setModalParticipants(false)}
+          >
+            <Feather
+              name="x-circle"
+              size={24}
+              color="black"
+            />
           </TouchableOpacity>
 
           <Text>People in blank group</Text>
-          <Text style={styles.text}>{people} people...</Text>
+          <Text style={styles.text}>
+            {people} people...
+            </Text>
 
           <View style={styles.bothButtons}>
-            <TouchableOpacity style={styles.button} onPress={() => setPeople('fix')}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => setPeople('fix')}
+            >
               <Text style={{ color: 'white' }}>Add</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={{ ...styles.button, marginLeft: 10 }} onPress={() => setPeople('fix')}>
+            <TouchableOpacity
+              style={{ ...styles.button, marginLeft: 10 }}
+              onPress={() => setPeople('fix')}
+            >
               <Text style={{ color: 'white' }}>Remove</Text>
             </TouchableOpacity>
           </View>

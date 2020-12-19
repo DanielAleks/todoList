@@ -5,18 +5,18 @@ import { Feather } from '@expo/vector-icons';
 import { useDispatch } from 'react-redux';
 import { ADD_TODO } from '../../../../reducers/types';
 
-
 function AddATodo({ setTodoModal }) {
- const [input, setInput] = useState('')
- 
- const dispatch = useDispatch()
+  const [input, setInput] = useState('')
 
-const addTodo = () => {
-  dispatch({ type: ADD_TODO, payload: input })
+  const dispatch = useDispatch()
 
-}
+  const addTodo = () => {
+    dispatch({ type: ADD_TODO, payload: input })
 
+  }
 
+  const addTag = () => {
+  }
 
   return (
     <Modal
@@ -26,33 +26,39 @@ const addTodo = () => {
       <View style={gloStyles.modalBg}>
         <View style={styles.absoluteModal}>
           <View style={styles.modalArea}>
-            <TouchableOpacity style={gloStyles.x} onPress={() => setTodoModal(false)}>
-              <Feather name="x-circle" size={24} color="black" />
+            <TouchableOpacity
+              style={gloStyles.x}
+              onPress={() => setTodoModal(false)}
+            >
+              <Feather
+                name="x-circle"
+                size={24}
+                color="black"
+              />
             </TouchableOpacity>
 
-            <Text style={gloStyles.blackText}>Add A Todo:</Text>
-            <TextInput style={{ ...gloStyles.inputStyle, margin: 10 }} value={input} placeholder='My Todos...' onChangeText={(text) => setInput(text)} />
+            <Text style={gloStyles.blackText}>
+              Add A Todo:
+              </Text>
+            <TextInput
+              style={{ ...gloStyles.inputStyle, margin: 10 }}
+              value={input}
+              placeholder='My Todos...'
+              onChangeText={(text) => setInput(text)}
+            />
 
-            <View style={{ flexDirection: 'row' }}>
-
-              <TouchableOpacity style={{ backgroundColor: 'black', height: 20, width: 50, margin: 1 }} onPress={() => setTodoModal(false)}>
-                <Text style={gloStyles.whiteText}>Theme</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={{ backgroundColor: 'black', height: 20, width: 50, margin: 1 }} onPress={() => setTodoModal(false)}>
-                <Text style={gloStyles.whiteText}>Theme</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={{ backgroundColor: 'black', height: 20, width: 50, margin: 1 }} onPress={() => setTodoModal(false)}>
-                <Text style={gloStyles.whiteText}>Theme</Text>
-              </TouchableOpacity>
-            </View>
-
-
-            <TouchableOpacity style={gloStyles.button}>
+            <TouchableOpacity
+              style={gloStyles.button}
+              onPress={addTag}
+            >
               <Text style={gloStyles.whiteText}>Add Tag</Text>
             </TouchableOpacity>
             <TextInput style={gloStyles.inputStyle} />
 
-            <TouchableOpacity style={gloStyles.button} onPress={addTodo}>
+            <TouchableOpacity
+              style={gloStyles.button}
+              onPress={addTodo}
+            >
               <Text style={gloStyles.whiteText}>Create Todo</Text>
             </TouchableOpacity>
 

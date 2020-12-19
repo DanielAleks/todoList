@@ -37,12 +37,18 @@ function CreateRoom({ setCreateModal }) {
 
             <View>
               <Text>Name</Text>
-              <TextInput style={gloStyles.inputStyle} value={name} onChangeText={(text) => setName(text)} />
+              <TextInput 
+              style={gloStyles.inputStyle} 
+              value={name}  
+              onChangeText={(text) => setName(text)} />
             </View>
 
             <View>
               <Text>Invite</Text>
-              <TextInput style={gloStyles.inputStyle} value={invite} onChangeText={(text) => setInvite(text)} />
+              <TextInput 
+              style={gloStyles.inputStyle} 
+              value={invite} 
+              onChangeText={(text) => setInvite(text)} />
             </View>
 
             <TouchableOpacity style={gloStyles.button} onPress={addTodo}>

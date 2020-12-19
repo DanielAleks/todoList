@@ -13,7 +13,6 @@ import { ADD_LIST } from '../../reducers/types';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { gloStyles } from '../../../App';
 
-
 const MainScreen = () => {
   const [editMode, setEditMode] = useState(false)
   const [CreateListModal, setCreateListModal] = useState(false)
@@ -24,28 +23,26 @@ const MainScreen = () => {
   // const [value, setValue] = useState('')
   const dispatch = useDispatch()
 
-
-
-  const addList = (payload) => {
+  const addList = (payload) =>
     dispatch({ type: ADD_LIST, payload })
 
-  }
-
-  const nowEditing = () => {
+  const nowEditing = () =>
     setEditMode(prev => !prev)
-  }
+  
   const onStateChange = ({ open }) => setState({ open });
   const { open } = state;
 
-
   return (
     <View style={{ flex: 1 }}>
-      <Navbar />
+      <Navbar /> 
       <Lists editMode={editMode} />
       <StatusBar style="auto" />
 
       {todoModal ? <AddATodo setTodoModal={setTodoModal} /> : null}
       {CreateListModal ? <CreateAList setCreateListModal={setCreateListModal} /> : null}
+
+
+
 
       <Provider>
         <Portal>

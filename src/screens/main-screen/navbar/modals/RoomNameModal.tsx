@@ -7,8 +7,6 @@ import { Feather } from '@expo/vector-icons';
 function RoomNameModal({ setModalRoomName }) {
   const [groupName, setGroupName] = useState('')
 
-  
-
   return (
     <Modal
       transparent={true}
@@ -17,16 +15,26 @@ function RoomNameModal({ setModalRoomName }) {
       <View style={gloStyles.modalBg}>
         <View style={styles.container}>
           <View style={{ alignItems: 'flex-end' }}>
-            <TouchableOpacity style={gloStyles.x} onPress={() => setModalRoomName(false)}>
-              <Feather name="x-circle" size={24} color="black" />
+            <TouchableOpacity
+              style={gloStyles.x}
+              onPress={() => setModalRoomName(false)}
+            >
+              <Feather
+                name="x-circle"
+                size={24}
+                color="black" />
             </TouchableOpacity>
           </View>
 
-          <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+          <View style={styles.editNameContainer}>
             <Text>Edit Your Group Name:</Text>
-            <TextInput style={{ ...gloStyles.inputStyle }} value={groupName} placeholder='Group Name...' onChangeText={(text) => setGroupName(text)} />
+            <TextInput
+              style={{ ...gloStyles.inputStyle }}
+              value={groupName}
+              placeholder='Group Name...'
+              onChangeText={(text) => setGroupName(text)}
+            />
           </View>
-
         </View>
       </View>
     </Modal>
@@ -41,6 +49,10 @@ const styles = StyleSheet.create({
     left: '25%',
     borderRadius: 5,
     display: 'flex'
-  }
+  },
+  editNameContainer: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
 })
 export default RoomNameModal

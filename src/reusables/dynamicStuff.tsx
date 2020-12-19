@@ -1,8 +1,9 @@
 import React from 'react'
 import { Text, View } from "react-native"
 import { TextInput, TouchableOpacity } from "react-native-gesture-handler"
-import { signInStyles } from "../../.."
-import { gloStyles } from "../../../../../../App"
+import { signInStyles } from "../screens/welcome-screen"
+import { gloStyles } from "../../App"
+import { styles } from '../screens/main-screen'
 
 export const DynamicButtons = ({ buttonData }) => {
   return (
@@ -34,3 +35,4 @@ export const DynamicInput = ({ collectedData }) => {
     </View>
   )
 }
+

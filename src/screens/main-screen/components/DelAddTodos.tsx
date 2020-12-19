@@ -1,7 +1,6 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { Chip } from 'react-native-paper'
-import { Item } from 'react-native-paper/lib/typescript/src/components/List/List'
 import { useDispatch, useSelector } from 'react-redux'
 import { gloStyles } from '../../../../App'
 import { rootStoreT } from '../../../../store'
@@ -12,15 +11,23 @@ const DelAddTodos = () => {
   const todos = useSelector((state: rootStoreT) => state.todos)
   const dispatch = useDispatch()
 
-  const deleteTodo = (payload) => {
-    // if (Item.value === "")
+  const deleteTodo = (payload) =>
     dispatch({ type: REMOVE_TODO, payload })
-  }
+
   return (
     <View style={styles.container}>
       {todos.map((item) =>
-        <TouchableOpacity key={item.id} onPress={() => deleteTodo(item.id)}>
-          <Chip icon="information" style={styles.chippy}><Text style={gloStyles.whiteText}>{item.value}</Text></Chip>
+        <TouchableOpacity
+          key={item.id}
+          onPress={() => deleteTodo(item.id)}>
+          <Chip
+            style={styles.chippy}
+            icon="information"
+          >
+            <Text style={gloStyles.whiteText}>
+              {item.value}
+            </Text>
+          </Chip>
         </TouchableOpacity>
       )}
     </View>

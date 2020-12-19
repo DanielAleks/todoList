@@ -9,13 +9,12 @@ import { rootStoreT } from '../../../../../store';
 
 function CreateAList({ setCreateListModal }) {
   const lists = useSelector((state: rootStoreT) => state.lists)
-  const [isDropped, setIsDropped] = useState<any>([])
   const [value, setValue] = useState('')
   const dispatch = useDispatch()
 
 
 
-  const addList = (payload) => {
+  const addList = () => {
     dispatch({ type: ADD_LIST, payload: value })
 
   }
@@ -29,15 +28,31 @@ function CreateAList({ setCreateListModal }) {
       <View style={gloStyles.modalBg}>
         <View style={styles.absoluteModal}>
           <View style={styles.modalArea}>
-            <TouchableOpacity style={gloStyles.x} onPress={() => setCreateListModal(false)}>
-              <Feather name="x-circle" size={24} color="black" />
+            <TouchableOpacity
+              style={gloStyles.x}
+              onPress={() => setCreateListModal(false)}
+            >
+              <Feather
+                name="x-circle"
+                size={24}
+                color="black"
+              />
             </TouchableOpacity>
             <Text>Create A New List:</Text>
 
-            <TextInput style={gloStyles.inputStyle} value={value} onChangeText={(text) => setValue(text)} />
+            <TextInput
+              style={gloStyles.inputStyle}
+              value={value}
+              onChangeText={(text) => setValue(text)}
+            />
 
-            <TouchableOpacity style={gloStyles.button} onPress={addList} >
-              <Text style={gloStyles.whiteText}>Create List</Text>
+            <TouchableOpacity
+              style={gloStyles.button}
+              onPress={addList}
+            >
+              <Text style={gloStyles.whiteText}>
+                Create List
+                </Text>
             </TouchableOpacity>
           </View>
         </View>

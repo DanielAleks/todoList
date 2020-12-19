@@ -5,7 +5,7 @@ import { signInStyles } from '../..'
 import { gloStyles } from '../../../../../App'
 import signInAction from '../../../../actions/signInAction'
 import signUpAction from '../../../../actions/signUpAction'
-import { DynamicButtons, DynamicInput } from './dynamic/dynamicStuff'
+import { DynamicButtons, DynamicInput, DynamicText } from '../../../../reusables/dynamicStuff'
 
 function SignIn() {
   const [createAccount, setCreateAccount] = useState(false)
@@ -13,6 +13,12 @@ function SignIn() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
+
+  const textData = [
+    {text: 'siT'},
+    {text: 'siGN'},
+    {text: 'siPISS'},
+  ]
 
   const collectedData = [
     {
@@ -63,7 +69,6 @@ function SignIn() {
         style={signInStyles.imgBg}
         source={require('../../../../../assets/books.jpg')}
       />
-
       <View style={{ width: '60%' }}>
         <Text style={signInStyles.Logo}>GroupList</Text>
 
