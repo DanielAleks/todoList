@@ -5,6 +5,7 @@ import { Feather } from '@expo/vector-icons';
 import { ADD_LIST } from '../../../../reducers/types';
 import { useDispatch, useSelector } from 'react-redux';
 import { rootStoreT } from '../../../../../store';
+import { DynamicFeather } from '../../../../reusables/dynamicStuff';
 
 
 function CreateAList({ setCreateListModal }) {
@@ -14,11 +15,11 @@ function CreateAList({ setCreateListModal }) {
 
 
 
-  const addList = () => {
+  const addList = () => 
     dispatch({ type: ADD_LIST, payload: value })
 
-  }
-
+const featherData = {button: () => setCreateListModal(false)}
+ 
 
   return (
     <Modal
@@ -28,16 +29,8 @@ function CreateAList({ setCreateListModal }) {
       <View style={gloStyles.modalBg}>
         <View style={styles.absoluteModal}>
           <View style={styles.modalArea}>
-            <TouchableOpacity
-              style={gloStyles.x}
-              onPress={() => setCreateListModal(false)}
-            >
-              <Feather
-                name="x-circle"
-                size={24}
-                color="black"
-              />
-            </TouchableOpacity>
+          <DynamicFeather featherData={featherData}/>
+
             <Text>Create A New List:</Text>
 
             <TextInput

@@ -4,6 +4,7 @@ import { gloStyles } from '../../../../../App'
 import { Feather } from '@expo/vector-icons';
 import { useDispatch } from 'react-redux';
 import { ADD_TODO } from '../../../../reducers/types';
+import { DynamicFeather } from '../../../../reusables/dynamicStuff';
 
 function AddATodo({ setTodoModal }) {
   const [input, setInput] = useState('')
@@ -18,6 +19,9 @@ function AddATodo({ setTodoModal }) {
   const addTag = () => {
   }
 
+  const featherData = {button: () => setTodoModal(false)}
+
+
   return (
     <Modal
       transparent={true}
@@ -26,16 +30,7 @@ function AddATodo({ setTodoModal }) {
       <View style={gloStyles.modalBg}>
         <View style={styles.absoluteModal}>
           <View style={styles.modalArea}>
-            <TouchableOpacity
-              style={gloStyles.x}
-              onPress={() => setTodoModal(false)}
-            >
-              <Feather
-                name="x-circle"
-                size={24}
-                color="black"
-              />
-            </TouchableOpacity>
+          <DynamicFeather featherData={featherData}/>
 
             <Text style={gloStyles.blackText}>
               Add A Todo:

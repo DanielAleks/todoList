@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import { gloStyles } from '../../../../App'
 import { ADD_ROOM } from '../../../reducers/types'
 import { Feather } from '@expo/vector-icons';
+import { DynamicFeather } from '../../../reusables/dynamicStuff'
 
 function CreateRoom({ setCreateModal }) {
   const dispatch = useDispatch()
@@ -13,7 +14,9 @@ function CreateRoom({ setCreateModal }) {
   const addTodo = (payload) =>
     dispatch({ type: ADD_ROOM, payload: name }) 
 
+  const featherData = {button: () => setCreateModal(false)}
 
+ 
   return (
     <Modal
       transparent={true}
@@ -22,16 +25,7 @@ function CreateRoom({ setCreateModal }) {
       <View style={gloStyles.modalBg}>
         <View style={styles.absoluteModal}>
           <View style={styles.modalArea}>
-            <TouchableOpacity
-              style={gloStyles.x}
-              onPress={() => setCreateModal(false)}
-            >
-              <Feather
-                name="x-circle"
-                size={24}
-                color="black"
-              />
-            </TouchableOpacity>
+          <DynamicFeather featherData={featherData}/>
 
             <Text style={styles.header}>Create New Room</Text>
 

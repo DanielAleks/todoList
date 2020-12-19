@@ -2,8 +2,13 @@ import React from 'react'
 import { TextInput, TouchableOpacity, Modal, Text, View, StyleSheet } from 'react-native'
 import { gloStyles } from '../../../../App'
 import { Feather } from '@expo/vector-icons';
+import { DynamicFeather } from '../../../reusables/dynamicStuff';
 
 function ModalJoin({ setJoinModal }) {
+
+
+  const featherData = {button: () => setJoinModal(false)}
+
   return (
     <Modal
       transparent={true}
@@ -12,17 +17,7 @@ function ModalJoin({ setJoinModal }) {
       <View style={gloStyles.modalBg}>
         <View style={styles.absoluteModal}>
           <View style={styles.modalArea}>
-
-            <TouchableOpacity
-              style={gloStyles.x}
-              onPress={() => setJoinModal(false)}
-            >
-              <Feather
-                name="x-circle"
-                size={22}
-                color="black"
-              />
-            </TouchableOpacity>
+          <DynamicFeather featherData={featherData}/>
 
             <Text style={gloStyles.blackText}>Type in Group Key</Text>
             <TextInput style={{ ...gloStyles.inputStyle, margin: 10 }} />
@@ -37,7 +32,7 @@ function ModalJoin({ setJoinModal }) {
         </View>
       </View>
     </Modal>
-  )
+  ) 
 }
 const styles = StyleSheet.create({
   absoluteModal: {

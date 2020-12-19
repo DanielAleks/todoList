@@ -2,10 +2,14 @@ import React, { useState } from 'react'
 import { Text, View, Modal, TouchableOpacity, StyleSheet } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
 import { gloStyles } from '../../../../../App'
-import { Feather } from '@expo/vector-icons';
+import { DynamicFeather } from '../../../../reusables/dynamicStuff'
 
 function RoomNameModal({ setModalRoomName }) {
   const [groupName, setGroupName] = useState('')
+
+  const featherData =
+    { button: () => setModalRoomName(false) }
+
 
   return (
     <Modal
@@ -15,15 +19,7 @@ function RoomNameModal({ setModalRoomName }) {
       <View style={gloStyles.modalBg}>
         <View style={styles.container}>
           <View style={{ alignItems: 'flex-end' }}>
-            <TouchableOpacity
-              style={gloStyles.x}
-              onPress={() => setModalRoomName(false)}
-            >
-              <Feather
-                name="x-circle"
-                size={24}
-                color="black" />
-            </TouchableOpacity>
+            <DynamicFeather featherData={featherData} />
           </View>
 
           <View style={styles.editNameContainer}>

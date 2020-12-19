@@ -2,47 +2,44 @@ import React, { useState } from 'react'
 import { Text, View, Modal, TouchableOpacity, StyleSheet } from 'react-native'
 import { gloStyles } from '../../../../../App'
 import { Feather } from '@expo/vector-icons';
+import { DynamicFeather } from '../../../../reusables/dynamicStuff';
 
 function ParticipantsModal({ setModalParticipants }) {
   const [people, setPeople] = useState('')
+
+  const featherData = {button: () => setModalParticipants(false)}
+
 
   return (
     <Modal
       transparent={true}
       visible={true}
     >
-      <View style={styles.container}>
-        <View style={styles.modalArea}>
-          <TouchableOpacity
-            style={gloStyles.x}
-            onPress={() => setModalParticipants(false)}
-          >
-            <Feather
-              name="x-circle"
-              size={24}
-              color="black"
-            />
-          </TouchableOpacity>
+      <View style={gloStyles.modalBg}>
+        <View style={styles.container}>
+          <View style={styles.modalArea}>
+          <DynamicFeather featherData={featherData}/>
 
-          <Text>People in blank group</Text>
-          <Text style={styles.text}>
-            {people} people...
+            <Text>People in blank group</Text>
+            <Text style={styles.text}>
+              {people} people...
             </Text>
 
-          <View style={styles.bothButtons}>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => setPeople('fix')}
-            >
-              <Text style={{ color: 'white' }}>Add</Text>
-            </TouchableOpacity>
+            <View style={styles.bothButtons}>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => setPeople('fix')}
+              >
+                <Text style={{ color: 'white' }}>Add</Text>
+              </TouchableOpacity>
 
-            <TouchableOpacity
-              style={{ ...styles.button, marginLeft: 10 }}
-              onPress={() => setPeople('fix')}
-            >
-              <Text style={{ color: 'white' }}>Remove</Text>
-            </TouchableOpacity>
+              <TouchableOpacity
+                style={{ ...styles.button, marginLeft: 10 }}
+                onPress={() => setPeople('fix')}
+              >
+                <Text style={{ color: 'white' }}>Remove</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </View>
@@ -51,9 +48,7 @@ function ParticipantsModal({ setModalParticipants }) {
 }
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
     height: '100%',
-    backgroundColor: 'rgba(0,0,0, .5)',
     display: 'flex'
   },
   modalArea: {

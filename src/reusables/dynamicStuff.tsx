@@ -4,6 +4,25 @@ import { TextInput, TouchableOpacity } from "react-native-gesture-handler"
 import { signInStyles } from "../screens/welcome-screen"
 import { gloStyles } from "../../App"
 import { styles } from '../screens/main-screen'
+import { Feather } from '@expo/vector-icons';
+
+
+export const DynamicFeather = ({ featherData }) => {
+  return (
+
+    <TouchableOpacity
+      style={gloStyles.x}
+      onPress={featherData.button}
+    >
+      <Feather
+        name="x-circle"
+        size={24}
+        color="black" />
+    </TouchableOpacity>
+  )
+}
+
+
 
 export const DynamicButtons = ({ buttonData }) => {
   return (
