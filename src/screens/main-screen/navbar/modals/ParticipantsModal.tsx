@@ -20,6 +20,7 @@ function ParticipantsModal({ setModalParticipants }) {
             <Text style={styles.text}>{people} people...</Text>
 
             <View style={styles.bothButtons}>
+              
               <TouchableOpacity style={styles.button} onPress={() => setPeople('fix')}>
                 <Text style={{ color: 'white' }}>Add</Text>
               </TouchableOpacity>

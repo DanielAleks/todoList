@@ -5,13 +5,23 @@ import { signInStyles } from '../screens/welcome-screen'
 import { gloStyles } from '../../App'
 import { mainStyles } from '../screens/main-screen'
 import { Feather } from '@expo/vector-icons'
+import { AntDesign } from '@expo/vector-icons'
 
 export const PureButton = ({ pureButtonData }) => {
-  <TouchableOpacity style={gloStyles.button} onPress={pureButtonData.button}>
-    <Text style={pureButtonData.text}>Search</Text>
-  </TouchableOpacity>
+  return (
+    <TouchableOpacity style={gloStyles.button} onPress={pureButtonData.button}>
+      <Text style={pureButtonData.textStyle}>{pureButtonData.text}</Text>
+    </TouchableOpacity>
+  )
 }
 
+export const DynamicBack = ({ backData }) => {
+  return (
+    <TouchableOpacity onPress={backData.button}>
+      <AntDesign style={backData.style} name="back" size={24} color="white" />
+    </TouchableOpacity>
+  )
+}
 export const DynamicFeather = ({ featherData }) => {
   return (
     <TouchableOpacity style={gloStyles.x} onPress={featherData.button}>

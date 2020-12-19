@@ -15,6 +15,12 @@ export const gloStyles = StyleSheet.create({
     color: 'black',
     fontSize: 14,
   },
+  buttonBack: {
+    margin: 10,
+    backgroundColor: '#3a3a3a',
+    width: 25,
+    borderRadius: 5
+  },
   whiteText: {
     color: 'white',
     fontSize: 14,
