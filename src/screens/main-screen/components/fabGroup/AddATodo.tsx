@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Modal, TextInput, TouchableOpacity } from 'reac
 import { gloStyles } from '../../../../../App'
 import { useDispatch } from 'react-redux'
 import { ADD_TODO } from '../../../../reducers/types'
-import { DynamicFeather, PureButton } from '../../../../reusables/dynamicStuff'
+import { DynamicFeather, DynamicFeatherT, PureButton, PureButtonT } from '../../../../reusables/dynamicStuff'
 
 function AddATodo({ setTodoModal }) {
   const [input, setInput] = useState('')
@@ -11,23 +11,21 @@ function AddATodo({ setTodoModal }) {
 
   const dispatch = useDispatch()
 
-  const addTodo = () => {
+  const addTodo = () =>
     dispatch({ type: ADD_TODO, payload: input })
-  }
 
   const addTag = () => { }
 
-  const featherData = { button: () => setTodoModal(false) }
-
-  const pureButtonData = [
+  const featherData: DynamicFeatherT = { onPress: () => setTodoModal(false) }
+  const pureButtonData: PureButtonT[] = [
     {
-      button: addTag,
+      onPress: addTag,
       textStyle: gloStyles.whiteText,
       text: 'Add Tag',
       buttonStyle: gloStyles.button
     },
     {
-      button: addTodo,
+      onPress: addTodo,
       textStyle: gloStyles.whiteText,
       text: 'Add Todo',
       buttonStyle: gloStyles.button
@@ -47,7 +45,7 @@ function AddATodo({ setTodoModal }) {
               value={input}
               placeholder="My Todos..."
               onChangeText={(text) => setInput(text)}
-              />
+            />
             <PureButton pureButtonData={pureButtonData[1]} />
 
             <TextInput

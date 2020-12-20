@@ -2,12 +2,19 @@ import React, { useState } from 'react'
 import { Text, View, Modal, StyleSheet } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
 import { gloStyles } from '../../../../../App'
-import { DynamicFeather } from '../../../../reusables/dynamicStuff'
+import { DynamicFeather, DynamicFeatherT, PureButton, PureButtonT } from '../../../../reusables/dynamicStuff'
 
 function RoomNameModal({ setModalRoomName }) {
   const [groupName, setGroupName] = useState('')
 
-  const featherData = { button: () => setModalRoomName(false) }
+  const featherData: DynamicFeatherT = { onPress: () => setModalRoomName(false) }
+
+  const pureButtondata: PureButtonT = {
+    onPress: () => setModalRoomName(false),
+    textStyle: gloStyles.whiteText,
+    buttonStyle: gloStyles.button,
+    text: 'submit',
+  }
 
   return (
     <Modal transparent={true} visible={true}>
@@ -24,6 +31,7 @@ function RoomNameModal({ setModalRoomName }) {
             placeholder="Group Name..."
             onChangeText={(text) => setGroupName(text)}
           />
+          <PureButton pureButtonData={pureButtondata} />
         </View>
       </View>
     </Modal>

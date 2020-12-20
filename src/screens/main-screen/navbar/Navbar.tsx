@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { mainStyles } from '..'
 import { gloStyles } from '../../../../App'
-import { PureButton } from '../../../reusables/dynamicStuff'
+import { PureButton, PureButtonT } from '../../../reusables/dynamicStuff'
 import ParticipantsModal from './modals/ParticipantsModal'
 import RoomNameModal from './modals/RoomNameModal'
 
@@ -12,21 +12,21 @@ function Navbar() {
   const [modalParticipants, setModalParticipants] = useState(false)
   const [modalRoomName, setModalRoomName] = useState(false)
 
-  const pureButtonData = [
+  const pureButtonData: PureButtonT[] = [
     {
-      button: () => setModalParticipants((prev) => !prev),
+      onPress: () => setModalParticipants((prev) => !prev),
       buttonStyle: mainStyles.header,
       textStyle: gloStyles.blackText,
       text: 'Danile, Ja...',
     },
     {
-      button: () => navigation.navigate('rooms'),
+      onPress: () => navigation.navigate('rooms'),
       buttonStyle: mainStyles.button,
       textStyle: gloStyles.whiteText,
       text: '...',
     },
-    {
-      button: () => setModalRoomName((prev) => !prev),
+    { 
+      onPress: () => setModalRoomName((prev) => !prev),
       buttonStyle: mainStyles.header,
       textStyle: gloStyles.whiteText,
       text: 'NameOFgroup',

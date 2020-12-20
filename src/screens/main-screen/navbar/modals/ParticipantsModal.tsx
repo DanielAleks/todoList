@@ -2,21 +2,23 @@ import React, { useState } from 'react'
 import { Text, View, Modal, TouchableOpacity, StyleSheet } from 'react-native'
 import { gloStyles } from '../../../../../App'
 import { Feather } from '@expo/vector-icons'
-import { DynamicFeather, PureButton } from '../../../../reusables/dynamicStuff'
+import { DynamicFeather, DynamicFeatherT, PureButton, PureButtonT } from '../../../../reusables/dynamicStuff'
 
 function ParticipantsModal({ setModalParticipants }) {
   const [people, setPeople] = useState('')
 
-  const featherData = { button: () => setModalParticipants(false) }
+  const featherData: DynamicFeatherT = { onPress: () => setModalParticipants(false) }
 
-  const pureButtonData = [
+  const pureButtonData: PureButtonT[] = [
     {
-      button: () => setPeople('fix'),
+      onPress: () => setPeople('fix'),
+      buttonStyle: gloStyles.button,
       textStyle: gloStyles.whiteText,
       text: 'Add',
     },
     {
-      button: () => setPeople('fix'),
+      onPress: () => setPeople('fix'),
+      buttonStyle: gloStyles.button,
       textStyle: gloStyles.whiteText,
       text: 'Remove',
     },
@@ -25,7 +27,7 @@ function ParticipantsModal({ setModalParticipants }) {
   return (
     <Modal transparent={true} visible={true}>
       <View style={gloStyles.modalBg}>
-        <View style={styles.container}>
+        <View style={styles.container}> 
           <View style={styles.modalArea}>
             <DynamicFeather featherData={featherData} />
 
@@ -34,8 +36,8 @@ function ParticipantsModal({ setModalParticipants }) {
 
             <View style={styles.bothButtons}>
               
-              <PureButton pureButtonData={pureButtonData} />
-              <PureButton pureButtonData={pureButtonData} />
+              <PureButton pureButtonData={pureButtonData[0]} />
+              <PureButton pureButtonData={pureButtonData[1]} />
             </View>
           </View>
         </View>

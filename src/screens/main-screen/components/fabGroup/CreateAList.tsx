@@ -5,7 +5,7 @@ import { Feather } from '@expo/vector-icons'
 import { ADD_LIST } from '../../../../reducers/types'
 import { useDispatch, useSelector } from 'react-redux'
 import { rootStoreT } from '../../../../../store'
-import { DynamicFeather, PureButton } from '../../../../reusables/dynamicStuff'
+import { DynamicFeather, DynamicFeatherT, PureButton, PureButtonT } from '../../../../reusables/dynamicStuff'
 
 function CreateAList({ setCreateListModal }) {
   const [value, setValue] = useState('')
@@ -13,10 +13,9 @@ function CreateAList({ setCreateListModal }) {
 
   const addList = () => dispatch({ type: ADD_LIST, payload: value })
 
-  const featherData = { button: () => setCreateListModal(false) }
-
-  const pureButtonData = {
-    button: addList,
+  const featherData: DynamicFeatherT = { onPress: () => setCreateListModal(false) }
+  const pureButtonData: PureButtonT = {
+    onPress: addList,
     textStyle: gloStyles.whiteText,
     buttonStyle: gloStyles.button,
     text: 'Create List',
@@ -43,7 +42,7 @@ function CreateAList({ setCreateListModal }) {
     </Modal>
   )
 }
-const styles = StyleSheet.create({
+const styles = StyleSheet.create({ 
   absoluteModal: {
     position: 'absolute',
     bottom: '50%',

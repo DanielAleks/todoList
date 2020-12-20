@@ -26,14 +26,13 @@ const MainScreen = () => {
 
   const addList = (payload) => dispatch({ type: ADD_LIST, payload })
 
-  const nowEditing = () => setEditMode((prev) => !prev)
+  const nowEditing = () =>
+    setEditMode((prev) => !prev)
 
 
   return (
     <View style={{ flex: 1 }}>
       <Navbar />
-
-
       <StatusBar style="auto" />
       {todoModal ? <AddATodo setTodoModal={setTodoModal} /> : null}
       {CreateListModal ? <CreateAList setCreateListModal={setCreateListModal} /> : null}

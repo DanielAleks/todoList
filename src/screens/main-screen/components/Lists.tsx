@@ -6,7 +6,7 @@ import { rootStoreT } from '../../../../store'
 import { ADD_LIST, ADD_TODO, REMOVE_LIST, REMOVE_TODO } from '../../../reducers/types'
 import DelAddTodos from './DelAddTodos'
 import { TextInput, TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler'
-import { PureButton } from '../../../reusables/dynamicStuff'
+import { PureButton, PureButtonT } from '../../../reusables/dynamicStuff'
 
 function Lists({ editMode, item }) {
   const todos = useSelector((state: rootStoreT) => state.todos)
@@ -20,23 +20,20 @@ function Lists({ editMode, item }) {
 
   const createTodo = (payload) => dispatch({ type: ADD_TODO, payload })
   const deleteTodo = (payload) => dispatch({ type: REMOVE_TODO, payload })
-//?
-//!
-  // const pureButtonData = {
-  //   key: item.id,
-  //   button: () =>
-  //     isDropped === '' ? setIsDropped(item.id) : setIsDropped(''),
-  //   buttonStyle: styles.group,
-  //   textStyle: gloStyles.whiteText,
-  //   text: item.value,
-  // }
+
+  const pureButtonData: PureButtonT = {
+    key: item.id,
+    onPress: () =>
+      isDropped === '' ? setIsDropped(item.id) : setIsDropped(''),
+    buttonStyle: styles.group,
+    textStyle: gloStyles.whiteText, 
+    text: item.value,
+  }
 
   return (
     <View>
       <View key={item.id}>
-//?
-//!
-        {/* <PureButton pureButtonData={pureButtonData} /> */}
+        <PureButton pureButtonData={pureButtonData} />
         <TextInput
           style={gloStyles.button}
           value={value}
@@ -45,15 +42,15 @@ function Lists({ editMode, item }) {
         <TouchableOpacity style={gloStyles.button} onPress={createTodo}>
           <Text>Add Todo</Text>
         </TouchableOpacity>
-        {/* {addTodo.map((itemTodo) => (
+        {addTodo.map((itemTodo) => (
           <TouchableOpacity onPress={deleteTodo}>
             <Text>{itemTodo}</Text>
           </TouchableOpacity>
-        ))} */}
+        ))}
           //TODO: Organize everything then come back when your mind is fresh
-          {/* <TouchableOpacity style={{...styles.dontKnowStyles, display: editMode ? 'flex' : 'none'  }} onPress={ removeList }>
+          <TouchableOpacity style={{...styles.dontKnowStyles, display: editMode ? 'flex' : 'none'  }} onPress={ removeList }>
             <Text>X</Text>
-            </TouchableOpacity> */}
+            </TouchableOpacity>
         <View
           style={{
             ...gloStyles.blackText,
@@ -61,9 +58,9 @@ function Lists({ editMode, item }) {
             display: isDropped === item.id ? 'flex' : 'none',
           }}
         >
-          {/* {todos.map((item) =>
+          {todos.map((item) =>
             <DelAddTodos item={item} />
-          )} */}
+          )}
         </View>
       </View>
       ))
