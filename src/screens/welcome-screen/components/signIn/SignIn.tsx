@@ -5,7 +5,7 @@ import { signInStyles } from '../..'
 import { gloStyles } from '../../../../../App'
 import signInAction from '../../../../actions/signInAction'
 import signUpAction from '../../../../actions/signUpAction'
-import { DynamicButtons, DynamicInput } from '../../../../reusables/dynamicStuff'
+import { DynamicButtons, DynamicButtonsT, DynamicInput, DynamicInputT } from '../../../../reusables/dynamicStuff'
 
 function SignIn() {
   const [createAccount, setCreateAccount] = useState(false)
@@ -14,7 +14,7 @@ function SignIn() {
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
 
-  const collectedData = [
+  const collectedData: DynamicInputT[] = [
     {
       viewStyle: signInStyles.flexColumn,
       textStyle: signInStyles.textAlign,
@@ -37,29 +37,30 @@ function SignIn() {
       onChangeText: (text) => setEmail(text)
     },
   ]
-
+  
   const submitInfo = () => {
     createAccount ?
       dispatch(signUpAction({ username, password }))
       : dispatch(signInAction({ username, password }))
   }
 
-  const buttonData = [
+  const buttonData: DynamicButtonsT[] = [
     {
       style: signInStyles.buttonContainer,
       innerStyle: signInStyles.button,
       textStyle: gloStyles.blackText,
-      createAcc: createAccount ? 'Sign Up' : 'Sign In',
-      button: submitInfo
+      words: createAccount ? 'Sign Up' : 'Sign In',
+      onPress: submitInfo
     },
     {
       style: signInStyles.blueButtonContainer,
       innerStyle: signInStyles.blueButton,
       textStyle: gloStyles.blackText,
-      createAcc: createAccount ? 'Or Sign In' : 'Or Create Account',
-      button: () => setCreateAccount(prev => !prev)
+      words: createAccount ? 'Or Sign In' : 'Or Create Account',
+      onPress: () => setCreateAccount(prev => !prev)
     }
   ]
+
 
 
 
