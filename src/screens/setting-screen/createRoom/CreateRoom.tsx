@@ -3,7 +3,7 @@ import { View, TouchableOpacity, TextInput, Text, StyleSheet, Modal } from 'reac
 import { useDispatch } from 'react-redux'
 import { gloStyles } from '../../../../App'
 import { ADD_ROOM } from '../../../reducers/types'
-import { DynamicFeather, DynamicInput, PureButton } from '../../../reusables/dynamicStuff'
+import { DynamicFeather, DynamicFeatherT, DynamicInput, DynamicInputT, PureButton, PureButtonT } from '../../../reusables/dynamicStuff'
 import { mainStyles } from '../../main-screen/index'
 
 function CreateRoom({ setCreateModal }) {
@@ -11,31 +11,30 @@ function CreateRoom({ setCreateModal }) {
   const [name, setName] = useState('')
   const [invite, setInvite] = useState('')
 
-  //! Something wrong with the payload
-  const addRoom = (payload) => dispatch({ type: ADD_ROOM, payload })
+  const addRoom = () => {
+   dispatch({ type: ADD_ROOM, payload: name })
+  }
 
-  const featherData = { button: () => setCreateModal(false) }
+  const featherData: DynamicFeatherT = { onPress: () => setCreateModal(false) }
 
-  const collectedData = [
+  const collectedData: DynamicInputT[] = [
     {
-      viewStyle: null,
       textStyle: gloStyles.blackText,
       name: 'name',
       value: name,
       onChangeText: (text) => setName(text),
     },
     {
-      viewStyle: null,
       textStyle: gloStyles.blackText,
       name: 'invite',
       value: invite,
       onChangeText: (text) => setInvite(text),
     },
   ]
-  const pureButtonData = {
+  const pureButtonData: PureButtonT = {
     buttonStyle: gloStyles.button,
     textStyle: gloStyles.whiteText,
-    onPress: () => addRoom,
+    onPress: () => addRoom(),
     text: 'Create Room'
   }
 
@@ -46,12 +45,10 @@ function CreateRoom({ setCreateModal }) {
           <View style={styles.modalArea}>
             <DynamicFeather featherData={featherData} />
             <Text style={mainStyles.header}>Create New Room</Text>
-//*Name 
+           
             <DynamicInput collectedData={collectedData[0]} />
-//*Invite 
             <DynamicInput collectedData={collectedData[1]} />
 
-//*Create Room 
             <PureButton pureButtonData={pureButtonData} />
           </View>
         </View>

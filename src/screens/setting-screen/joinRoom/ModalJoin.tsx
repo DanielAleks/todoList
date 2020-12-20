@@ -1,17 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { TextInput, Modal, Text, View, StyleSheet } from 'react-native'
 import { gloStyles } from '../../../../App'
-import { DynamicFeather, PureButton } from '../../../reusables/dynamicStuff'
+import { DynamicFeather, DynamicFeatherT, DynamicInput, DynamicInputT, PureButton, PureButtonT } from '../../../reusables/dynamicStuff'
 
 function ModalJoin({ setJoinModal }) {
-  const featherData = { button: () => setJoinModal(false) }
-  const pureButtonData = 
+  const [groupKey, setGroupKey] = useState('')
+  
+  const featherData: DynamicFeatherT = { onPress: () => setJoinModal(false) }
+  const pureButtonData: PureButtonT = 
     {
-      button: () => setJoinModal(false),
+      onPress: () => setJoinModal(false),
+      buttonStyle: gloStyles.button,
       textStyle: gloStyles.whiteText,
       text: 'Search',
     }
 
+    const collectedData: DynamicInputT = 
+      {
+        textStyle: gloStyles.blackText,
+        name: null,
+        value: groupKey,
+        onChangeText: (text) => setGroupKey(text),
+      }
 
   return (
     <Modal transparent={true} visible={true}>
@@ -21,7 +31,7 @@ function ModalJoin({ setJoinModal }) {
             <DynamicFeather featherData={featherData} />
 
             <Text style={gloStyles.blackText}>Type in Group Key</Text>
-            <TextInput style={{ ...gloStyles.inputStyle, margin: 10 }} />
+            <DynamicInput collectedData={collectedData}/>
             <PureButton pureButtonData={pureButtonData} />
           </View>
         </View>

@@ -3,13 +3,12 @@ import React, { useState } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { gloStyles } from '../../../App'
 import CreateRoom from './createRoom/CreateRoom'
-import { FAB, Provider } from 'react-native-paper'
+import { FAB, Portal, Provider } from 'react-native-paper'
 import ModalJoin from './joinRoom/ModalJoin'
 import RemoveARoom from './createRoom/RemoveARoom'
-import { DynamicBack, PureButton } from '../../reusables/dynamicStuff'
+import { DynamicBack, DynamicBackT, PureButton, PureButtonT } from '../../reusables/dynamicStuff'
 import { useSelector } from 'react-redux'
 import { rootStoreT } from '../../../store'
-import DelAddTodos from '../main-screen/components/DelAddTodos'
 
 function SettingScreen() {
   const rooms = useSelector((state: rootStoreT) => state.rooms)
@@ -21,15 +20,9 @@ function SettingScreen() {
   const onStateChange = ({ open }) => setState({ open })
   const { open } = state
 
-  const pureButtonData = {
-    button: () => setIsEditing(false),
-    text: 'Turn Off Editing mode',
-    textStyle: gloStyles.whiteText,
-    buttonStyle: gloStyles.button
-  }
 
-  const backData = {
-    button: () => navigation.navigate('main'),
+  const backData: DynamicBackT = {
+    onPress: () => navigation.navigate('main'),
     style: gloStyles.buttonBack,
   }
 
@@ -38,18 +31,26 @@ function SettingScreen() {
     setIsEditing((prev) => !prev)
   }
 
+  const pureButtonData: PureButtonT = {
+    onPress: nowEditing,
+    text: 'In Editing Mode',
+    textStyle: gloStyles.whiteText,
+    buttonStyle: gloStyles.button
+  }
+
   return (
     <View style={styles.modalContainer}>
       <DynamicBack backData={backData} />
-
       <View style={styles.headerContainer}>
         <Text style={styles.header}>My Rooms:</Text>
       </View>
+
       <View style={styles.roomContainer}>
-        {rooms.map((item) => (
+        {rooms.map((item) =>
           <RemoveARoom item={item} />
-        ))}
+        )}
       </View>
+
       {createModal ? <CreateRoom setCreateModal={setCreateModal} /> : null}
       {joinModal ? <ModalJoin setJoinModal={setJoinModal} /> : null}
       {isEditing ? (
@@ -59,30 +60,33 @@ function SettingScreen() {
         </View>
       ) : null}
 
+
       <Provider>
-        <FAB.Group
-          visible={true}
-          open={open}
-          icon={open ? 'book-variant' : 'plus'}
-          actions={[
-            {
-              icon: 'account-edit',
-              label: isEditing ? 'Turn Off Editing Mode' : 'Edit Rooms',
-              onPress: nowEditing,
-            },
-            {
-              icon: 'account-search',
-              label: 'Join Room',
-              onPress: () => setJoinModal((prev) => !prev),
-            },
-            {
-              icon: 'book-plus-multiple',
-              label: 'Create Room',
-              onPress: () => setCreateModal((prev) => !prev),
-            },
-          ]}
-          onStateChange={onStateChange}
-        />
+        <Portal>
+          <FAB.Group
+            visible={true}
+            open={open}
+            icon={open ? 'book-variant' : 'plus'}
+            actions={[
+              {
+                icon: 'account-edit',
+                label: isEditing ? 'Turn Off Editing Mode' : 'Edit Rooms',
+                onPress: nowEditing,
+              },
+              {
+                icon: 'account-search',
+                label: 'Join Room',
+                onPress: () => setJoinModal((prev) => !prev),
+              },
+              {
+                icon: 'book-plus-multiple',
+                label: 'Create Room',
+                onPress: () => setCreateModal((prev) => !prev),
+              },
+            ]}
+            onStateChange={onStateChange}
+          />
+        </Portal >
       </Provider>
     </View>
   )
@@ -94,7 +98,7 @@ const styles = StyleSheet.create({
     height: 800,
     position: 'absolute',
     top: 0,
-    display: 'flex',
+    display: 'flex'
   },
   header: {
     position: 'absolute',
@@ -123,6 +127,7 @@ const styles = StyleSheet.create({
   },
   roomContainer: {
     position: 'absolute',
+    backgroundColor: '#222222',
     width: '100%',
     top: 100,
   },

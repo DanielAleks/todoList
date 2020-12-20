@@ -4,5 +4,4 @@ export const ADD_ROOM = 'ADD_ROOM'
 export const REMOVE_ROOM = 'REMOVE_ROOM'
 export const ADD_LIST = 'ADD_LIST'
 export const REMOVE_LIST = 'REMOVE_LIST'
-
-export const THEMES = 'THEMES'
+ 

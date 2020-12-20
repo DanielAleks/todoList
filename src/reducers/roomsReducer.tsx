@@ -11,6 +11,7 @@ export default (state = initialState, { type, payload }) => {
   switch (type) {
 
     case ADD_ROOM:
+      console.log(state, 'tsdxfchvjb')
       return [...state, { id: Math.floor(Math.random() * 10000), value: payload }]
 
     case REMOVE_ROOM:

@@ -33,17 +33,18 @@ const MainScreen = () => {
     <View style={{ flex: 1 }}>
       <Navbar />
 
-      {lists.map((item) =>
-        <Lists item={item} editMode={editMode} />
-      )}
-
-        {todos.map((item) =>
-          <DelAddTodos item={item} />
-        )}
 
       <StatusBar style="auto" />
       {todoModal ? <AddATodo setTodoModal={setTodoModal} /> : null}
       {CreateListModal ? <CreateAList setCreateListModal={setCreateListModal} /> : null}
+
+      {lists.map((item) =>
+        <Lists item={item} editMode={editMode} />
+      )}
+
+      {todos.map((item) =>
+        <DelAddTodos item={item} />
+      )}
 
       <Provider>
         <Portal>

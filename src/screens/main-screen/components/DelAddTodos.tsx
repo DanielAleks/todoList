@@ -1,18 +1,16 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { Chip } from 'react-native-paper'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { gloStyles } from '../../../../App'
-import { rootStoreT } from '../../../../store'
 import { REMOVE_TODO } from '../../../reducers/types'
-
 
 const DelAddTodos = ({ item }) => {
   const dispatch = useDispatch()
 
   const deleteTodo = (payload) =>
     dispatch({ type: REMOVE_TODO, payload })
-
+ 
   return (
     <View style={styles.container}>
 

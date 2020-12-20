@@ -1,50 +1,64 @@
 import React from 'react'
 import { Text, View, TouchableOpacity } from 'react-native'
-import { TextInput} from 'react-native-gesture-handler'
-import { signInStyles } from '../screens/welcome-screen'
+import { TextInput } from 'react-native-gesture-handler'
 import { gloStyles } from '../../App'
-import { mainStyles } from '../screens/main-screen'
 import { Feather } from '@expo/vector-icons'
 import { AntDesign } from '@expo/vector-icons'
 
-export const PureButton = ({ pureButtonData }) => {
+export interface PureButtonT {
+  key?, buttonStyle, onPress, textStyle, text
+}
+export const PureButton = ({ pureButtonData }: { pureButtonData: PureButtonT }) => {
   return (
     <TouchableOpacity
       key={pureButtonData.key}
       style={pureButtonData.buttonStyle}
-      onPress={pureButtonData.button}
+      onPress={pureButtonData.onPress}
     >
       <Text style={pureButtonData.textStyle}>{pureButtonData.text}</Text>
     </TouchableOpacity>
   )
 }
 
-export const DynamicBack = ({ backData }) => {
-  return ( 
-    <TouchableOpacity onPress={backData.button}>
+export interface DynamicBackT {
+  onPress, style?
+}
+export const DynamicBack = ({ backData }: { backData: DynamicBackT }) => {
+  return (
+    <TouchableOpacity onPress={backData.onPress}>
       <AntDesign style={backData.style} name="back" size={24} color="white" />
     </TouchableOpacity>
   )
 }
-export const DynamicFeather = ({ featherData }) => {
+
+export interface DynamicFeatherT {
+  onPress
+}
+export const DynamicFeather = ({ featherData }: {featherData: DynamicFeatherT}) => {
   return (
-    <TouchableOpacity style={gloStyles.x} onPress={featherData.button}>
+    <TouchableOpacity style={gloStyles.x} onPress={featherData.onPress}>
       <Feather name="x-circle" size={24} color="black" />
     </TouchableOpacity>
   )
 }
 
-export const DynamicButtons = ({ buttonData }) => {
+export interface DynamicButtonsT {
+  style, innerStyle, onPress, textStyle, words
+}
+export const DynamicButtons = ({ buttonData }: {buttonData: DynamicButtonsT}) => {
   return (
     <View style={buttonData.style}>
-      <TouchableOpacity style={buttonData.innerStyle} onPress={buttonData.button}>
-        <Text style={buttonData.textStyle}>{buttonData.createAcc}</Text>
+      <TouchableOpacity style={buttonData.innerStyle} onPress={buttonData.onPress}>
+        <Text style={buttonData.textStyle}>{buttonData.words}</Text>
       </TouchableOpacity>
     </View>
   )
 }
 
-export const DynamicInput = ({ collectedData }) => {
+export interface DynamicInputT {
+  viewStyle?, textStyle, name, value, onChangeText
+} 
+export const DynamicInput = ({ collectedData }: {collectedData: DynamicInputT}) => {
   return (
     <View style={collectedData.viewStyle}>
       <Text style={collectedData.textStyle}>{collectedData.name}</Text>

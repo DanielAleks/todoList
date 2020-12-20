@@ -20,21 +20,23 @@ function Lists({ editMode, item }) {
 
   const createTodo = (payload) => dispatch({ type: ADD_TODO, payload })
   const deleteTodo = (payload) => dispatch({ type: REMOVE_TODO, payload })
-
-  const pureButtonData = {
-    key: item.id,
-    button: () =>
-      isDropped === '' ? setIsDropped(item.id) : setIsDropped(''),
-    buttonStyle: styles.group,
-    textStyle: gloStyles.whiteText,
-    text: item.value,
-  }
+//?
+//!
+  // const pureButtonData = {
+  //   key: item.id,
+  //   button: () =>
+  //     isDropped === '' ? setIsDropped(item.id) : setIsDropped(''),
+  //   buttonStyle: styles.group,
+  //   textStyle: gloStyles.whiteText,
+  //   text: item.value,
+  // }
 
   return (
     <View>
       <View key={item.id}>
-
-        <PureButton pureButtonData={pureButtonData} />
+//?
+//!
+        {/* <PureButton pureButtonData={pureButtonData} /> */}
         <TextInput
           style={gloStyles.button}
           value={value}
