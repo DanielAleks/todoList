@@ -10,7 +10,7 @@ import Lists from './components/Lists'
 import { useDispatch, useSelector } from 'react-redux'
 import { rootStoreT } from '../../../store'
 import { ADD_LIST } from '../../reducers/types'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { TextInput, TouchableOpacity } from 'react-native-gesture-handler'
 import { gloStyles } from '../../../App'
 
 const MainScreen = () => {

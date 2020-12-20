@@ -2,12 +2,19 @@ import React, { useState } from 'react'
 import { Text, View, Modal, StyleSheet } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
 import { gloStyles } from '../../../../../App'
-import { DynamicFeather, DynamicFeatherT, PureButton, PureButtonT } from '../../../../reusables/dynamicStuff'
+import { DynamicFeather, DynamicFeatherT, DynamicInput, DynamicInputT, PureButton, PureButtonT } from '../../../../reusables/dynamicStuff'
 
 function RoomNameModal({ setModalRoomName }) {
   const [groupName, setGroupName] = useState('')
 
   const featherData: DynamicFeatherT = { onPress: () => setModalRoomName(false) }
+  const collectedData: DynamicInputT = {
+    value: groupName,
+    placeholder: 'new group name...',
+    name: null,
+    textStyle: gloStyles.blackText,
+    onChangeText: (text) => setGroupName(text),
+  }
 
   const pureButtondata: PureButtonT = {
     onPress: () => setModalRoomName(false),
@@ -21,17 +28,11 @@ function RoomNameModal({ setModalRoomName }) {
       <View style={gloStyles.modalBg}>
         <View style={styles.container}>
           <DynamicFeather featherData={featherData} />
-        </View>
-
-        <View style={styles.editNameContainer}>
-          <Text>Edit Your Group Name:</Text>
-          <TextInput
-            style={{ ...gloStyles.inputStyle }}
-            value={groupName}
-            placeholder="Group Name..."
-            onChangeText={(text) => setGroupName(text)}
-          />
-          <PureButton pureButtonData={pureButtondata} />
+          
+          <View style={styles.editNameContainer}>
+            <DynamicInput collectedData={collectedData} />
+            <PureButton pureButtonData={pureButtondata} />
+          </View>
         </View>
       </View>
     </Modal>

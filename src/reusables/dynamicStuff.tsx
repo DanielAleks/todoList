@@ -34,7 +34,7 @@ export const DynamicBack = ({ backData }: { backData: DynamicBackT }) => {
 export interface DynamicFeatherT {
   onPress
 }
-export const DynamicFeather = ({ featherData }: {featherData: DynamicFeatherT}) => {
+export const DynamicFeather = ({ featherData }: { featherData: DynamicFeatherT }) => {
   return (
     <TouchableOpacity style={gloStyles.x} onPress={featherData.onPress}>
       <Feather name="x-circle" size={24} color="black" />
@@ -45,7 +45,7 @@ export const DynamicFeather = ({ featherData }: {featherData: DynamicFeatherT}) 
 export interface DynamicButtonsT {
   style, innerStyle, onPress, textStyle, words
 }
-export const DynamicButtons = ({ buttonData }: {buttonData: DynamicButtonsT}) => {
+export const DynamicButtons = ({ buttonData }: { buttonData: DynamicButtonsT }) => {
   return (
     <View style={buttonData.style}>
       <TouchableOpacity style={buttonData.innerStyle} onPress={buttonData.onPress}>
@@ -56,13 +56,14 @@ export const DynamicButtons = ({ buttonData }: {buttonData: DynamicButtonsT}) =>
 }
 
 export interface DynamicInputT {
-  viewStyle?, textStyle, name, value, onChangeText
-} 
-export const DynamicInput = ({ collectedData }: {collectedData: DynamicInputT}) => {
+  viewStyle?, textStyle, name, value, onChangeText, placeholder?
+}
+export const DynamicInput = ({ collectedData }: { collectedData: DynamicInputT }) => {
   return (
     <View style={collectedData.viewStyle}>
       <Text style={collectedData.textStyle}>{collectedData.name}</Text>
       <TextInput
+        placeholder={collectedData.placeholder}
         style={gloStyles.inputStyle}
         value={collectedData.value}
         onChangeText={collectedData.onChangeText}

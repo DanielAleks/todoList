@@ -35,7 +35,6 @@ function ParticipantsModal({ setModalParticipants }) {
             <Text style={styles.marginText}>{people} people...</Text>
 
             <View style={styles.bothButtons}>
-              
               <PureButton pureButtonData={pureButtonData[0]} />
               <PureButton pureButtonData={pureButtonData[1]} />
             </View>
