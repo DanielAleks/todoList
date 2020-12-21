@@ -5,7 +5,7 @@ import { Feather } from '@expo/vector-icons'
 import { ADD_LIST } from '../../../../reducers/types'
 import { useDispatch, useSelector } from 'react-redux'
 import { rootStoreT } from '../../../../../store'
-import { DynamicFeather, DynamicFeatherT, PureButton, PureButtonT } from '../../../../reusables/dynamicStuff'
+import { DynamicFeather, DynamicFeatherT, DynamicInput, DynamicInputT, PureButton, PureButtonT } from '../../../../reusables/dynamicStuff'
 
 function CreateAList({ setCreateListModal }) {
   const [value, setValue] = useState('')
@@ -20,6 +20,12 @@ function CreateAList({ setCreateListModal }) {
     buttonStyle: gloStyles.button,
     text: 'Create List',
   }
+  const collectedData: DynamicInputT = {
+    textStyle: gloStyles.blackText,
+    value: value,
+    onChangeText: (text) => setValue(text),
+    name: 'Create a List:',
+  }
 
   return (
     <Modal transparent={true} visible={true}>
@@ -27,14 +33,7 @@ function CreateAList({ setCreateListModal }) {
         <View style={styles.absoluteModal}>
           <View style={styles.modalArea}>
             <DynamicFeather featherData={featherData} />
-
-            <Text>Create A List:</Text>
-
-            <TextInput
-              style={gloStyles.inputStyle}
-              value={value}
-              onChangeText={(text) => setValue(text)}
-            />
+            <DynamicInput collectedData={collectedData} />
             <PureButton pureButtonData={pureButtonData} />
           </View>
         </View>
@@ -42,7 +41,7 @@ function CreateAList({ setCreateListModal }) {
     </Modal>
   )
 }
-const styles = StyleSheet.create({ 
+const styles = StyleSheet.create({
   absoluteModal: {
     position: 'absolute',
     bottom: '50%',

@@ -6,7 +6,7 @@ import { rootStoreT } from '../../../../store'
 import { ADD_LIST, ADD_TODO, REMOVE_LIST, REMOVE_TODO } from '../../../reducers/types'
 import DelAddTodos from './DelAddTodos'
 import { TextInput, TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler'
-import { PureButton, PureButtonT } from '../../../reusables/dynamicStuff'
+import { DynamicInput, DynamicInputT, PureButton, PureButtonT } from '../../../reusables/dynamicStuff'
 
 function Lists({ editMode, item }) {
   const todos = useSelector((state: rootStoreT) => state.todos)
@@ -16,54 +16,55 @@ function Lists({ editMode, item }) {
   const dispatch = useDispatch()
 
   const removeList = (payload) => dispatch({ type: REMOVE_LIST, payload })
-  const addList = (payload) => dispatch({ type: ADD_LIST, payload })
+  const createTodo = () => dispatch({ type: ADD_TODO, payload: value })
 
-  const createTodo = (payload) => dispatch({ type: ADD_TODO, payload })
-  const deleteTodo = (payload) => dispatch({ type: REMOVE_TODO, payload })
+  const pureButtonData: PureButtonT[] = [
+    {
+      key: item.id,
+      onPress: () => setIsDropped(item.id),
+      buttonStyle: styles.group,
+      textStyle: gloStyles.whiteText,
+      text: item.value,
+    },
+    {
+      onPress: createTodo,
+      buttonStyle: gloStyles.button,
+      textStyle: gloStyles.whiteText,
+      text: 'Add Todo',
+    },
+    {
+      onPress: () => setIsDropped(item.id),
+      buttonStyle: styles.dontKnowStyles,
+      textStyle: gloStyles.whiteText,
+      text: 'X',
+    }
+  ]
 
-  const pureButtonData: PureButtonT = {
-    key: item.id,
-    onPress: () =>
-      isDropped === '' ? setIsDropped(item.id) : setIsDropped(''),
-    buttonStyle: styles.group,
-    textStyle: gloStyles.whiteText, 
-    text: item.value,
+  const collectedData: DynamicInputT = {
+    textStyle: gloStyles.blackText,
+    value: value,
+    onChangeText: (text) => setValue(text),
+    name: null,
   }
 
   return (
-    <View>
-      <View key={item.id}>
-        <PureButton pureButtonData={pureButtonData} />
-        <TextInput
-          style={gloStyles.button}
-          value={value}
-          onChangeText={(text) => setValue(text)}
-        />
-        <TouchableOpacity style={gloStyles.button} onPress={createTodo}>
-          <Text>Add Todo</Text>
-        </TouchableOpacity>
-        {addTodo.map((itemTodo) => (
-          <TouchableOpacity onPress={deleteTodo}>
-            <Text>{itemTodo}</Text>
-          </TouchableOpacity>
-        ))}
-          //TODO: Organize everything then come back when your mind is fresh
-          <TouchableOpacity style={{...styles.dontKnowStyles, display: editMode ? 'flex' : 'none'  }} onPress={ removeList }>
-            <Text>X</Text>
-            </TouchableOpacity>
-        <View
-          style={{
-            ...gloStyles.blackText,
-            ...styles.delTodosContainer,
-            display: isDropped === item.id ? 'flex' : 'none',
-          }}
-        >
+    <View key={item.id}>
+      <View>
+        <PureButton pureButtonData={pureButtonData[0]} />
+        <DynamicInput collectedData={collectedData} />
+
+        <PureButton pureButtonData={pureButtonData[1]} />
+        {editMode ? <PureButton pureButtonData={pureButtonData[2]} /> : null}
+
+        <View style={{
+          ...gloStyles.blackText, ...styles.delTodosContainer,
+          display: isDropped === item.id ? 'flex' : 'none'
+        }}>
           {todos.map((item) =>
             <DelAddTodos item={item} />
           )}
         </View>
       </View>
-      ))
     </View>
   )
 }

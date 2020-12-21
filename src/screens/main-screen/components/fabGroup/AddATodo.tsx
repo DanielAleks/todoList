@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View, Modal, TextInput, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, Modal } from 'react-native'
 import { gloStyles } from '../../../../../App'
 import { useDispatch } from 'react-redux'
 import { ADD_TODO } from '../../../../reducers/types'
-import { DynamicFeather, DynamicFeatherT, PureButton, PureButtonT } from '../../../../reusables/dynamicStuff'
+import { DynamicFeather, DynamicFeatherT, DynamicInput, DynamicInputT, PureButton, PureButtonT } from '../../../../reusables/dynamicStuff'
 
 function AddATodo({ setTodoModal }) {
   const [input, setInput] = useState('')
@@ -31,6 +31,22 @@ function AddATodo({ setTodoModal }) {
       buttonStyle: gloStyles.button
     },
   ]
+  const collectedData: DynamicInputT[] = [
+    {
+      value: tag,
+      placeholder: "My Tags...",
+      onChangeText: (text) => setTag(text),
+      name: null,
+      textStyle: gloStyles.whiteText
+    },
+    {
+      value: input,
+      placeholder: "My Todos...",
+      name: null,
+      onChangeText: (text) => setInput(text),
+      textStyle: gloStyles.whiteText
+    }
+  ]
 
   return (
     <Modal transparent={true} visible={true}>
@@ -40,20 +56,9 @@ function AddATodo({ setTodoModal }) {
             <DynamicFeather featherData={featherData} />
 
             <Text style={gloStyles.blackText}>Add A Todo:</Text>
-            <TextInput
-              style={{ ...gloStyles.inputStyle, margin: 10 }}
-              value={input}
-              placeholder="My Todos..."
-              onChangeText={(text) => setInput(text)}
-            />
+            <DynamicInput collectedData={collectedData[1]} />
             <PureButton pureButtonData={pureButtonData[1]} />
-
-            <TextInput
-              style={{ ...gloStyles.inputStyle, margin: 10 }}
-              value={tag}
-              placeholder="My Tags..."
-              onChangeText={(text) => setTag(text)}
-            />
+            <DynamicInput collectedData={collectedData[0]} />
             <PureButton pureButtonData={pureButtonData[0]} />
           </View>
         </View>

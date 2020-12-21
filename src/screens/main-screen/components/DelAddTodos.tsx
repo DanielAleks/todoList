@@ -13,9 +13,7 @@ const DelAddTodos = ({ item }) => {
  
   return (
     <View style={styles.container}>
-
-      //* Can't be a Dynamic button
-      <TouchableOpacity
+      <TouchableOpacity 
         key={item.id}
         onPress={() => deleteTodo(item.id)}>
         <Chip
@@ -31,12 +29,11 @@ const DelAddTodos = ({ item }) => {
   )
 }
 const styles = StyleSheet.create({
-  //! May not need this
   container: {
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    marginTop: 100,
+    margin: 5,
     justifyContent: 'center'
   },
   chippy: {

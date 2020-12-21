@@ -11,12 +11,10 @@ function CreateRoom({ setCreateModal }) {
   const [name, setName] = useState('')
   const [invite, setInvite] = useState('')
 
-  const addRoom = () => {
-   dispatch({ type: ADD_ROOM, payload: name })
-  }
-
+  const addRoom = () => 
+   dispatch({ type: ADD_ROOM, payload: name }) 
+  
   const featherData: DynamicFeatherT = { onPress: () => setCreateModal(false) }
-
   const collectedData: DynamicInputT[] = [
     {
       textStyle: gloStyles.blackText,

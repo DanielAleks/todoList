@@ -41,10 +41,6 @@ const MainScreen = () => {
         <Lists item={item} editMode={editMode} />
       )}
 
-      {todos.map((item) =>
-        <DelAddTodos item={item} />
-      )}
-
       <Provider>
         <Portal>
           <FAB.Group
