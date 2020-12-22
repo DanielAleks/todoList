@@ -1,9 +1,7 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { Chip } from 'react-native-paper'
-import { useDispatch } from 'react-redux'
 import { gloStyles } from '../../../../App'
-import { REMOVE_LIST, REMOVE_TODO } from '../../../reducers/types'
 
 const DelAddTodos = ({ item, setListOfTodos }) => {
 
@@ -13,7 +11,6 @@ const DelAddTodos = ({ item, setListOfTodos }) => {
     ))
   }
 
-  
   return (
     <TouchableOpacity
       onPress={() => deleteTodo(item)}>

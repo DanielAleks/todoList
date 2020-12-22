@@ -1,15 +1,12 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import { useDispatch, useSelector } from 'react-redux'
+import { StyleSheet, View } from 'react-native'
+import { useDispatch } from 'react-redux'
 import { gloStyles } from '../../../../App'
-import { rootStoreT } from '../../../../store'
-import { ADD_TODO, REMOVE_LIST, REMOVE_TODO } from '../../../reducers/types'
+import { REMOVE_LIST } from '../../../reducers/types'
 import DelAddTodos from './DelAddTodos'
 import { DynamicInput, DynamicInputT, PureButton, PureButtonT } from '../../../reusables/dynamicStuff'
-import { TouchableOpacity } from 'react-native-gesture-handler'
 
 function Lists({ listItem, listOpenById, setListOpenById, editMode }) {
-  // const todos = useSelector((state: rootStoreT) => state.todos)
   const [value, setValue] = useState('')
   const dispatch = useDispatch()
   const [listOfTodos, setListOfTodos] = useState([])
@@ -47,23 +44,25 @@ function Lists({ listItem, listOpenById, setListOpenById, editMode }) {
 
   return (
     <View >
-
       <PureButton pureButtonData={pureButtonData[2]} />
       <PureButton pureButtonData={pureButtonData[0]} />
 
-      <View style={{ display: listOpenById === listItem.id ? 'flex' : 'none', ...styles.listContainer}}>
+      {listOpenById === listItem.id ?
+        <View style={styles.listContainer}>
+          <DynamicInput collectedData={collectedData} />
+          <PureButton pureButtonData={pureButtonData[1]} />
 
-        <DynamicInput collectedData={collectedData} />
-        <PureButton pureButtonData={pureButtonData[1]} />
-
-
-
-        <View style={{ flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap' }}>
-          {listOfTodos.map((item) =>
-            <DelAddTodos setListOfTodos={setListOfTodos} key={item.id} item={item} />
-          )}
+          <View style={styles.todosContainer}>
+            {listOfTodos.map((item) =>
+              <DelAddTodos
+                key={item.id}
+                setListOfTodos={setListOfTodos}
+                item={item}
+              />
+            )}
+          </View>
         </View>
-      </View>
+        : null}
     </View>
   )
 }
@@ -75,6 +74,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     borderWidth: 0.25,
+  },
+  todosContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    flexWrap: 'wrap'
   },
   listContainer: {
     backgroundColor: '#afafaf',

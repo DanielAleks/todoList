@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import Navbar from './navbar/Navbar'
 import { StatusBar } from 'expo-status-bar'
 import { FAB, Portal, Provider } from 'react-native-paper'
 import AddATodo from './components/fabGroup/AddATodo'
 import CreateAList from './components/fabGroup/CreateAList'
-import DelAddTodos from './components/DelAddTodos'
 import Lists from './components/Lists'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { rootStoreT } from '../../../store'
 
 const MainScreen = () => {

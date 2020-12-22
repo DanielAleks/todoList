@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View, Modal, TextInput, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, Modal } from 'react-native'
 import { gloStyles } from '../../../../../App'
-import { Feather } from '@expo/vector-icons'
 import { ADD_LIST } from '../../../../reducers/types'
-import { useDispatch, useSelector } from 'react-redux'
-import { rootStoreT } from '../../../../../store'
+import { useDispatch } from 'react-redux'
 import { DynamicFeather, DynamicFeatherT, DynamicInput, DynamicInputT, PureButton, PureButtonT } from '../../../../reusables/dynamicStuff'
 
 function CreateAList({ setCreateListModal }) {
