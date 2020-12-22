@@ -3,41 +3,39 @@ import { StyleSheet, Text, View } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import { gloStyles } from '../../../../App'
 import { rootStoreT } from '../../../../store'
-import { ADD_LIST, ADD_TODO, REMOVE_LIST, REMOVE_TODO } from '../../../reducers/types'
+import { ADD_TODO, REMOVE_LIST, REMOVE_TODO } from '../../../reducers/types'
 import DelAddTodos from './DelAddTodos'
-import { TextInput, TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler'
 import { DynamicInput, DynamicInputT, PureButton, PureButtonT } from '../../../reusables/dynamicStuff'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
-function Lists({ editMode, item }) {
-  const todos = useSelector((state: rootStoreT) => state.todos)
-  const [isDropped, setIsDropped] = useState<any>([])
-  const [addTodo, setAddTodo] = useState([])
+function Lists({ listItem, listOpenById, setListOpenById, editMode }) {
+  // const todos = useSelector((state: rootStoreT) => state.todos)
   const [value, setValue] = useState('')
   const dispatch = useDispatch()
+  const [listOfTodos, setListOfTodos] = useState([])
 
   const removeList = (payload) => dispatch({ type: REMOVE_LIST, payload })
-  const createTodo = () => dispatch({ type: ADD_TODO, payload: value })
 
   const pureButtonData: PureButtonT[] = [
     {
-      key: item.id,
-      onPress: () => setIsDropped(item.id),
+      key: listItem.id,
+      onPress: () => listOpenById === listItem.id ? setListOpenById(null) : setListOpenById(listItem.id),
       buttonStyle: styles.group,
       textStyle: gloStyles.whiteText,
-      text: item.value,
+      text: listItem.value,
     },
     {
-      onPress: createTodo,
+      onPress: () => setListOfTodos(prev => [...prev, { value: value, id: Math.floor(Math.random() * 10000) }]),
       buttonStyle: gloStyles.button,
       textStyle: gloStyles.whiteText,
       text: 'Add Todo',
     },
     {
-      onPress: () => setIsDropped(item.id),
-      buttonStyle: styles.dontKnowStyles,
+      onPress: () => removeList(listItem.id),
+      buttonStyle: styles.GiantX,
       textStyle: gloStyles.whiteText,
       text: 'X',
-    }
+    },
   ]
 
   const collectedData: DynamicInputT = {
@@ -48,20 +46,21 @@ function Lists({ editMode, item }) {
   }
 
   return (
-    <View key={item.id}>
-      <View>
-        <PureButton pureButtonData={pureButtonData[0]} />
+    <View >
+
+      <PureButton pureButtonData={pureButtonData[2]} />
+      <PureButton pureButtonData={pureButtonData[0]} />
+
+      <View style={{ display: listOpenById === listItem.id ? 'flex' : 'none', ...styles.listContainer}}>
+
         <DynamicInput collectedData={collectedData} />
-
         <PureButton pureButtonData={pureButtonData[1]} />
-        {editMode ? <PureButton pureButtonData={pureButtonData[2]} /> : null}
 
-        <View style={{
-          ...gloStyles.blackText, ...styles.delTodosContainer,
-          display: isDropped === item.id ? 'flex' : 'none'
-        }}>
-          {todos.map((item) =>
-            <DelAddTodos item={item} />
+
+
+        <View style={{ flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap' }}>
+          {listOfTodos.map((item) =>
+            <DelAddTodos setListOfTodos={setListOfTodos} key={item.id} item={item} />
           )}
         </View>
       </View>
@@ -76,16 +75,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     borderWidth: 0.25,
-    // flexDirection: 'row',
   },
-  delTodosContainer: {
-    height: '80%',
+  listContainer: {
     backgroundColor: '#afafaf',
+    paddingBottom: 100
   },
-  dontKnowStyles: {
-    width: 110,
+  GiantX: {
+    width: 150,
+    height: 30,
+    right: 0,
     backgroundColor: 'red',
-    flex: 1,
+    position: 'absolute',
+    zIndex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },

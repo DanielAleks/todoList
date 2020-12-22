@@ -3,39 +3,32 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { Chip } from 'react-native-paper'
 import { useDispatch } from 'react-redux'
 import { gloStyles } from '../../../../App'
-import { REMOVE_TODO } from '../../../reducers/types'
+import { REMOVE_LIST, REMOVE_TODO } from '../../../reducers/types'
 
-const DelAddTodos = ({ item }) => {
-  const dispatch = useDispatch()
+const DelAddTodos = ({ item, setListOfTodos }) => {
 
-  const deleteTodo = (payload) =>
-    dispatch({ type: REMOVE_TODO, payload })
- 
+  const deleteTodo = (item) => {
+    setListOfTodos(prev => prev.filter(itemTodoDel =>
+      itemTodoDel === item ? null : itemTodoDel
+    ))
+  }
+
+  
   return (
-    <View style={styles.container}>
-      <TouchableOpacity 
-        key={item.id}
-        onPress={() => deleteTodo(item.id)}>
-        <Chip
-          style={styles.chippy}
-          icon="information"
-        >
-          <Text style={gloStyles.whiteText}>
-            {item.value}
-          </Text>
-        </Chip>
-      </TouchableOpacity>
-    </View>
+    <TouchableOpacity
+      onPress={() => deleteTodo(item)}>
+      <Chip
+        style={styles.chippy}
+        icon="information"
+      >
+        <Text style={gloStyles.whiteText}>
+          {item.value}
+        </Text>
+      </Chip>
+    </TouchableOpacity>
   )
 }
 const styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    margin: 5,
-    justifyContent: 'center'
-  },
   chippy: {
     backgroundColor: '#02dabd',
     height: 40,

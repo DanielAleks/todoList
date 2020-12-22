@@ -9,7 +9,7 @@ const initialState = []
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
-
+//!!!!!!!!! NOT BEING USED
     case ADD_TODO:
       return [...state, { id: Math.floor(Math.random() * 10000), value: payload }]
 

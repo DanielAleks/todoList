@@ -27,7 +27,7 @@ function CreateRoom({ setCreateModal }) {
       name: 'invite',
       value: invite,
       onChangeText: (text) => setInvite(text),
-    },
+    }
   ]
   const pureButtonData: PureButtonT = {
     buttonStyle: gloStyles.button,
@@ -46,7 +46,6 @@ function CreateRoom({ setCreateModal }) {
            
             <DynamicInput collectedData={collectedData[0]} />
             <DynamicInput collectedData={collectedData[1]} />
-
             <PureButton pureButtonData={pureButtonData} />
           </View>
         </View>

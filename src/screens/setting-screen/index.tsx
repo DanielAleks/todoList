@@ -47,18 +47,18 @@ function SettingScreen() {
 
       <View style={styles.roomContainer}>
         {rooms.map((item) =>
-          <RemoveARoom item={item} />
+          <RemoveARoom key={item.id} item={item} />
         )}
       </View>
 
       {createModal ? <CreateRoom setCreateModal={setCreateModal} /> : null}
       {joinModal ? <ModalJoin setJoinModal={setJoinModal} /> : null}
-      {isEditing ? (
+      {isEditing ?
         <View>
           <Text>You are in Editing Mode</Text>
           <PureButton pureButtonData={pureButtonData} />
         </View>
-      ) : null}
+      : null}
 
 
       <Provider>

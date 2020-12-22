@@ -9,26 +9,19 @@ import DelAddTodos from './components/DelAddTodos'
 import Lists from './components/Lists'
 import { useDispatch, useSelector } from 'react-redux'
 import { rootStoreT } from '../../../store'
-import { ADD_LIST } from '../../reducers/types'
-import { TextInput, TouchableOpacity } from 'react-native-gesture-handler'
-import { gloStyles } from '../../../App'
 
 const MainScreen = () => {
   const lists = useSelector((state: rootStoreT) => state.lists)
-  const todos = useSelector((state: rootStoreT) => state.todos)
   const [editMode, setEditMode] = useState(false)
   const [CreateListModal, setCreateListModal] = useState(false)
   const [todoModal, setTodoModal] = useState(false)
   const [state, setState] = useState({ open: false })
-  const dispatch = useDispatch()
   const onStateChange = ({ open }) => setState({ open })
   const { open } = state
-
-  const addList = (payload) => dispatch({ type: ADD_LIST, payload })
+  const [listOpenById, setListOpenById] = useState<number>(null)
 
   const nowEditing = () =>
     setEditMode((prev) => !prev)
-
 
   return (
     <View style={{ flex: 1 }}>
@@ -37,8 +30,14 @@ const MainScreen = () => {
       {todoModal ? <AddATodo setTodoModal={setTodoModal} /> : null}
       {CreateListModal ? <CreateAList setCreateListModal={setCreateListModal} /> : null}
 
-      {lists.map((item) =>
-        <Lists item={item} editMode={editMode} />
+      {lists.map((listItem) =>
+        <Lists 
+        listItem={listItem} 
+        listOpenById={listOpenById}
+        setListOpenById={setListOpenById}
+        editMode={editMode} 
+        key={listItem.id} 
+        />
       )}
 
       <Provider>

@@ -15,7 +15,6 @@ const RemoveARoom = ({ item }) => {
     dispatch({ type: REMOVE_ROOM, payload })
 
   const pureButtonData: PureButtonT = {
-    key: item.id,
     onPress: () => deleteRoom(item.id),
     buttonStyle: mainStyles.group,
     textStyle: styles.text,
