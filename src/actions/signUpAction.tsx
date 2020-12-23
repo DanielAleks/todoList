@@ -1,10 +1,4 @@
-const signUpAction = ({ username, password }) => async (dispatch) => {
-
-  interface InfoT {
-    username: String
-    password: String
-    email: String
-  }
+const signUpAction = ({ username, password, email }) => async (dispatch) => {
 
   const url = 'https://ulti-todo-list.herokuapp.com/auth/signup'
   const reqData = {
@@ -15,7 +9,7 @@ const signUpAction = ({ username, password }) => async (dispatch) => {
     body: JSON.stringify({
       username,
       password,
-      // email
+      email
     })
   }
 
@@ -27,7 +21,6 @@ const signUpAction = ({ username, password }) => async (dispatch) => {
   console.log(unwrapped)
   //   if (response.status === 202) {
   //   }
-
   //   console.log(response.status)
 }
 

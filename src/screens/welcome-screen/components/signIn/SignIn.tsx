@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { TextInput, Text, View, TouchableOpacity, ImageBackground } from 'react-native'
+import { Text, View, ImageBackground } from 'react-native'
 import { useDispatch } from 'react-redux'
 import { signInStyles } from '../..'
 import { gloStyles } from '../../../../../App'
@@ -40,7 +40,7 @@ function SignIn() {
   
   const submitInfo = () => {
     createAccount ?
-      dispatch(signUpAction({ username, password }))
+      dispatch(signUpAction({ username, password, email }))
       : dispatch(signInAction({ username, password }))
   }
 
@@ -50,7 +50,7 @@ function SignIn() {
       innerStyle: signInStyles.button,
       textStyle: gloStyles.blackText,
       words: createAccount ? 'Sign Up' : 'Sign In',
-      onPress: submitInfo
+      onPress: submitInfo 
     },
     {
       style: signInStyles.blueButtonContainer,
@@ -60,9 +60,6 @@ function SignIn() {
       onPress: () => setCreateAccount(prev => !prev)
     }
   ]
-
-
-
 
   return (
     <View style={{ ...signInStyles.container, ...signInStyles.bgColor }}>
