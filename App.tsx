@@ -1,13 +1,12 @@
+import { disableExpoCliLogging } from 'expo/build/logs/Logs';
 import React from 'react';
-import { StyleSheet, Text, View, StatusBar } from 'react-native';
+import { LogBox, StyleSheet } from 'react-native';
 import Navigation from './src/Navigation';
-
-
 
 export default function App() {
   return (
     <Navigation />
-  );
+    );
 }
 
 export const gloStyles = StyleSheet.create({

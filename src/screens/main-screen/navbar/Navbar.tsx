@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useState } from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { mainStyles } from '..'
 import { gloStyles } from '../../../../App'
 import { PureButton, PureButtonT } from '../../../reusables/dynamicStuff'

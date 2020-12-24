@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { TextInput, Modal, Text, View, StyleSheet } from 'react-native'
+import { Modal, Text, View, StyleSheet } from 'react-native'
 import { gloStyles } from '../../../../App'
 import { DynamicFeather, DynamicFeatherT, DynamicInput, DynamicInputT, PureButton, PureButtonT } from '../../../reusables/dynamicStuff'
 

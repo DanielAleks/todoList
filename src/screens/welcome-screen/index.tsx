@@ -5,9 +5,9 @@ import SignIn from './components/signIn/SignIn'
 
 const WelcomeScreen = () => {
   
-  return (
+  return ( 
     <View>
-      <SignIn />
+      <SignIn signInStyles={signInStyles}/>
     </View>
   )
 }

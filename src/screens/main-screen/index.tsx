@@ -9,7 +9,7 @@ import Lists from './components/Lists'
 import { useSelector } from 'react-redux'
 import { rootStoreT } from '../../../store'
 
-const MainScreen = () => {
+const MainScreen = () => { 
   const lists = useSelector((state: rootStoreT) => state.lists)
   const [editMode, setEditMode] = useState(false)
   const [CreateListModal, setCreateListModal] = useState(false)

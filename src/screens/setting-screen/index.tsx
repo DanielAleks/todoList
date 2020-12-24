@@ -21,7 +21,7 @@ function SettingScreen() {
   const { open } = state
 
 
-  const backData: DynamicBackT = {
+  const backData: DynamicBackT = { 
     onPress: () => navigation.navigate('main'),
     style: gloStyles.buttonBack,
   }
@@ -48,7 +48,7 @@ function SettingScreen() {
       <View style={styles.roomContainer}>
         {rooms.map((item) =>
           <RemoveARoom key={item.id} item={item} />
-        )}
+        )} 
       </View>
 
       {createModal ? <CreateRoom setCreateModal={setCreateModal} /> : null}

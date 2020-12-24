@@ -7,7 +7,7 @@ import signInAction from '../../../../actions/signInAction'
 import signUpAction from '../../../../actions/signUpAction'
 import { DynamicButtons, DynamicButtonsT, DynamicInput, DynamicInputT } from '../../../../reusables/dynamicStuff'
 
-function SignIn() {
+function SignIn() { 
   const [createAccount, setCreateAccount] = useState(false)
   const dispatch = useDispatch()
   const [username, setUsername] = useState('')
@@ -42,6 +42,11 @@ function SignIn() {
     createAccount ?
       dispatch(signUpAction({ username, password, email }))
       : dispatch(signInAction({ username, password }))
+      // if (signInAction ? response.status === 202) {
+      //   return (
+      //     Navigate
+      //   )
+      // }
   }
 
   const buttonData: DynamicButtonsT[] = [

@@ -4,12 +4,15 @@ import { gloStyles } from '../../../../../App'
 import { ADD_LIST } from '../../../../reducers/types'
 import { useDispatch } from 'react-redux'
 import { DynamicFeather, DynamicFeatherT, DynamicInput, DynamicInputT, PureButton, PureButtonT } from '../../../../reusables/dynamicStuff'
+import signInAction from '../../../../actions/signInAction'
 
 function CreateAList({ setCreateListModal }) {
   const [value, setValue] = useState('')
   const dispatch = useDispatch()
 
-  const addList = () => dispatch({ type: ADD_LIST, payload: value })
+  const addList = () => {
+    // dispatch(signInAction({ username, password }))
+  } 
 
   const featherData: DynamicFeatherT = { onPress: () => setCreateListModal(false) }
   const pureButtonData: PureButtonT = {

@@ -1,6 +1,6 @@
 const addListAction = ({ todo }) => async (dispatch) => {
 
-  const url = 'https://ulti-todo-list.herokuapp.com/auth/list'
+  const url = 'https://ulti-todo-list.herokuapp.com/auth/room'
   const reqData = {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
     headers: {
@@ -9,10 +9,9 @@ const addListAction = ({ todo }) => async (dispatch) => {
     body: JSON.stringify({
       "username": "asusdssasFace",
       "password": "Corsnd",
-      "newList": {
-        title: "my new todo list",
-        todos: [{ "_id": "D o somethings", "todo": "ansything" }],
-        roomId: "738217a4-55f9-455f-ad8d-e319f38235f4"
+      "room": {
+        "title": "another room",
+        "users": []
       }
     })
   }
