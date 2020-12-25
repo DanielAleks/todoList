@@ -6,7 +6,7 @@ import { Feather } from '@expo/vector-icons'
 import { AntDesign } from '@expo/vector-icons'
 
 export interface PureButtonT {
-  key?, buttonStyle, onPress, textStyle, text
+  key?, buttonStyle, onPress, textStyle, text, icons?
 }
 export const PureButton = ({ pureButtonData }: { pureButtonData: PureButtonT }) => {
   return (
@@ -67,6 +67,23 @@ export const DynamicInput = ({ collectedData }: { collectedData: DynamicInputT }
         style={gloStyles.inputStyle}
         value={collectedData.value}
         onChangeText={collectedData.onChangeText}
+      />
+    </View>
+  )
+}
+
+export interface SignInInputT {
+  viewStyle?, textStyle, name, value, onChangeText, placeholder?
+}
+export const SignInInput = ({ collectedSignData }: { collectedSignData: DynamicInputT }) => {
+  return (
+    <View style={collectedSignData.viewStyle}>
+      <Text style={collectedSignData.textStyle}>{collectedSignData.name}</Text>
+      <TextInput
+        placeholder={collectedSignData.placeholder}
+        style={gloStyles.signInInputStyle}
+        value={collectedSignData.value}
+        onChangeText={collectedSignData.onChangeText}
       />
     </View>
   )

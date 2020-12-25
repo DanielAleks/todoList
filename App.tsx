@@ -47,10 +47,16 @@ export const gloStyles = StyleSheet.create({
     justifyContent: 'center',
     margin: 10
   },
+  signInInputStyle: {
+    width: 250, 
+    borderBottomWidth: 1,
+    borderBottomColor: '#b4b4b4',
+    borderRadius: 4
+  },
   inputStyle: {
     width: 240,
     borderBottomWidth: 1,
-    borderBottomColor: '#b4b4b4',
+    borderBottomColor: '#1a0b0b',
     borderRadius: 4,
   },
   editingMode: {

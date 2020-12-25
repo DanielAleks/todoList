@@ -30,7 +30,7 @@ const MainScreen = () => {
       {todoModal ? <AddATodo setTodoModal={setTodoModal} /> : null}
       {CreateListModal ? <CreateAList setCreateListModal={setCreateListModal} /> : null}
 
-      {lists.map((listItem) =>
+      {lists.map((listItem) => 
         <Lists
           listItem={listItem}
           listOpenById={listOpenById}
@@ -43,23 +43,25 @@ const MainScreen = () => {
       <Provider>
         <Portal>
           <FAB.Group
-
             fabStyle={{ backgroundColor: '#a30101' }}
             visible={true}
             open={open}
             icon={open ? 'book-variant' : 'plus'}
             actions={[
               {
+                color: '#a3a000',
                 icon: 'account-edit',
                 label: editMode ? 'Turn Off Editing Mode' : 'Edit Rooms',
                 onPress: nowEditing,
               },
               {
+                color: '#a3a000',
                 icon: 'account-search',
                 label: 'Create List',
                 onPress: () => setCreateListModal((prev) => !prev),
               },
               {
+                color: '#a3a000',
                 icon: 'book-plus-multiple',
                 label: 'Add Todo',
                 onPress: () => setTodoModal((prev) => !prev),
@@ -82,7 +84,7 @@ export const mainStyles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#4d4c4c'
+    backgroundColor: '#302f2f'
   },
   group: {
     borderColor: 'white',

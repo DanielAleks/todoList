@@ -4,6 +4,11 @@ import { gloStyles } from '../../../../../App'
 import { useDispatch } from 'react-redux'
 import { ADD_TODO } from '../../../../reducers/types'
 import { DynamicFeather, DynamicFeatherT, DynamicInput, DynamicInputT, PureButton, PureButtonT } from '../../../../reusables/dynamicStuff'
+import { LinearGradient } from 'expo-linear-gradient'
+import { TouchableOpacity } from 'react-native-gesture-handler'
+import { Ionicons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 
 function AddATodo({ setTodoModal }) {
   const [input, setInput] = useState('')
@@ -17,32 +22,23 @@ function AddATodo({ setTodoModal }) {
   const addTag = () => { }
 
   const featherData: DynamicFeatherT = { onPress: () => setTodoModal(false) }
-  const pureButtonData: PureButtonT[] = [
-    {
-      onPress: addTag,
-      textStyle: gloStyles.whiteText,
-      text: 'Add Tag',
-      buttonStyle: gloStyles.button
-    },
-    {
-      onPress: addTodo,
-      textStyle: gloStyles.whiteText,
-      text: 'Add Todo',
-      buttonStyle: gloStyles.button
-    },
-  ]
+  const pureButtonData: PureButtonT = {
+    onPress: addTodo,
+    textStyle: gloStyles.whiteText,
+    text: 'Add Todo',
+    buttonStyle: styles.submitButton,
+  }
+
   const collectedData: DynamicInputT[] = [
     {
       value: tag,
-      placeholder: "My Tags...",
       onChangeText: (text) => setTag(text),
       name: null,
       textStyle: gloStyles.whiteText
     },
     {
       value: input,
-      placeholder: "My Todos...",
-      name: null,
+      name: 'Add A Todo:',
       onChangeText: (text) => setInput(text),
       textStyle: gloStyles.whiteText
     }
@@ -55,11 +51,45 @@ function AddATodo({ setTodoModal }) {
           <View style={styles.modalArea}>
             <DynamicFeather featherData={featherData} />
 
-            <Text style={gloStyles.blackText}>Add A Todo:</Text>
             <DynamicInput collectedData={collectedData[1]} />
-            <PureButton pureButtonData={pureButtonData[1]} />
-            <DynamicInput collectedData={collectedData[0]} />
-            <PureButton pureButtonData={pureButtonData[0]} />
+
+            <View style={{ flexDirection: 'column', alignItems: 'flex-end', justifyContent: 'flex-end', width: '100%', marginRight: 30 }}>
+              <LinearGradient
+                style={{ borderRadius: 100, width: 60, height: 40, marginBottom: 10 }}
+                colors={['#e4e1e1',
+                  '#ccc9c9']}
+                start={[0, 0]}>
+                <TouchableOpacity style={styles.button}>
+                  <Text style={{ fontSize: 20 }}>
+                    +
+                  <AntDesign name="tags" size={24} color="black" />
+                  </Text>
+                </TouchableOpacity>
+              </LinearGradient>
+
+
+              <LinearGradient
+                style={{ borderRadius: 100, width: 60, height: 40, }}
+                colors={['#e4e1e1',
+                  '#ccc9c9']}
+                start={[0, 0]}>
+                <TouchableOpacity onPress={addTag} style={styles.button}>
+                  <Text style={{ fontSize: 20 }}>
+                    +
+                  <FontAwesome name="star-half-full" size={24} color="black" />
+                  </Text>
+                </TouchableOpacity>
+              </LinearGradient>
+            </View>
+
+
+            <LinearGradient
+              style={{ borderRadius: 10, width: 100, height: 40, justifyContent: 'center', alignSelf: 'center' }}
+              colors={['#f30000',
+                '#a30101']}
+              start={[0, 0]}>
+              <PureButton pureButtonData={pureButtonData} />
+            </LinearGradient>
           </View>
         </View>
       </View>
@@ -72,13 +102,25 @@ const styles = StyleSheet.create({
     bottom: '30%',
     right: '20%',
   },
+  submitButton: {
+    height: 40,
+    borderRadius: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 10
+  },
+  button: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 10
+  },
   modalArea: {
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
     height: 300,
     width: 250,
-    backgroundColor: '#c43d3d',
+    backgroundColor: '#424242',
   },
 })
 

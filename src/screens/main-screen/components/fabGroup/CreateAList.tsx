@@ -14,6 +14,7 @@ function CreateAList({ setCreateListModal }) {
 // const NewList
 
   const addList = () => {
+    dispatch({ type: ADD_LIST, payload: value })
     // dispatch(addListAction({ username, password }))
   } 
 

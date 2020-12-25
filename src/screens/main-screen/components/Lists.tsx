@@ -44,7 +44,7 @@ function Lists({ listItem, listOpenById, setListOpenById, editMode }) {
 
   return (
     <View >
-      <PureButton pureButtonData={pureButtonData[2]} />
+      {/* <PureButton pureButtonData={pureButtonData[2]} /> */}
       <PureButton pureButtonData={pureButtonData[0]} />
 
       {listOpenById === listItem.id ?
@@ -68,12 +68,13 @@ function Lists({ listItem, listOpenById, setListOpenById, editMode }) {
 }
 const styles = StyleSheet.create({
   group: {
-    borderColor: 'white',
-    backgroundColor: '#222222',
+    borderColor: '#7c7c7c',
+    backgroundColor: '#272727',
     height: 30,
     justifyContent: 'center',
     width: '100%',
     borderWidth: 0.25,
+    borderTopWidth: 0
   },
   todosContainer: {
     flexDirection: 'row',
@@ -81,14 +82,14 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap'
   },
   listContainer: {
-    backgroundColor: '#afafaf',
+    backgroundColor: '#4b4b4b',
     paddingBottom: 100
   },
   GiantX: {
     width: 150,
     height: 30,
     right: 0,
-    backgroundColor: 'red',
+    backgroundColor: '#921313',
     position: 'absolute',
     zIndex: 1,
     alignItems: 'center',

@@ -6,7 +6,7 @@ import { signInStyles } from '../..'
 import { gloStyles } from '../../../../../App'
 import signInAction from '../../../../actions/signInAction'
 import signUpAction from '../../../../actions/signUpAction'
-import { DynamicButtons, DynamicButtonsT, DynamicInput, DynamicInputT } from '../../../../reusables/dynamicStuff'
+import { DynamicButtons, DynamicButtonsT, DynamicInput, DynamicInputT, SignInInput, SignInInputT } from '../../../../reusables/dynamicStuff'
 
 function SignIn() {
   const [createAccount, setCreateAccount] = useState(false)
@@ -15,7 +15,7 @@ function SignIn() {
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
 
-  const collectedData: DynamicInputT[] = [
+  const collectedSignData: SignInInputT[] = [
     {
       viewStyle: signInStyles.flexColumn,
       textStyle: signInStyles.textAlign,
@@ -76,10 +76,10 @@ function SignIn() {
       <View style={{ width: '60%', }}>
         <Text style={{ ...signInStyles.Logo, letterSpacing: 1, alignSelf: 'center', }}>Ultilist</Text>
 
-        <DynamicInput collectedData={collectedData[0]} />
-        <DynamicInput collectedData={collectedData[1]} />
+        <SignInInput collectedSignData={collectedSignData[0]} />
+        <SignInInput collectedSignData={collectedSignData[1]} />
         {createAccount ?
-          <DynamicInput collectedData={collectedData[2]} />
+          <SignInInput collectedSignData={collectedSignData[2]} />
           : null}
 
         <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 50 }}>

@@ -12,22 +12,33 @@ const Navigation = () => {
   const store = configureStore()
 
   return (
-      <Provider store={store}>
-        <NavigationContainer>
-          <Drawer.Navigator>
-            <Drawer.Screen
-              options={{ title: 'Welcome!' }}
-              name="welcome" component={WelcomeScreen} />
-            <Drawer.Screen
-              options={{ title: 'Main!' }}
-              name="main" component={MainScreen} />
-            <Drawer.Screen
-              options={{ title: 'Rooms!' }}
-              name="rooms" component={SettingScreen} />
-          </Drawer.Navigator>
-        </NavigationContainer>
-      </Provider>
+   
+    
+
+    <Provider store={store}>
+      <NavigationContainer>
+        <Drawer.Navigator>
+          <Drawer.Screen
+            options={{ title: 'Welcome!' }}
+            name="welcome" component={WelcomeScreen} />
+          <Drawer.Screen
+            options={{ title: 'Main!' }}
+            name="main" component={MainScreen} />
+          <Drawer.Screen
+            options={{ title: 'Rooms!' }}
+            name="rooms" component={SettingScreen} />
+        </Drawer.Navigator>
+      </NavigationContainer>
+    </Provider>
   )
 }
 
 export default Navigation
+{/* <Drawer.Section title="Some title">
+    <Drawer.Item
+      label="First Item"
+    />
+    <Drawer.Item
+      label="Second Item"
+    />
+  </Drawer.Section> */}

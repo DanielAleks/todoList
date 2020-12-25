@@ -63,6 +63,7 @@ function SettingScreen() {
       <Provider>
         <Portal>
           <FAB.Group
+            fabStyle={{ backgroundColor: '#a30101' }}
             visible={true}
             open={open}
             icon={open ? 'book-variant' : 'plus'}
@@ -92,9 +93,9 @@ function SettingScreen() {
 }
 const styles = StyleSheet.create({
   modalContainer: {
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#302f2f',
     width: '100%',
-    height: 800,
+    height: '100%', 
     position: 'absolute',
     top: 0,
     display: 'flex'
@@ -110,6 +111,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     fontWeight: 'bold',
     fontSize: 22,
+    color: '#dddddd'
   },
   plusButton: {
     position: 'absolute',
