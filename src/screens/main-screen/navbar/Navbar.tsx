@@ -20,11 +20,11 @@ function Navbar() {
     {
       onPress: () => setModalParticipants((prev) => !prev),
       buttonStyle: { marginRight: 20 },
-      textStyle: styles.settings,
+      textStyle: navStyles.settings,
       text: <MaterialIcons name="group-add" size={25} color="black" />,
     },
     {
-      onPress: () => navigation.navigate('rooms'),
+      onPress: null,
       buttonStyle: null,
       textStyle: null,
       text: <Entypo name="dots-three-vertical" size={19} color="black" />,
@@ -38,26 +38,26 @@ function Navbar() {
   ]
 
   return (
-    <View style={styles.container}>
+    <View style={navStyles.container}>
       {modalParticipants ? <ParticipantsModal setModalParticipants={setModalParticipants} /> : null}
       {modalRoomName ? <RoomNameModal setModalRoomName={setModalRoomName} /> : null}
 
-      <View style={styles.sandwich}>
+      <View style={navStyles.sandwich}>
         <PureButton pureButtonData={pureButtonData[2]} />
         {/* //! Should be dynamic text here for group name */}
-        <Text style={styles.text}>League Group</Text>
+        <Text style={navStyles.text}>League Group</Text>
       </View>
 
-      <View style={styles.innerContainer}>
+      <View style={navStyles.innerContainer}>
         <PureButton pureButtonData={pureButtonData[0]} />
       </View>
-      <View style={styles.settings}>
+      <View style={navStyles.settings}>
         <PureButton pureButtonData={pureButtonData[1]} />
       </View>
     </View>
   )
 }
-const styles = StyleSheet.create({
+export const navStyles = StyleSheet.create({
   container: {
     backgroundColor: '#a30101',
     height: 55,

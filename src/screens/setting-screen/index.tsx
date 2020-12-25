@@ -9,6 +9,11 @@ import RemoveARoom from './createRoom/RemoveARoom'
 import { DynamicBack, DynamicBackT, PureButton, PureButtonT } from '../../reusables/dynamicStuff'
 import { useSelector } from 'react-redux'
 import { rootStoreT } from '../../../store'
+import Navbar from '../main-screen/navbar/Navbar'
+import {navStyles} from '../main-screen/navbar/Navbar'
+import { Entypo } from '@expo/vector-icons'
+import { MaterialIcons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 
 function SettingScreen() {
   const rooms = useSelector((state: rootStoreT) => state.rooms)
@@ -20,7 +25,7 @@ function SettingScreen() {
   const onStateChange = ({ open }) => setState({ open })
   const { open } = state
 
-  const backData: DynamicBackT = { 
+  const backData: DynamicBackT = {
     onPress: () => navigation.navigate('main'),
     style: styles.buttonBack,
   }
@@ -30,24 +35,47 @@ function SettingScreen() {
     setIsEditing((prev) => !prev)
   }
 
-  const pureButtonData: PureButtonT = {
-    onPress: nowEditing,
-    text: 'In Editing Mode',
-    textStyle: gloStyles.whiteText,
-    buttonStyle: gloStyles.button
-  }
+  // const pureButtonData: PureButtonT = {
+  //   onPress: nowEditing,
+  //   text: 'In Editing Mode',
+  //   textStyle: gloStyles.whiteText,
+  //   buttonStyle: gloStyles.button
+  // }
+  const pureButtonData: PureButtonT[] = [
+    {
+      onPress: () => null,
+      buttonStyle: null,
+      textStyle: null,
+      text: <Entypo name="dots-three-vertical" size={19} color="black" />,
+    },
+    {
+      onPress: () => null,
+      buttonStyle: null,
+      textStyle: null,
+      text: <Feather name="menu" size={24} color="black" />,
+    },
+  ]
 
   return (
     <View style={styles.modalContainer}>
-      <DynamicBack backData={backData} />
-      <View style={styles.headerContainer}>
-        <Text style={styles.header}>My Rooms:</Text>
+      <View style={navStyles.container}>
+      {/* {modalParticipants ? <ParticipantsModal setModalParticipants={setModalParticipants} /> : null}
+      {modalRoomName ? <RoomNameModal setModalRoomName={setModalRoomName} /> : null} */}
+
+      <View style={navStyles.sandwich}>
+        <PureButton pureButtonData={pureButtonData[1]} />
+        <Text style={{...navStyles.text, textDecorationLine: 'underline'}}>My Rooms: </Text>
       </View>
+
+      <View style={navStyles.settings}>
+        <PureButton pureButtonData={pureButtonData[0]} />
+      </View>
+    </View>
 
       <View style={styles.roomContainer}>
         {rooms.map((item) =>
           <RemoveARoom key={item.id} item={item} />
-        )} 
+        )}
       </View>
 
       {createModal ? <CreateRoom setCreateModal={setCreateModal} /> : null}
@@ -55,9 +83,9 @@ function SettingScreen() {
       {isEditing ?
         <View>
           <Text>You are in Editing Mode</Text>
-          <PureButton pureButtonData={pureButtonData} />
+          {/* <PureButton pureButtonData={pureButtonData} /> */}
         </View>
-      : null}
+        : null}
 
 
       <Provider>
@@ -95,7 +123,7 @@ const styles = StyleSheet.create({
   modalContainer: {
     backgroundColor: '#302f2f',
     width: '100%',
-    height: '100%', 
+    height: '100%',
     position: 'absolute',
     top: 0,
     display: 'flex'
