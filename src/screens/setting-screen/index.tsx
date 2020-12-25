@@ -20,10 +20,9 @@ function SettingScreen() {
   const onStateChange = ({ open }) => setState({ open })
   const { open } = state
 
-
   const backData: DynamicBackT = { 
     onPress: () => navigation.navigate('main'),
-    style: gloStyles.buttonBack,
+    style: styles.buttonBack,
   }
 
   const nowEditing = () => {
@@ -99,6 +98,13 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     display: 'flex'
+  },
+  buttonBack: {
+    margin: 10,
+    marginTop: 40,
+    backgroundColor: '#3a3a3a',
+    width: 25,
+    borderRadius: 5
   },
   header: {
     position: 'absolute',

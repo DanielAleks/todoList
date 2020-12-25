@@ -1,24 +1,24 @@
-import { disableExpoCliLogging } from 'expo/build/logs/Logs';
+import { useFonts } from 'expo-font';
 import React from 'react';
-import { LogBox, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import Navigation from './src/Navigation';
 
 export default function App() {
+  const [loaded] = useFonts({
+    Nunito: require('./assets/Nunito-Regular.ttf')
+  });
+
+  if (!loaded) return null;
+ 
   return (
-    <Navigation />
-    );
+      <Navigation />
+  );
 }
 
 export const gloStyles = StyleSheet.create({
   blackText: {
     color: 'black',
     fontSize: 14,
-  },
-  buttonBack: {
-    margin: 10,
-    backgroundColor: '#3a3a3a',
-    width: 25,
-    borderRadius: 5
   },
   whiteText: {
     color: 'white',
@@ -48,9 +48,9 @@ export const gloStyles = StyleSheet.create({
     margin: 10
   },
   inputStyle: {
-    width: 170,
+    width: 240,
     borderBottomWidth: 1,
-    borderBottomColor: 'black',
+    borderBottomColor: '#b4b4b4',
     borderRadius: 4,
   },
   editingMode: {

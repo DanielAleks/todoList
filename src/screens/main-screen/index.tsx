@@ -8,8 +8,9 @@ import CreateAList from './components/fabGroup/CreateAList'
 import Lists from './components/Lists'
 import { useSelector } from 'react-redux'
 import { rootStoreT } from '../../../store'
+import { LinearGradient } from 'expo-linear-gradient'
 
-const MainScreen = () => { 
+const MainScreen = () => {
   const lists = useSelector((state: rootStoreT) => state.lists)
   const [editMode, setEditMode] = useState(false)
   const [CreateListModal, setCreateListModal] = useState(false)
@@ -23,25 +24,27 @@ const MainScreen = () => {
     setEditMode((prev) => !prev)
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={mainStyles.container}>
       <Navbar />
-      <StatusBar style="auto" />
+      <StatusBar backgroundColor="black" style="light" />
       {todoModal ? <AddATodo setTodoModal={setTodoModal} /> : null}
       {CreateListModal ? <CreateAList setCreateListModal={setCreateListModal} /> : null}
 
       {lists.map((listItem) =>
-        <Lists 
-        listItem={listItem} 
-        listOpenById={listOpenById}
-        setListOpenById={setListOpenById}
-        editMode={editMode} 
-        key={listItem.id} 
+        <Lists
+          listItem={listItem}
+          listOpenById={listOpenById}
+          setListOpenById={setListOpenById}
+          editMode={editMode}
+          key={listItem.id}
         />
       )}
 
       <Provider>
         <Portal>
           <FAB.Group
+
+            fabStyle={{ backgroundColor: '#a30101' }}
             visible={true}
             open={open}
             icon={open ? 'book-variant' : 'plus'}
@@ -78,8 +81,8 @@ export const mainStyles = StyleSheet.create({
     fontSize: 14,
   },
   container: {
-    display: 'flex',
-    flexDirection: 'row',
+    flex: 1,
+    backgroundColor: '#4d4c4c'
   },
   group: {
     borderColor: 'white',

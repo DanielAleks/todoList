@@ -7,16 +7,15 @@ import { Provider } from 'react-redux';
 import configureStore from '../store'
 import SettingScreen from './screens/setting-screen';
 
-
 const Drawer = createDrawerNavigator();
 const Navigation = () => {
   const store = configureStore()
 
   return (
-    <Provider store={store}>
+      <Provider store={store}>
         <NavigationContainer>
           <Drawer.Navigator>
-            <Drawer.Screen 
+            <Drawer.Screen
               options={{ title: 'Welcome!' }}
               name="welcome" component={WelcomeScreen} />
             <Drawer.Screen
@@ -27,7 +26,7 @@ const Navigation = () => {
               name="rooms" component={SettingScreen} />
           </Drawer.Navigator>
         </NavigationContainer>
-    </Provider>
+      </Provider>
   )
 }
 

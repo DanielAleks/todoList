@@ -4,10 +4,10 @@ import SignIn from './components/signIn/SignIn'
 
 
 const WelcomeScreen = () => {
-  
-  return ( 
+
+  return (
     <View>
-      <SignIn signInStyles={signInStyles}/>
+      <SignIn />
     </View>
   )
 }
@@ -23,13 +23,15 @@ export const signInStyles = StyleSheet.create({
     flexDirection: 'column',
   },
   button: {
-    backgroundColor: '#ffe607',
-    marginTop: 50,
     borderRadius: 10,
     height: 50,
-    width: 150,
+    width: '100%',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+  },
+  text: {
+    color: '#dddddd',
+    fontFamily: 'Nunito'
   },
   blueButton: {
     marginTop: 10,
@@ -40,16 +42,13 @@ export const signInStyles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 0
   },
   buttonContainer: {
-    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 10
   },
   bgColor: {
-    backgroundColor: '#ff6702',
+    backgroundColor: 'linear - gradient(90deg, rgb(163, 1, 1)  %, rgba(247, 142, 142, 1) 100 %)',
     height: '100%'
   },
   Logo: {
@@ -67,8 +66,9 @@ export const signInStyles = StyleSheet.create({
   textAlign: {
     marginTop: 10,
     marginBottom: 10,
-    color: 'black',
+    color: '#ffffff',
     fontSize: 14,
+    fontFamily: 'Nunito'
   }
 })
 

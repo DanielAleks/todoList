@@ -1,4 +1,4 @@
-const addListAction = ({ todo }) => async (dispatch) => {
+const addListAction = ({ newList }) => async (dispatch) => {
 
   const url = 'https://ulti-todo-list.herokuapp.com/auth/list'
   const reqData = {
