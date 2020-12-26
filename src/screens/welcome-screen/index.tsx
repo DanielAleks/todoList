@@ -55,7 +55,14 @@ export const signInStyles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
     color: '#ffe607',
-    marginBottom: 30
+    marginBottom: 30,
+    letterSpacing: 1,
+    alignSelf: 'center',
+  },
+  gradientContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 50
   },
   imgBg: {
     opacity: .05,

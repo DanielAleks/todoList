@@ -1,4 +1,4 @@
-import { useNavigation } from '@react-navigation/native'
+import { DrawerActions, useNavigation } from '@react-navigation/native'
 import React, { useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { mainStyles } from '..'
@@ -9,10 +9,13 @@ import RoomNameModal from './modals/RoomNameModal'
 import { Entypo } from '@expo/vector-icons'
 import { MaterialIcons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
+import SettingsModal from './modals/SettingsModal'
+import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler'
+import { createDrawerNavigator } from '@react-navigation/drawer'
 
 
-function Navbar() {
-  const navigation = useNavigation()
+function Navbar({ setModalSettings }) {
+  const navigation: any = useNavigation()
   const [modalParticipants, setModalParticipants] = useState(false)
   const [modalRoomName, setModalRoomName] = useState(false)
 
@@ -24,13 +27,13 @@ function Navbar() {
       text: <MaterialIcons name="group-add" size={25} color="black" />,
     },
     {
-      onPress: null,
+      onPress: () => setModalSettings((prev) => !prev),
       buttonStyle: null,
       textStyle: null,
       text: <Entypo name="dots-three-vertical" size={19} color="black" />,
     },
     {
-      onPress: () => setModalRoomName((prev) => !prev),
+      onPress: () => navigation.openDrawer(),
       buttonStyle: null,
       textStyle: null,
       text: <Feather name="menu" size={24} color="black" />,
@@ -48,7 +51,7 @@ function Navbar() {
         <Text style={navStyles.text}>League Group</Text>
       </View>
 
-      <View style={navStyles.innerContainer}>
+      <View style={navStyles.invite}>
         <PureButton pureButtonData={pureButtonData[0]} />
       </View>
       <View style={navStyles.settings}>
@@ -83,7 +86,7 @@ export const navStyles = StyleSheet.create({
     flexDirection: 'row',
     left: 20,
   },
-  innerContainer: {
+  invite: {
     position: 'absolute',
     right: 10,
   },

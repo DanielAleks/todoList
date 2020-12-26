@@ -74,7 +74,7 @@ function SignIn() {
         source={require('../../../../../assets/books.jpg')}
       />
       <View style={{ width: '60%', }}>
-        <Text style={{ ...signInStyles.Logo, letterSpacing: 1, alignSelf: 'center', }}>Ultilist</Text>
+        <Text style={signInStyles.Logo}>Ultilist</Text>
 
         <SignInInput collectedSignData={collectedSignData[0]} />
         <SignInInput collectedSignData={collectedSignData[1]} />
@@ -82,7 +82,7 @@ function SignIn() {
           <SignInInput collectedSignData={collectedSignData[2]} />
           : null}
 
-        <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 50 }}>
+        <View style={signInStyles.gradientContainer}>
           <LinearGradient
             style={{ borderRadius: 10, width: 150 }}
             colors={['#e4e708',

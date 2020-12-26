@@ -9,6 +9,7 @@ import Lists from './components/Lists'
 import { useSelector } from 'react-redux'
 import { rootStoreT } from '../../../store'
 import { LinearGradient } from 'expo-linear-gradient'
+import SettingsModal from './navbar/modals/SettingsModal'
 
 const MainScreen = () => {
   const lists = useSelector((state: rootStoreT) => state.lists)
@@ -19,16 +20,19 @@ const MainScreen = () => {
   const onStateChange = ({ open }) => setState({ open })
   const { open } = state
   const [listOpenById, setListOpenById] = useState<number>(null)
+  const [modalSettings, setModalSettings] = useState(false)
 
   const nowEditing = () =>
     setEditMode((prev) => !prev)
 
   return (
     <View style={mainStyles.container}>
-      <Navbar />
+      <Navbar setModalSettings={setModalSettings}/>
       <StatusBar backgroundColor="black" style="light" />
       {todoModal ? <AddATodo setTodoModal={setTodoModal} /> : null}
       {CreateListModal ? <CreateAList setCreateListModal={setCreateListModal} /> : null}
+      {modalSettings ? <SettingsModal setModalSettings={setModalSettings} /> : null}
+
 
       {lists.map((listItem) => 
         <Lists
@@ -49,7 +53,7 @@ const MainScreen = () => {
             icon={open ? 'book-variant' : 'plus'}
             actions={[
               {
-                color: '#a3a000',
+                color: '#d6d6c7',
                 icon: 'account-edit',
                 label: editMode ? 'Turn Off Editing Mode' : 'Edit Rooms',
                 onPress: nowEditing,

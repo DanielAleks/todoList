@@ -8,45 +8,42 @@ import configureStore from '../store'
 import SettingScreen from './screens/setting-screen';
 import { AntDesign } from '@expo/vector-icons';
 import Profile from './screens/main-screen/Profile';
-import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { EvilIcons } from '@expo/vector-icons';
-import { FontAwesome5 } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 
-const DrawerS = createDrawerNavigator();
+const Drawer = createDrawerNavigator();
 const Navigation = () => {
   const store = configureStore()
 
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <DrawerS.Navigator>
-          <DrawerS.Screen
-            options={{ 
+        <Drawer.Navigator>
+          <Drawer.Screen
+            options={{
               drawerIcon: () =>
                 <MaterialIcons name="person-outline" size={24} color="black" />
             }}
             name="Profile" component={Profile} />
-          <DrawerS.Screen options={{
+          <Drawer.Screen options={{
             drawerIcon: () =>
               <AntDesign name="calendar" size={24} color="black" />
           }}
             name="MainRoom" component={MainScreen} />
-          <DrawerS.Screen
+          <Drawer.Screen
             options={{
               drawerIcon: () =>
                 <MaterialCommunityIcons name="file-cabinet" size={24} color="black" />
             }}
             name="Rooms" component={SettingScreen} />
-          <DrawerS.Screen
+          <Drawer.Screen
             options={{
               drawerIcon: () =>
                 <Feather name="log-out" size={24} color="orange" />
             }}
             name="Logout" component={WelcomeScreen} />
-        </DrawerS.Navigator>
+        </Drawer.Navigator>
       </NavigationContainer>
     </Provider>
 
