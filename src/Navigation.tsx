@@ -20,17 +20,17 @@ const Navigation = () => {
     <Provider store={store}>
       <NavigationContainer>
         <Drawer.Navigator>
+          <Drawer.Screen options={{
+            drawerIcon: () =>
+              <AntDesign name="calendar" size={24} color="black" />
+          }}
+            name="MainRoom" component={MainScreen} />
           <Drawer.Screen
             options={{
               drawerIcon: () =>
                 <MaterialIcons name="person-outline" size={24} color="black" />
             }}
             name="Profile" component={Profile} />
-          <Drawer.Screen options={{
-            drawerIcon: () =>
-              <AntDesign name="calendar" size={24} color="black" />
-          }}
-            name="MainRoom" component={MainScreen} />
           <Drawer.Screen
             options={{
               drawerIcon: () =>

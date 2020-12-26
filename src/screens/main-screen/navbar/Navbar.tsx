@@ -14,9 +14,8 @@ import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture
 import { createDrawerNavigator } from '@react-navigation/drawer'
 
 
-function Navbar({ setModalSettings }) {
+function Navbar({ setModalSettings, setModalParticipants }) {
   const navigation: any = useNavigation()
-  const [modalParticipants, setModalParticipants] = useState(false)
   const [modalRoomName, setModalRoomName] = useState(false)
 
   const pureButtonData: PureButtonT[] = [
@@ -42,7 +41,6 @@ function Navbar({ setModalSettings }) {
 
   return (
     <View style={navStyles.container}>
-      {modalParticipants ? <ParticipantsModal setModalParticipants={setModalParticipants} /> : null}
       {modalRoomName ? <RoomNameModal setModalRoomName={setModalRoomName} /> : null}
 
       <View style={navStyles.sandwich}>

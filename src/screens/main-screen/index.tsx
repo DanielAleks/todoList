@@ -10,6 +10,8 @@ import { useSelector } from 'react-redux'
 import { rootStoreT } from '../../../store'
 import { LinearGradient } from 'expo-linear-gradient'
 import SettingsModal from './navbar/modals/SettingsModal'
+import ParticipantsModal from './navbar/modals/ParticipantsModal'
+import InviteSettings from './navbar/modals/InviteSettings'
 
 const MainScreen = () => {
   const lists = useSelector((state: rootStoreT) => state.lists)
@@ -21,18 +23,22 @@ const MainScreen = () => {
   const { open } = state
   const [listOpenById, setListOpenById] = useState<number>(null)
   const [modalSettings, setModalSettings] = useState(false)
+  const [modalParticipants, setModalParticipants] = useState(false)
+  const [inviteCogModal, setInviteCogModal] = useState(false)
+
 
   const nowEditing = () =>
     setEditMode((prev) => !prev)
-
+ 
   return (
     <View style={mainStyles.container}>
-      <Navbar setModalSettings={setModalSettings}/>
+      <Navbar setModalSettings={setModalSettings} setModalParticipants={setModalParticipants}/>
       <StatusBar backgroundColor="black" style="light" />
       {todoModal ? <AddATodo setTodoModal={setTodoModal} /> : null}
       {CreateListModal ? <CreateAList setCreateListModal={setCreateListModal} /> : null}
       {modalSettings ? <SettingsModal setModalSettings={setModalSettings} /> : null}
-
+      {modalParticipants ? <ParticipantsModal setModalParticipants={setModalParticipants} setInviteCogModal={setInviteCogModal} /> : null}
+      {inviteCogModal ? <InviteSettings setInviteCogModal={setInviteCogModal} /> : null}
 
       {lists.map((listItem) => 
         <Lists

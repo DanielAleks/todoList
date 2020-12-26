@@ -35,7 +35,6 @@ function SettingsModal({ setModalSettings }) {
       transparent={true}
       visible={true}
       animationType="fade"
-      onDismiss={() => console.log('object')}
       onRequestClose={() => setModalSettings(false)}
     >
       <TouchableOpacity
