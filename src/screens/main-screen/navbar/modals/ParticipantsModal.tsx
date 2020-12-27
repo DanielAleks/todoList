@@ -35,7 +35,10 @@ function ParticipantsModal({ setModalParticipants, setInviteCogModal }) {
 
         <View style={{ flexDirection: 'row', marginTop: 10 }}>
           <Text style={styles.header}>Invite Others to the Group</Text>
-          <TouchableOpacity onPress={() => setInviteCogModal(prev => !prev)}>
+          <TouchableOpacity onPress={() => {
+            setModalParticipants(false)
+            setInviteCogModal(prev => !prev)
+          }}>
             <Entypo name="cog" size={24} color="#000000" />
           </TouchableOpacity>
         </View>

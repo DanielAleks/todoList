@@ -1,56 +1,80 @@
 import React, { useState } from 'react'
-import { StyleSheet, View, Modal } from 'react-native'
+import { StyleSheet, View, Modal, Text, TouchableOpacity } from 'react-native'
 import { gloStyles } from '../../../../../App'
 import { ADD_LIST } from '../../../../reducers/types'
 import { useDispatch } from 'react-redux'
-import { DynamicFeather, DynamicFeatherT, DynamicInput, DynamicInputT, PureButton, PureButtonT } from '../../../../reusables/dynamicStuff'
-import signInAction from '../../../../actions/signInAction'
-import addListAction from '../../../../actions/addListAction'
+import { PureButton, PureButtonT } from '../../../../reusables/dynamicStuff'
+import { LinearGradient } from 'expo-linear-gradient'
+import { TextInput } from 'react-native-gesture-handler'
 
 function CreateAList({ setCreateListModal }) {
   const [value, setValue] = useState('')
   const dispatch = useDispatch()
 
-// const NewList
+  // const NewList
 
-  const addList = () => {
+  const addList = () =>
     dispatch({ type: ADD_LIST, payload: value })
-    // dispatch(addListAction({ username, password }))
-  } 
+  // dispatch(addListAction({ username, password }))
 
-  const featherData: DynamicFeatherT = { onPress: () => setCreateListModal(false) }
   const pureButtonData: PureButtonT = {
     onPress: addList,
-    textStyle: gloStyles.whiteText,
-    buttonStyle: gloStyles.button,
-    text: 'Create List',
-  }
-  const collectedData: DynamicInputT = {
     textStyle: gloStyles.blackText,
-    value: value,
-    onChangeText: (text) => setValue(text),
-    name: 'Create a List:',
+    buttonStyle: null,
+    text: 'Create List',
   }
 
   return (
-    <Modal transparent={true} visible={true}>
-      <View style={gloStyles.modalBg}>
-        <View style={styles.absoluteModal}>
-          <View style={styles.modalArea}>
-            <DynamicFeather featherData={featherData} />
-            <DynamicInput collectedData={collectedData} />
-            <PureButton pureButtonData={pureButtonData} />
-          </View>
-        </View>
+    <Modal
+      transparent={true}
+      visible={true}
+      animationType="fade"
+      onRequestClose={() => setCreateListModal(false)}>
+
+      <TouchableOpacity
+        onPress={() => { setCreateListModal(false) }}
+        style={{ ...styles.overlayStyles, ...gloStyles.modalBg }}
+      ></TouchableOpacity>
+
+      <View style={styles.container}>
+        <Text style={gloStyles.whiteText}>Create A List:</Text>
+        <TextInput style={styles.inputStyle} />
+        <LinearGradient
+          style={{ borderRadius: 5, width: 100, height: 30, justifyContent: 'center', alignItems: 'center', marginTop: 10 }}
+          colors={['#e4e708',
+            '#dfad08',]}
+          start={[0, 0]}
+        >
+          <PureButton pureButtonData={pureButtonData} />
+        </LinearGradient>
       </View>
     </Modal>
   )
 }
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#272727',
+    width: 200,
+    height: 150,
+    top: 200,
+    alignSelf: 'center',
+    borderRadius: 5,
+  },
   absoluteModal: {
     position: 'absolute',
     bottom: '50%',
     right: '20%',
+  },
+  overlayStyles: {
+    width: '100%',
+    height: '100%',
+    position: 'absolute'
+  },
+  inputStyle: {
+    width: 150,
+    borderBottomWidth: 1,
+    borderBottomColor: '#acacac',
+    borderRadius: 4
   },
   modalArea: {
     justifyContent: 'center',
@@ -58,7 +82,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     height: 150,
     width: 250,
-    backgroundColor: '#c43d3d',
+    backgroundColor: '#272727',
   },
 })
 
