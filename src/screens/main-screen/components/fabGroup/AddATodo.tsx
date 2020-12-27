@@ -7,6 +7,7 @@ import { DynamicFeather, DynamicFeatherT, DynamicInput, DynamicInputT, PureButto
 import { LinearGradient } from 'expo-linear-gradient'
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
+import { TextInput } from 'react-native-gesture-handler'
 
 function AddATodo({ setTodoModal }) {
   const [input, setInput] = useState('')
@@ -22,7 +23,7 @@ function AddATodo({ setTodoModal }) {
   const featherData: DynamicFeatherT = { onPress: () => setTodoModal(false) }
   const pureButtonData: PureButtonT = {
     onPress: addTodo,
-    textStyle: gloStyles.whiteText,
+    textStyle: gloStyles.blackText,
     text: 'Add Todo',
     buttonStyle: styles.submitButton,
   }
@@ -50,16 +51,14 @@ function AddATodo({ setTodoModal }) {
         onPress={() => { setTodoModal(false) }}
         style={{ ...styles.overlayStyles, ...gloStyles.modalBg }}
       ></TouchableOpacity>
-      {/* <View style={styles.absoluteModal}>
-          <View style={styles.modalArea}> */}
+
       <View style={styles.container}>
-        <DynamicFeather featherData={featherData} />
+        <Text style={{ ...gloStyles.whiteText, marginTop: 10, marginLeft: 10 }}>Add A Todo:</Text>
+        <TextInput value={input} style={styles.inputStyle} onChangeText={(text) => setInput(text)} />
 
-        <DynamicInput collectedData={collectedData[1]} />
-
-        <View style={{ flexDirection: 'column', alignItems: 'flex-end', justifyContent: 'flex-end', width: '100%', marginRight: 30 }}>
+        <View style={{ justifyContent: 'center', marginVertical: 10, flexDirection: 'row', width: '100%' }}>
           <LinearGradient
-            style={{ borderRadius: 100, width: 60, height: 40, marginBottom: 10 }}
+            style={{ borderRadius: 100, width: 60, height: 40, marginHorizontal: 10 }}
             colors={['#e4e1e1',
               '#ccc9c9']}
             start={[0, 0]}>
@@ -71,9 +70,8 @@ function AddATodo({ setTodoModal }) {
             </TouchableOpacity>
           </LinearGradient>
 
-
           <LinearGradient
-            style={{ borderRadius: 100, width: 60, height: 40, }}
+            style={{ borderRadius: 100, width: 60, height: 40, marginHorizontal: 10 }}
             colors={['#e4e1e1',
               '#ccc9c9']}
             start={[0, 0]}>
@@ -86,12 +84,12 @@ function AddATodo({ setTodoModal }) {
           </LinearGradient>
         </View>
 
-
         <LinearGradient
-          style={{ borderRadius: 10, width: 100, height: 40, justifyContent: 'center', alignSelf: 'center' }}
-          colors={['#f30000',
-            '#a30101']}
-          start={[0, 0]}>
+          style={{ borderRadius: 5, width: 100, height: 30, justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}
+          colors={['#e4e708',
+            '#dfad08',]}
+          start={[0, 0]}
+        >
           <PureButton pureButtonData={pureButtonData} />
         </LinearGradient>
       </View>
@@ -99,15 +97,16 @@ function AddATodo({ setTodoModal }) {
   )
 }
 const styles = StyleSheet.create({
-  absoluteModal: {
-    position: 'absolute',
-    bottom: '30%',
-    right: '20%',
+  inputStyle: {
+    width: 150,
+    borderBottomWidth: 1,
+    borderBottomColor: '#bbbbbb',
+    borderRadius: 4,
   },
   container: {
     backgroundColor: '#272727',
     width: 200,
-    height: 150,
+    height: 200,
     top: 200,
     alignSelf: 'center',
     borderRadius: 5,

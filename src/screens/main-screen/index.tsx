@@ -29,10 +29,10 @@ const MainScreen = () => {
 
   const nowEditing = () =>
     setEditMode((prev) => !prev)
- 
+
   return (
     <View style={mainStyles.container}>
-      <Navbar setModalSettings={setModalSettings} setModalParticipants={setModalParticipants}/>
+      <Navbar setModalSettings={setModalSettings} setModalParticipants={setModalParticipants} />
       <StatusBar backgroundColor="black" style="light" />
       {todoModal ? <AddATodo setTodoModal={setTodoModal} /> : null}
       {CreateListModal ? <CreateAList setCreateListModal={setCreateListModal} /> : null}
@@ -40,7 +40,7 @@ const MainScreen = () => {
       {modalParticipants ? <ParticipantsModal setModalParticipants={setModalParticipants} setInviteCogModal={setInviteCogModal} /> : null}
       {inviteCogModal ? <InviteSettings setInviteCogModal={setInviteCogModal} /> : null}
 
-      {lists.map((listItem) => 
+      {lists.map((listItem) =>
         <Lists
           listItem={listItem}
           listOpenById={listOpenById}
@@ -59,19 +59,19 @@ const MainScreen = () => {
             icon={open ? 'book-variant' : 'plus'}
             actions={[
               {
-                color: '#d6d6c7',
+                color: '#464646',
                 icon: 'account-edit',
                 label: editMode ? 'Turn Off Editing Mode' : 'Edit Rooms',
                 onPress: nowEditing,
               },
               {
-                color: '#a3a000',
+                color: '#464646',
                 icon: 'account-search',
                 label: 'Create List',
                 onPress: () => setCreateListModal((prev) => !prev),
               },
               {
-                color: '#a3a000',
+                color: '#464646',
                 icon: 'book-plus-multiple',
                 label: 'Add Todo',
                 onPress: () => setTodoModal((prev) => !prev),
