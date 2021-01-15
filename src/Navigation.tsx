@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import configureStore from '../store'
 import SettingScreen from './screens/setting-screen';
 import { AntDesign } from '@expo/vector-icons';
-import Profile from './screens/main-screen/Profile';
+import Profile from './screens/profile-screen/Profile';
 import { MaterialIcons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
@@ -43,7 +43,6 @@ const Navigation = () => {
               source={require('../assets/books.jpg')}
             />
           </ScrollView> */}
- 
           <Drawer.Screen
             options={{
               drawerIcon: () =>
@@ -53,15 +52,15 @@ const Navigation = () => {
           <Drawer.Screen
             options={{
               drawerIcon: () =>
-                <MaterialIcons name="person-outline" size={24} color="black" />
-            }}
-            name="Profile" component={Profile} />
-          <Drawer.Screen
-            options={{
-              drawerIcon: () =>
                 <MaterialCommunityIcons name="file-cabinet" size={24} color="black" />
             }}
             name="Rooms" component={SettingScreen} />
+          <Drawer.Screen
+            options={{
+              drawerIcon: () =>
+                <MaterialIcons name="person-outline" size={24} color="black" />
+            }}
+            name="Profile" component={Profile} />
           <Drawer.Screen
             options={{
               drawerIcon: () =>

@@ -10,14 +10,16 @@ import { DynamicBack, DynamicBackT, PureButton, PureButtonT } from '../../reusab
 import { useSelector } from 'react-redux'
 import { rootStoreT } from '../../../store'
 import Navbar from '../main-screen/navbar/Navbar'
-import {navStyles} from '../main-screen/navbar/Navbar'
+import { navStyles } from '../main-screen/navbar/Navbar'
 import { Entypo } from '@expo/vector-icons'
 import { MaterialIcons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
+import settingsNavbar from './navbar/SettingsNavbar'
+import SettingsNavbar from './navbar/SettingsNavbar'
 
 function SettingScreen() {
   const rooms = useSelector((state: rootStoreT) => state.rooms)
-  const navigation = useNavigation()
+  const navigation: any = useNavigation()
   const [state, setState] = useState({ open: false })
   const [isEditing, setIsEditing] = useState(false)
   const [joinModal, setJoinModal] = useState(false)
@@ -41,51 +43,27 @@ function SettingScreen() {
   //   textStyle: gloStyles.whiteText,
   //   buttonStyle: gloStyles.button
   // }
-  const pureButtonData: PureButtonT[] = [
-    {
-      onPress: () => null,
-      buttonStyle: null,
-      textStyle: null,
-      text: <Entypo name="dots-three-vertical" size={19} color="black" />,
-    },
-    {
-      onPress: () => null,
-      buttonStyle: null,
-      textStyle: null,
-      text: <Feather name="menu" size={24} color="black" />,
-    },
-  ]
+
 
   return (
     <View style={styles.modalContainer}>
-      <View style={navStyles.container}>
-      {/* {modalParticipants ? <ParticipantsModal setModalParticipants={setModalParticipants} /> : null}
-      {modalRoomName ? <RoomNameModal setModalRoomName={setModalRoomName} /> : null} */}
-
-      <View style={navStyles.sandwich}>
-        <PureButton pureButtonData={pureButtonData[1]} />
-        <Text style={{...navStyles.text, textDecorationLine: 'underline'}}>My Rooms: </Text>
-      </View>
-
-      <View style={navStyles.settings}>
-        <PureButton pureButtonData={pureButtonData[0]} />
-      </View>
-    </View>
-
+      <SettingsNavbar />
       <View style={styles.roomContainer}>
         {rooms.map((item) =>
           <RemoveARoom key={item.id} item={item} />
         )}
       </View>
 
-      {createModal ? <CreateRoom setCreateModal={setCreateModal} /> : null}
-      {joinModal ? <ModalJoin setJoinModal={setJoinModal} /> : null}
-      {isEditing ?
-        <View>
-          <Text>You are in Editing Mode</Text>
-          {/* <PureButton pureButtonData={pureButtonData} /> */}
-        </View>
-        : null}
+      { createModal ? <CreateRoom setCreateModal={setCreateModal} /> : null}
+      { joinModal ? <ModalJoin setJoinModal={setJoinModal} /> : null}
+      {
+        isEditing ?
+          <View>
+            <Text>You are in Editing Mode</Text>
+            {/* <PureButton pureButtonData={pureButtonData} /> */}
+          </View>
+          : null
+      }
 
 
       <Provider>
@@ -116,7 +94,7 @@ function SettingScreen() {
           />
         </Portal >
       </Provider>
-    </View>
+    </View >
   )
 }
 const styles = StyleSheet.create({

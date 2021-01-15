@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { StyleSheet, Text, View, Modal, TouchableOpacity } from 'react-native'
 import { gloStyles } from '../../../../../App'
 import { useDispatch } from 'react-redux'
@@ -8,10 +8,14 @@ import { LinearGradient } from 'expo-linear-gradient'
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { TextInput } from 'react-native-gesture-handler'
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import * as Animatable from 'react-native-animatable'
 
-function AddATodo({ setTodoModal }) {
+function AddATodo({ setTodoModal, todoModal }) {
   const [input, setInput] = useState('')
   const [tag, setTag] = useState('')
+  const [animationPlay, setAnimationPlay] = useState(true)
+  const inputRef: any = useRef('')
 
   const dispatch = useDispatch()
 
@@ -24,7 +28,7 @@ function AddATodo({ setTodoModal }) {
   const pureButtonData: PureButtonT = {
     onPress: addTodo,
     textStyle: gloStyles.blackText,
-    text: 'Add Todo',
+    text: <MaterialCommunityIcons name="arrow-right-bold-circle-outline" size={40} color="#06b3df" />,
     buttonStyle: styles.submitButton,
   }
 
@@ -43,80 +47,119 @@ function AddATodo({ setTodoModal }) {
     }
   ]
 
+  useEffect(() => {
+    inputRef.current.focus()
+    !animationPlay ? setTimeout(() => setTodoModal(false), 400) : setTodoModal(true)
+  }, [animationPlay])
+
   return (
-    <Modal transparent={true} visible={true} animationType="fade"
+    <Modal
+      transparent={true}
+      visible={true}
+      animationType="fade"
       onRequestClose={() => setTodoModal(false)}>
 
       <TouchableOpacity
-        onPress={() => { setTodoModal(false) }}
+        onPress={() => { setAnimationPlay(prev => !prev) }}
         style={{ ...styles.overlayStyles, ...gloStyles.modalBg }}
       ></TouchableOpacity>
 
-      <View style={styles.container}>
-        <Text style={{ ...gloStyles.whiteText, marginTop: 10, marginLeft: 10 }}>Add A Todo:</Text>
-        <TextInput value={input} style={styles.inputStyle} onChangeText={(text) => setInput(text)} />
+      <Animatable.View
+        animation={animationPlay ? 'bounceInRight' : 'bounceOutRight'}
+        duration={600}
+        easing='ease-out'
+        iterationCount={1}
+        style={styles.container}
+      >
 
-        <View style={{ justifyContent: 'center', marginVertical: 10, flexDirection: 'row', width: '100%' }}>
-          <LinearGradient
-            style={{ borderRadius: 100, width: 60, height: 40, marginHorizontal: 10 }}
-            colors={['#e4e1e1',
-              '#ccc9c9']}
-            start={[0, 0]}>
+        <TextInput
+          ref={inputRef}
+          value={input}
+          onChangeText={(text) => setInput(text)}
+          style={styles.inputStyle}
+          placeholder='Finishing Project by Midnight...'
+          placeholderTextColor='#818181'
+        />
+
+        <View style={{ justifyContent: 'center', marginVertical: 10, width: '100%', alignContent: 'center', alignSelf: 'center', }}>
+          <View style={{ flexDirection: 'row' }}>
+            <TextInput style={{ width: 320, backgroundColor: '#2c2c2c', height: 30, alignSelf: 'center' }} />
+
+            <Animatable.View
+              animation='pulse'
+              easing='ease-out'
+              iterationCount='infinite'
+            >
+              <TouchableOpacity
+                // onPress={() => }
+                style={styles.button}
+              >
+                <AntDesign name="tags" size={30} color="#d6d6d6" />
+              </TouchableOpacity>
+            </Animatable.View>
+
+
+          </View>
+
+          <View style={{ flexDirection: 'row', marginTop: 30 }}>
+            <TextInput style={{ width: 320, backgroundColor: '#2c2c2c', height: 30, alignSelf: 'center' }} />
+
             <TouchableOpacity style={styles.button}>
-              <Text style={{ fontSize: 20 }}>
-                +
-                  <AntDesign name="tags" size={24} color="black" />
-              </Text>
+              <AntDesign name="calendar" size={30} color="#d6d6d6" />
             </TouchableOpacity>
-          </LinearGradient>
+          </View>
 
-          <LinearGradient
-            style={{ borderRadius: 100, width: 60, height: 40, marginHorizontal: 10 }}
-            colors={['#e4e1e1',
-              '#ccc9c9']}
-            start={[0, 0]}>
-            <TouchableOpacity onPress={addTag} style={styles.button}>
-              <Text style={{ fontSize: 20 }}>
-                +
-                  <FontAwesome name="star-half-full" size={24} color="black" />
-              </Text>
+          <View style={{ flexDirection: 'row', marginTop: 20 }}>
+            <TouchableOpacity onPress={null} style={styles.button}>
+              <AntDesign name="staro" size={30} color="#d6d6d6" />
             </TouchableOpacity>
-          </LinearGradient>
+            <TouchableOpacity onPress={null} style={styles.button}>
+              <AntDesign name="staro" size={30} color="#d6d6d6" />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={null} style={styles.button}>
+              <AntDesign name="staro" size={30} color="#d6d6d6" />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={null} style={styles.button}>
+              <AntDesign name="staro" size={30} color="#d6d6d6" />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={null} style={styles.button}>
+              <AntDesign name="staro" size={30} color="#d6d6d6" />
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={addTag} style={{ alignSelf: 'center', marginLeft: 34 }}>
+              <FontAwesome name="star-half-full" size={30} color="#d6d6d6" />
+            </TouchableOpacity>
+          </View>
         </View>
 
-        <LinearGradient
-          style={{ borderRadius: 5, width: 100, height: 30, justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}
-          colors={['#e4e708',
-            '#dfad08',]}
-          start={[0, 0]}
-        >
-          <PureButton pureButtonData={pureButtonData} />
-        </LinearGradient>
-      </View>
+        <PureButton pureButtonData={pureButtonData} />
+      </Animatable.View>
     </Modal >
   )
 }
 const styles = StyleSheet.create({
   inputStyle: {
-    width: 150,
-    borderBottomWidth: 1,
-    borderBottomColor: '#bbbbbb',
-    borderRadius: 4,
+    marginTop: 12,
+    width: '100%',
+    height: 50,
+    marginLeft: 10,
+    fontSize: 18,
+    fontFamily: 'Nunito',
   },
   container: {
     backgroundColor: '#272727',
-    width: 200,
-    height: 200,
-    top: 200,
-    alignSelf: 'center',
+    width: '90%',
+    height: 350,
+    top: 80,
+    alignSelf: 'flex-end',
     borderRadius: 5,
+    marginRight: -5
   },
   submitButton: {
-    height: 40,
-    borderRadius: 5,
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: 10
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    margin: 20
   },
   overlayStyles: {
     width: '100%',
@@ -126,7 +169,8 @@ const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
     justifyContent: 'center',
-    margin: 10
+    margin: 10,
+    marginHorizontal: 15
   },
   modalArea: {
     justifyContent: 'center',

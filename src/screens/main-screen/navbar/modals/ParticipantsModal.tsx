@@ -61,8 +61,8 @@ function ParticipantsModal({ setModalParticipants, setInviteCogModal }) {
 
           <LinearGradient
             style={{ borderRadius: 5, width: 100, height: 30, justifyContent: 'center', alignItems: 'center' }}
-            colors={['#e4e708',
-              '#dfad08',]}
+            colors={['#06b3df',
+              '#0391b5',]}
             start={[0, 0]}
           >
             <PureButton pureButtonData={pureButtonData} />

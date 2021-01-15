@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { StyleSheet, View, Modal, Text, TouchableOpacity } from 'react-native'
 import { gloStyles } from '../../../../../App'
 import { ADD_LIST } from '../../../../reducers/types'
@@ -6,23 +6,31 @@ import { useDispatch } from 'react-redux'
 import { PureButton, PureButtonT } from '../../../../reusables/dynamicStuff'
 import { LinearGradient } from 'expo-linear-gradient'
 import { TextInput } from 'react-native-gesture-handler'
+import * as Animatable from 'react-native-animatable'
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 function CreateAList({ setCreateListModal }) {
-  const [value, setValue] = useState('')
+  const [input, setInput] = useState('')
+  const [animationPlay, setAnimationPlay] = useState(true)
+  const inputRef: any = useRef('')
+
   const dispatch = useDispatch()
 
-  // const NewList
-
   const addList = () =>
-    dispatch({ type: ADD_LIST, payload: value })
+    dispatch({ type: ADD_LIST, payload: input })
   // dispatch(addListAction({ username, password }))
 
   const pureButtonData: PureButtonT = {
     onPress: addList,
     textStyle: gloStyles.blackText,
-    buttonStyle: null,
-    text: 'Create List',
+    buttonStyle: styles.submitButton,
+    text: <MaterialCommunityIcons name="arrow-right-bold-circle-outline" size={40} color="#06b3df" />,
   }
+
+  useEffect(() => {
+    inputRef.current.focus()
+    !animationPlay ? setTimeout(() => setCreateListModal(false), 400) : setCreateListModal(true)
+  }, [animationPlay])
 
   return (
     <Modal
@@ -32,33 +40,57 @@ function CreateAList({ setCreateListModal }) {
       onRequestClose={() => setCreateListModal(false)}>
 
       <TouchableOpacity
-        onPress={() => { setCreateListModal(false) }}
+        onPress={() => {
+          setAnimationPlay(false)
+          !animationPlay ? setCreateListModal(false) : setCreateListModal(true)
+        }}
         style={{ ...styles.overlayStyles, ...gloStyles.modalBg }}
       ></TouchableOpacity>
 
-      <View style={styles.container}>
-        <Text style={gloStyles.whiteText}>Create A List:</Text>
+
+      <Animatable.View
+        animation={animationPlay ? 'bounceInRight' : 'bounceOutRight'}
+        duration={600}
+        easing='ease-out'
+        iterationCount={1}
+        style={styles.container}
+      >
         <TextInput style={styles.inputStyle} />
-        <LinearGradient
-          style={{ borderRadius: 5, width: 100, height: 30, justifyContent: 'center', alignItems: 'center', marginTop: 10 }}
-          colors={['#e4e708',
-            '#dfad08',]}
-          start={[0, 0]}
-        >
-          <PureButton pureButtonData={pureButtonData} />
-        </LinearGradient>
-      </View>
+        <TextInput
+          ref={inputRef}
+          value={input}
+          onChangeText={(text) => setInput(text)}
+          style={styles.inputStyle}
+          placeholder='My New List for Todos...'
+          placeholderTextColor='#818181'
+        />
+
+        <PureButton pureButtonData={pureButtonData} />
+
+      </Animatable.View>
     </Modal>
   )
 }
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#272727',
-    width: 200,
-    height: 150,
+    width: 300,
+    height: 80,
     top: 200,
-    alignSelf: 'center',
+    alignSelf: 'flex-end',
     borderRadius: 5,
+  },
+  submitButton: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    margin: 15
+  },
+  inputStyle: {
+    marginLeft: 10,
+    width: '100%',
+    fontSize: 18,
+    fontFamily: 'Nunito',
   },
   absoluteModal: {
     position: 'absolute',
@@ -69,12 +101,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     position: 'absolute'
-  },
-  inputStyle: {
-    width: 150,
-    borderBottomWidth: 1,
-    borderBottomColor: '#acacac',
-    borderRadius: 4
   },
   modalArea: {
     justifyContent: 'center',

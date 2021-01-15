@@ -34,7 +34,7 @@ const MainScreen = () => {
     <View style={mainStyles.container}>
       <Navbar setModalSettings={setModalSettings} setModalParticipants={setModalParticipants} />
       <StatusBar backgroundColor="black" style="light" />
-      {todoModal ? <AddATodo setTodoModal={setTodoModal} /> : null}
+      {todoModal ? <AddATodo todoModal={todoModal} setTodoModal={setTodoModal} /> : null}
       {CreateListModal ? <CreateAList setCreateListModal={setCreateListModal} /> : null}
       {modalSettings ? <SettingsModal setModalSettings={setModalSettings} /> : null}
       {modalParticipants ? <ParticipantsModal setModalParticipants={setModalParticipants} setInviteCogModal={setInviteCogModal} /> : null}
