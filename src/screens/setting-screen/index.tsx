@@ -6,15 +6,9 @@ import CreateRoom from './createRoom/CreateRoom'
 import { FAB, Portal, Provider } from 'react-native-paper'
 import ModalJoin from './joinRoom/ModalJoin'
 import RemoveARoom from './createRoom/RemoveARoom'
-import { DynamicBack, DynamicBackT, PureButton, PureButtonT } from '../../reusables/dynamicStuff'
+import { DynamicBackT, PureButton, PureButtonT } from '../../reusables/dynamicStuff'
 import { useSelector } from 'react-redux'
 import { rootStoreT } from '../../../store'
-import Navbar from '../main-screen/navbar/Navbar'
-import { navStyles } from '../main-screen/navbar/Navbar'
-import { Entypo } from '@expo/vector-icons'
-import { MaterialIcons } from '@expo/vector-icons';
-import { Feather } from '@expo/vector-icons';
-import settingsNavbar from './navbar/SettingsNavbar'
 import SettingsNavbar from './navbar/SettingsNavbar'
 
 function SettingScreen() {

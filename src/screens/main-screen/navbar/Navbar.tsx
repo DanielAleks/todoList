@@ -45,7 +45,7 @@ function Navbar({ setModalSettings, setModalParticipants }) {
 
       <View style={navStyles.sandwich}>
         <PureButton pureButtonData={pureButtonData[2]} />
-        {/* //! Should be dynamic text here for group name */}
+
         <Text style={navStyles.text}>League Group</Text>
       </View>
 
