@@ -9,9 +9,9 @@ export default function App() {
   });
 
   if (!loaded) return null;
- 
+
   return (
-      <Navigation />
+    <Navigation />
   );
 }
 
@@ -38,6 +38,11 @@ export const gloStyles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row'
   },
+  overlayStyles: {
+    width: '100%',
+    height: '100%',
+    position: 'absolute'
+  },
   button: {
     height: 30,
     width: 100,
@@ -48,7 +53,7 @@ export const gloStyles = StyleSheet.create({
     margin: 10
   },
   signInInputStyle: {
-    width: 250, 
+    width: 250,
     borderBottomWidth: 1,
     borderBottomColor: '#b4b4b4',
     borderRadius: 4

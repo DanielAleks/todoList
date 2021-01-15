@@ -61,7 +61,7 @@ function AddATodo({ setTodoModal, todoModal }) {
 
       <TouchableOpacity
         onPress={() => { setAnimationPlay(prev => !prev) }}
-        style={{ ...styles.overlayStyles, ...gloStyles.modalBg }}
+        style={{ ...gloStyles.overlayStyles, ...gloStyles.modalBg }}
       ></TouchableOpacity>
 
       <Animatable.View
@@ -160,11 +160,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     right: 0,
     margin: 20
-  },
-  overlayStyles: {
-    width: '100%',
-    height: '100%',
-    position: 'absolute'
   },
   button: {
     alignItems: 'center',
